@@ -1,0 +1,29 @@
+$mainTextColor: #333;
+$bgColor: #ffc;
+$headerBgColor: #ff3;
+$primaryColor: #33f;
+$secondaryColor: #f93;
+$ternaryColor: #3f3;
+$whiteColor: #f5f5dc;
+
+/* https://www.colordic.org/colorscheme/1009 */
+
+$z_overlay: 10;
+$z_modal: 100;
+
+@function rem($px) {
+  @return ($px / 16) * 1rem;
+}
+
+$breakpoints: (
+  'md': 'screen and (max-width: 767px)',
+  'lg': 'screen and (min-width: 768px)',
+  'tablet': 'screen and (min-width: 768px) and (max-width: 1200px)',
+) !default;
+
+// メディアクエリ
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
