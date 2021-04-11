@@ -1,0 +1,18 @@
+@use '../../styles//mixin' as mixin;
+
+.root {
+  padding: 5px 20px;
+  font-weight: bold;
+  background-color: mixin.$secondaryColor;
+  border: 3px solid mixin.$secondaryColor;
+  border-radius: 3px;
+  outline: none;
+
+  &:hover {
+    background-color: mixin.$bgColor;
+  }
+
+  &:focus {
+    background-color: mixin.$bgColor;
+  }
+}
