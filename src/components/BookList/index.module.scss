@@ -1,0 +1,9 @@
+@use '../../styles//mixin' as mixin;
+
+.root {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 3rem;
+  column-gap: 2rem;
+  margin-top: 20px;
+}
