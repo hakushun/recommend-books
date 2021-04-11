@@ -1,0 +1,40 @@
+@use '../../styles//mixin' as mixin;
+
+.item {
+  background-color: mixin.$whiteColor;
+  border-radius: 3px;
+  box-shadow: 0 2px 2px 2px #ccc6af;
+}
+
+.link {
+  display: block;
+  padding: 10px 15px 0;
+}
+
+.title {
+  font-size: mixin.rem(18);
+  font-weight: bold;
+}
+
+.author {
+  color: lighten(mixin.$mainTextColor, 20%);
+}
+
+.img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px 15px;
+}
