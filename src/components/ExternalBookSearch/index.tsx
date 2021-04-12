@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-export const ExtarnalBookSearch: React.VFC = () => (
+export const ExternalBookSearch: React.VFC = () => (
   <form className={styles.root}>
     <div role="search" className={styles.wrapper}>
       <input
