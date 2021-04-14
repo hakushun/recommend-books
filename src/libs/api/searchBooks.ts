@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SearchResult } from '../../redux/modules/searchResults';
+import { SearchResult } from '../../redux/modules/searchResult';
 
 type SearchRowData = {
   items: SearchResult[];
