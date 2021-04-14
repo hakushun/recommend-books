@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
-import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import { useStore } from '../redux/configureStore';
+import { wrapper } from '../redux/store';
 
 import '../styles/reset.scss';
 import '../styles/global.scss';
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps): React.ReactElement {
-  const store = useStore(pageProps.initialReduxState);
+function App({ Component, pageProps }: AppProps): React.ReactElement {
   const router = useRouter();
 
   const handleRouteChange = () => {
@@ -26,9 +21,11 @@ export default function App({
   }, []);
 
   return (
-    <Provider store={store}>
+    <>
       <Component {...pageProps} />
       <div id="overlay" />
-    </Provider>
+    </>
   );
 }
+
+export default wrapper.withRedux(App);
