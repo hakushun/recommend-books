@@ -4,20 +4,9 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
 import { searchBooks } from '../../libs/api/searchBooks';
+import { SearchResult } from './searchResult';
 
 // types
-export type SearchResult = {
-  id: string;
-  selfLink: string;
-  volumeInfo: {
-    authors: string[];
-    description: string;
-    imageLinks: {
-      thumbnail: string;
-    };
-    title: string;
-  };
-};
 type SearchResults = {
   searchResults: SearchResult[];
   isLoading: boolean;
