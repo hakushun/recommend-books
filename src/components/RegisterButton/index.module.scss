@@ -1,0 +1,34 @@
+@use '../../styles//mixin' as mixin;
+
+.root {
+  min-width: 110px;
+  min-height: 110px;
+  padding: 5px 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  outline: none;
+
+  &.read {
+    background-color: mixin.$secondaryColor;
+    border: 3px solid mixin.$secondaryColor;
+  }
+
+  &.want {
+    background-color: mixin.$ternaryColor;
+    border: 3px solid mixin.$ternaryColor;
+  }
+
+  &:hover {
+    background-color: mixin.$bgColor;
+  }
+
+  &:focus {
+    background-color: mixin.$bgColor;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: mixin.$disabledColor;
+    border: 3px solid mixin.$disabledColor;
+  }
+}
