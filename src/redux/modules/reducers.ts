@@ -5,10 +5,11 @@ import comment from './comment';
 import searchResult from './searchResult';
 import searchResults from './searchResults';
 import modal from './modal';
+import search from './search';
 
 const rootReducer = combineReducers({
   resources: combineReducers({ user, book, comment, searchResults }),
-  ui: combineReducers({ searchResult, modal }),
+  ui: combineReducers({ searchResult, modal, search }),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
