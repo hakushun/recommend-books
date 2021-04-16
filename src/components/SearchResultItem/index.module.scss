@@ -8,6 +8,15 @@
   background-color: mixin.$whiteColor;
   border-radius: 3px;
   box-shadow: 0 2px 2px 2px #ccc6af;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  &:focus {
+    transform: scale(1.02);
+  }
 }
 
 .meta {

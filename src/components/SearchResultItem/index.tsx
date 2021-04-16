@@ -1,23 +1,38 @@
-import Image from 'next/image';
 import React from 'react';
+import { useExternalSearch } from '../../hooks/useExternalSearch';
+import { SearchResult } from '../../redux/modules/searchResult';
 import styles from './index.module.scss';
 
-export const SearchResultItem: React.VFC = () => (
-  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
-  <li className={styles.root} role="button">
-    <div className={styles.img}>
-      <Image src="/img/dummy.jpg" width="100" height="150" />
-    </div>
-    <div className={styles.meta}>
-      <span className={styles.title}>
-        達人プログラマー(第2版): 熟達に向けたあなたの旅
-      </span>
-      <span className={styles.author}>Andrew Hunt and David Thomas</span>
-      <div className={styles.description}>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur quo
-        amet officia! Eaque inventore qui incidunt, aut voluptatem, illum
-        suscipit pariatur, rem soluta nemo nihil vero quos debitis quis quidem!
+type Props = {
+  result: SearchResult;
+};
+export const SearchResultItem: React.VFC<Props> = ({ result }) => {
+  const { handleSelect } = useExternalSearch();
+
+  return (
+    <li
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+      role="button"
+      tabIndex={0}
+      aria-label={`open dialog to register ${result.volumeInfo.title}`}
+      className={styles.root}
+      onClick={() => handleSelect(result)}
+      onKeyDown={() => handleSelect(result)}>
+      <div className={styles.img}>
+        <img
+          src={result.volumeInfo.imageLinks?.thumbnail || '/img/no-images.png'}
+          width="100"
+          height="150"
+          alt="book cover"
+        />
       </div>
-    </div>
-  </li>
-);
+      <div className={styles.meta}>
+        <span className={styles.title}>{result.volumeInfo.title}</span>
+        <span className={styles.author}>{result.volumeInfo.authors}</span>
+        <div className={styles.description}>
+          {result.volumeInfo.description}
+        </div>
+      </div>
+    </li>
+  );
+};
