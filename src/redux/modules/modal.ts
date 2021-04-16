@@ -3,6 +3,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { createSelector } from 'reselect';
 import { RootState } from './reducers';
 import { select } from './searchResult';
+import { create } from './book';
 
 // types
 export type TogglePayload = {
@@ -29,6 +30,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(select, (state) => ({
     ...state,
     registerDialog: true,
+  }))
+  .case(create.async.done, (state) => ({
+    ...state,
+    registerDialog: false,
   }));
 export default reducer;
 
