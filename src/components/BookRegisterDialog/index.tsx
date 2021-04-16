@@ -2,8 +2,7 @@ import React from 'react';
 import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { useModal } from '../../hooks/useModal';
 import { Modal } from '../Modal';
-import { ReadButton } from '../ReadButton';
-import { WantButton } from '../WantButton';
+import { RegisterButton } from '../RegisterButton';
 import styles from './index.module.scss';
 
 export const BookRegisterDialog: React.VFC = () => {
@@ -23,8 +22,8 @@ export const BookRegisterDialog: React.VFC = () => {
             </span>
           </div>
           <div className={styles.action}>
-            <ReadButton shape="round" />
-            <WantButton shape="round" />
+            <RegisterButton type="read" item={searchResult} />
+            <RegisterButton type="want" item={searchResult} />
           </div>
         </Modal>
       )}
