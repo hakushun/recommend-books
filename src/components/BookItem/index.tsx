@@ -1,32 +1,43 @@
 import Link from 'next/Link';
-import Image from 'next/image';
 import React from 'react';
 import styles from './index.module.scss';
-import { ReadButton } from '../ReadButton';
-import { WantButton } from '../WantButton';
+import { ReactionButton } from '../ReactionButton';
+import { BookItem as typeBookItem } from '../../redux/modules/book';
 
-export const BookItem: React.VFC = () => (
+type Props = {
+  book: typeBookItem;
+};
+export const BookItem: React.VFC<Props> = ({ book }) => (
   <li className={styles.item}>
-    <Link href="/">
+    <Link href={`/book/${book.id}`}>
       <a className={styles.link}>
         <div>
-          <h3 className={styles.title}>
-            達人プログラマー(第2版): 熟達に向けたあなたの旅
-          </h3>
-          <span className={styles.author}>Andrew Hunt and David Thomas</span>
+          <h3 className={styles.title}>{book.title}</h3>
+          <span className={styles.author}>
+            {book.authors?.join(', ') || ''}
+          </span>
         </div>
         <div className={styles.img}>
-          <Image src="/img/dummy.jpg" width="100" height="150" />
+          <img
+            src={book.imageUrl || '/img/no-image.png'}
+            width="100"
+            height="150"
+            alt="book cover"
+          />
         </div>
         <div className={styles.info}>
-          <span>０人に読まれてます</span>
-          <span>０人が気になってます</span>
+          <span>
+            <strong>{book.usersHaveRead?.length ?? 0}</strong>人に読まれてます
+          </span>
+          <span>
+            <strong>{book.usersWantRead?.length ?? 0}</strong>人が気になってます
+          </span>
         </div>
       </a>
     </Link>
     <div className={styles.action}>
-      <ReadButton />
-      <WantButton />
+      <ReactionButton type="read" item={book} />
+      <ReactionButton type="want" item={book} />
     </div>
   </li>
 );
