@@ -13,7 +13,6 @@ export const ReactionButton: React.VFC<Props> = ({ type, item }) => {
   return (
     <button
       type="button"
-      // TODO: 今のままだと表示されてるボタン全部disabledになる
       disabled={isLoading}
       onClick={() => handleReact(item, type)}
       className={clsx(
