@@ -5,7 +5,12 @@ import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
 import { User } from './user';
 import { Comment } from './comment';
-import { createBook, reactBook } from '../../libs/firestore/crudBook';
+import {
+  createBook,
+  removeBook,
+  fetchBook,
+  reactBook,
+} from '../../libs/firestore/crudBook';
 import { SearchResult } from './searchResult';
 
 export type BookItem = {
@@ -46,6 +51,13 @@ export type ReactPayload = {
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<BookItem>(actionCreator);
 
+export const fetch = asyncActionCreator<string, BookItem, CustomError>(
+  'FETCH_BOOK',
+  async (params) => {
+    const result = await fetchBook(params);
+    return result;
+  },
+);
 export const create = asyncActionCreator<CreatePayload, void, CustomError>(
   'CREATE_BOOK',
   async (params) => {
@@ -58,6 +70,13 @@ export const react = asyncActionCreator<ReactPayload, void, CustomError>(
     await reactBook(params);
   },
 );
+export const remove = asyncActionCreator<BookItem, void, CustomError>(
+  'REMOVE_BOOK',
+  async (params) => {
+    await removeBook(params);
+  },
+);
+
 const INITIAL_STATE: Book = {
   item: {
     id: '',
@@ -77,6 +96,20 @@ const INITIAL_STATE: Book = {
 };
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(fetch.async.started, (state) => ({
+    ...state,
+    isLoading: true,
+  }))
+  .case(fetch.async.failed, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  }))
+  .case(fetch.async.done, (state, { result }) => ({
+    ...state,
+    isLoading: false,
+    item: result,
+  }))
   .case(create.async.started, (state) => ({
     ...state,
     isLoading: true,
@@ -100,6 +133,19 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     error,
   }))
   .case(react.async.done, (state) => ({
+    ...state,
+    isLoading: false,
+  }))
+  .case(remove.async.started, (state) => ({
+    ...state,
+    isLoading: true,
+  }))
+  .case(remove.async.failed, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  }))
+  .case(remove.async.done, (state) => ({
     ...state,
     isLoading: false,
   }));
