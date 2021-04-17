@@ -3,7 +3,7 @@ import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
-import { User } from './user';
+import { Userdata } from './user';
 import { Comment } from './comment';
 import {
   createBook,
@@ -20,10 +20,10 @@ export type BookItem = {
   describe: string;
   selfLink: string;
   imageUrl: string;
-  usersHaveRead: User[];
-  usersWantRead: User[];
+  usersHaveRead: Userdata[];
+  usersWantRead: Userdata[];
   comments: Comment[];
-  registeredBy: User | null;
+  registeredBy: Userdata | null;
   createdAt: number;
   updatedAt: number;
 };
@@ -39,12 +39,12 @@ type Book = {
 export type Type = 'read' | 'want';
 export type CreatePayload = {
   item: SearchResult;
-  user: User;
+  user: Userdata;
   type: Type;
 };
 export type ReactPayload = {
   item: BookItem;
-  user: User;
+  user: Userdata;
   type: Type;
 };
 // actions

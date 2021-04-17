@@ -1,10 +1,10 @@
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { User } from './user';
+import { Userdata } from './user';
 
 export type Comment = {
   id: string;
   content: string;
-  author: User;
+  author: Userdata;
   createdAt: number;
   updatedAt: number;
 };
