@@ -1,5 +1,6 @@
 import React from 'react';
 import { useExternalSearch } from '../../hooks/useExternalSearch';
+import { formatAuthors } from '../../libs/utils/formatAuthors';
 import { SearchResult } from '../../redux/modules/searchResult';
 import styles from './index.module.scss';
 
@@ -28,7 +29,9 @@ export const SearchResultItem: React.VFC<Props> = ({ result }) => {
       </div>
       <div className={styles.meta}>
         <span className={styles.title}>{result.volumeInfo.title}</span>
-        <span className={styles.author}>{result.volumeInfo.authors}</span>
+        <span className={styles.author}>
+          {formatAuthors(result.volumeInfo.authors)}
+        </span>
         <div className={styles.description}>
           {result.volumeInfo.description}
         </div>

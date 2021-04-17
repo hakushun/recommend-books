@@ -1,6 +1,7 @@
 import React from 'react';
 import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { useModal } from '../../hooks/useModal';
+import { formatAuthors } from '../../libs/utils/formatAuthors';
 import { Modal } from '../Modal';
 import { RegisterButton } from '../RegisterButton';
 import styles from './index.module.scss';
@@ -18,7 +19,7 @@ export const BookRegisterDialog: React.VFC = () => {
               {searchResult.volumeInfo.title}
             </span>
             <span className={styles.author}>
-              {searchResult.volumeInfo.authors}
+              {formatAuthors(searchResult.volumeInfo.authors)}
             </span>
           </div>
           <div className={styles.action}>

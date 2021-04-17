@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './index.module.scss';
 import { ReactionButton } from '../ReactionButton';
 import { BookItem as typeBookItem } from '../../redux/modules/book';
+import { formatAuthors } from '../../libs/utils/formatAuthors';
 
 type Props = {
   book: typeBookItem;
@@ -13,9 +14,7 @@ export const BookItem: React.VFC<Props> = ({ book }) => (
       <a className={styles.link}>
         <div>
           <h3 className={styles.title}>{book.title}</h3>
-          <span className={styles.author}>
-            {book.authors?.join(', ') || ''}
-          </span>
+          <span className={styles.author}>{formatAuthors(book.authors)}</span>
         </div>
         <div className={styles.img}>
           <img
