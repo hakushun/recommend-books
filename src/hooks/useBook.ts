@@ -12,6 +12,7 @@ import {
   remove,
 } from '../redux/modules/book';
 import { SearchResult } from '../redux/modules/searchResult';
+import { selectUser } from '../redux/modules/user';
 
 type CustomHooks = (
   _id?: string,
@@ -25,20 +26,22 @@ type CustomHooks = (
 export const useBook: CustomHooks = (id?: string) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const user = useSelector(selectUser);
   const book = useSelector(selectBook);
   const isLoading = useSelector(selectIsLoading);
 
   const handleCreate = (item: SearchResult, type: Type) => {
-    const user = { id: '', name: '', email: '' };
+    if (!user) return;
     dispatch(create({ item, user, type }));
   };
 
   const handleReact = (item: BookItem, type: Type) => {
-    const user = { id: '', name: '', email: '' };
+    if (!user) return;
     dispatch(react({ item, user, type }));
   };
 
   const handleDelete = (item: BookItem) => {
+    if (user?.id !== item.registeredBy?.id) return;
     dispatch(remove(item));
     router.push('/');
   };
