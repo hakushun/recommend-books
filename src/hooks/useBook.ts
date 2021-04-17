@@ -1,21 +1,29 @@
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BookItem,
+  fetch,
   create,
   react,
   selectBook,
   selectIsLoading,
   Type,
+  remove,
 } from '../redux/modules/book';
 import { SearchResult } from '../redux/modules/searchResult';
 
-type CustomHooks = () => {
+type CustomHooks = (
+  _id?: string,
+) => {
   book: BookItem;
   isLoading: boolean;
   handleCreate: (_item: SearchResult, _type: Type) => void;
   handleReact: (_item: BookItem, _type: Type) => void;
+  handleDelete: (_item: BookItem) => void;
 };
-export const useBook: CustomHooks = () => {
+export const useBook: CustomHooks = (id?: string) => {
+  const router = useRouter();
   const dispatch = useDispatch();
   const book = useSelector(selectBook);
   const isLoading = useSelector(selectIsLoading);
@@ -30,5 +38,15 @@ export const useBook: CustomHooks = () => {
     dispatch(react({ item, user, type }));
   };
 
-  return { book, isLoading, handleCreate, handleReact };
+  const handleDelete = (item: BookItem) => {
+    dispatch(remove(item));
+    router.push('/');
+  };
+
+  useEffect(() => {
+    id && dispatch(fetch(id));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  return { book, isLoading, handleCreate, handleReact, handleDelete };
 };
