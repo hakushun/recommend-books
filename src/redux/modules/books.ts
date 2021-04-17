@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { getBooks } from '../../libs/firestore/crudBooks';
 import { BookItem } from './book';
 import { RootState } from './reducers';
 
@@ -19,15 +17,9 @@ interface CustomError extends Error {
 
 // actions
 const actionCreator = actionCreatorFactory();
-const asyncActionCreator = asyncFactory<Books>(actionCreator);
 
-export const fetch = asyncActionCreator<void, BookItem[], CustomError>(
-  'FETCH_BOOKS',
-  async () => {
-    const results = await getBooks();
-    return results;
-  },
-);
+export const subscribe = actionCreator<BookItem[]>('SUBSCRIBE_BOOKS');
+
 // initial state
 const INITIAL_STATE: Books = {
   books: [],
@@ -35,21 +27,13 @@ const INITIAL_STATE: Books = {
 };
 
 // reducer
-const reducer = reducerWithInitialState(INITIAL_STATE)
-  .case(fetch.async.started, (state) => ({
+const reducer = reducerWithInitialState(INITIAL_STATE).case(
+  subscribe,
+  (state, payload) => ({
     ...state,
-    isLoading: true,
-  }))
-  .case(fetch.async.failed, (state, { error }) => ({
-    ...state,
-    isLoading: false,
-    error,
-  }))
-  .case(fetch.async.done, (state, { result }) => ({
-    ...state,
-    books: result,
-    isLoading: false,
-  }));
+    books: [...payload],
+  }),
+);
 export default reducer;
 
 // selectors
