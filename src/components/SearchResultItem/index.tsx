@@ -11,14 +11,14 @@ export const SearchResultItem: React.VFC<Props> = ({ result }) => {
   const { handleSelect } = useExternalSearch();
 
   return (
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <li
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
       role="button"
       tabIndex={0}
       aria-label={`open dialog to register ${result.volumeInfo.title}`}
       className={styles.root}
-      onClick={() => handleSelect(result)}
-      onKeyDown={() => handleSelect(result)}>
+      onClick={() => handleSelect(result)}>
       <div className={styles.img}>
         <img
           src={result.volumeInfo.imageLinks?.thumbnail || '/img/no-images.png'}
