@@ -3,25 +3,9 @@ import {
   CreatePayload,
   ReactPayload,
 } from '../../redux/modules/book';
-import { getNow } from '../dayjs';
 import { getInstance } from './getInstance';
 
 const db = getInstance();
-
-const mapToBook = ({ item, user, type }: CreatePayload): BookItem => ({
-  id: item.id,
-  title: item.volumeInfo.title,
-  authors: item.volumeInfo.authors,
-  describe: item.volumeInfo.description,
-  selfLink: item.selfLink,
-  imageUrl: item.volumeInfo.imageLinks.thumbnail,
-  usersHaveRead: type === 'read' ? [user] : [],
-  usersWantRead: type === 'want' ? [user] : [],
-  comments: [],
-  registeredBy: user,
-  createdAt: getNow(),
-  updatedAt: getNow(),
-});
 
 export const fetchBook = async (id: string): Promise<BookItem> => {
   const doc = await db.collection('books').doc(id).get();
@@ -33,7 +17,7 @@ export const createBook = async ({
   user,
   type,
 }: CreatePayload): Promise<void> => {
-  const book = mapToBook({ item, user, type });
+  const book = mapSearchResult({ item, user, type });
   // すでに登録済みであれば、DBへの登録はしないでreturn
   const target = await db.collection('books').doc(book.id).get();
   if (target.exists) throw new Error('すでに登録済みです');
