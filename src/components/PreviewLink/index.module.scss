@@ -1,0 +1,21 @@
+@use '../../styles//mixin' as mixin;
+
+.root {
+  display: inline-block;
+  min-width: 110px;
+  padding: 5px 20px;
+  font-weight: bold;
+  text-align: center;
+  background-color: mixin.$headerBgColor;
+  border: 3px solid mixin.$headerBgColor;
+  border-radius: 3px;
+  outline: none;
+
+  &:hover {
+    background-color: mixin.$bgColor;
+  }
+
+  &:focus {
+    background-color: mixin.$bgColor;
+  }
+}
