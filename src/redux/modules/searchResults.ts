@@ -7,8 +7,14 @@ import { searchBooks } from '../../libs/api/searchBooks';
 import { SearchResult } from './searchResult';
 
 // types
+export type SearchRowData = {
+  items: SearchResult[];
+  totalItems: number;
+};
 type SearchResults = {
   searchResults: SearchResult[];
+  totalItems: number;
+  maxResults: number;
   isLoading: boolean;
   error?: CustomError;
 };
@@ -16,22 +22,29 @@ interface CustomError extends Error {
   name: string;
   message: string;
 }
-
+export type SearchPayload = {
+  keyword: string;
+  maxResults: number;
+  startIndex: number;
+};
 // actions
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<SearchResults>(actionCreator);
 
-export const search = asyncActionCreator<string, SearchResult[], CustomError>(
-  'EXTERNAL_SEARCH',
-  async (params) => {
-    const results = await searchBooks(params);
-    return results;
-  },
-);
+export const search = asyncActionCreator<
+  SearchPayload,
+  SearchRowData,
+  CustomError
+>('EXTERNAL_SEARCH', async (params) => {
+  const results = await searchBooks(params);
+  return results;
+});
 
 // initial state
 const INITIAL_STATE: SearchResults = {
   searchResults: [],
+  totalItems: 0,
+  maxResults: 20,
   isLoading: false,
 };
 
@@ -48,7 +61,8 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   }))
   .case(search.async.done, (state, { result }) => ({
     ...state,
-    searchResults: result,
+    searchResults: result.items,
+    totalItems: result.totalItems,
     isLoading: false,
   }));
 
@@ -58,6 +72,16 @@ export default reducer;
 export const selectSearchResults = createSelector(
   [(state: RootState) => state.resources.searchResults.searchResults],
   (result) => result,
+);
+
+export const selectTotalItems = createSelector(
+  [(state: RootState) => state.resources.searchResults.totalItems],
+  (totalItems) => totalItems,
+);
+
+export const selectMaxResults = createSelector(
+  [(state: RootState) => state.resources.searchResults.maxResults],
+  (maxResults) => maxResults,
 );
 
 export const selectIsLoading = createSelector(
