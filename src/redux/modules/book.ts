@@ -64,10 +64,11 @@ export const create = asyncActionCreator<CreatePayload, void, CustomError>(
     await createBook(params);
   },
 );
-export const react = asyncActionCreator<ReactPayload, void, CustomError>(
+export const react = asyncActionCreator<ReactPayload, BookItem, CustomError>(
   'REACT_BOOK',
   async (params) => {
-    await reactBook(params);
+    const result = await reactBook(params);
+    return result;
   },
 );
 export const remove = asyncActionCreator<BookItem, void, CustomError>(
@@ -132,9 +133,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     isLoading: false,
     error,
   }))
-  .case(react.async.done, (state) => ({
+  .case(react.async.done, (state, { result }) => ({
     ...state,
     isLoading: false,
+    item: result,
   }))
   .case(remove.async.started, (state) => ({
     ...state,
