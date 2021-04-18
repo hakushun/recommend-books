@@ -1,4 +1,4 @@
-import Link from 'next/Link';
+import Link from 'next/link';
 import React from 'react';
 import { useBooks } from '../../hooks/useBooks';
 import { useExternalSearch } from '../../hooks/useExternalSearch';

@@ -1,4 +1,4 @@
-import Link from 'next/Link';
+import Link from 'next/link';
 import React from 'react';
 import { useUser } from '../../hooks/useUser';
 import styles from './index.module.scss';
