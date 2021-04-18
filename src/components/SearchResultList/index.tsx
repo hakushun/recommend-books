@@ -8,7 +8,7 @@ type Props = {
 };
 export const SearchResultList: React.VFC<Props> = ({ results }) => (
   <ul className={styles.root}>
-    {results.map((result) => (
+    {results?.map((result) => (
       <SearchResultItem key={result.id} result={result} />
     ))}
   </ul>
