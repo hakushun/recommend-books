@@ -1,23 +1,39 @@
 @use '../../styles//mixin' as mixin;
 
 .item {
+  display: flex;
+  flex-direction: column;
   background-color: mixin.$whiteColor;
   border-radius: 3px;
   box-shadow: 0 2px 2px 2px #ccc6af;
 }
 
 .link {
-  display: block;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 10px 15px 0;
 }
 
+.header {
+  flex: 1;
+}
+
 .title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   font-size: mixin.rem(18);
   font-weight: bold;
 }
 
 .author {
+  display: block;
+  overflow: hidden;
   color: lighten(mixin.$mainTextColor, 20%);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .img {

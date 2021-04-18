@@ -12,7 +12,7 @@ export const BookItem: React.VFC<Props> = ({ book }) => (
   <li className={styles.item}>
     <Link href={`/book/${book.id}`}>
       <a className={styles.link}>
-        <div>
+        <div className={styles.header}>
           <h3 className={styles.title}>{book.title}</h3>
           <span className={styles.author}>{formatAuthors(book.authors)}</span>
         </div>
