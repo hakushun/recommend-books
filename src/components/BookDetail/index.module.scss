@@ -1,0 +1,49 @@
+@use '../../styles//mixin' as mixin;
+
+.root {
+  max-width: 1200px;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.detail {
+  display: flex;
+  gap: 20px;
+}
+
+.imgWrapper {
+  width: 150px;
+}
+
+.img {
+  max-width: 100%;
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.list {
+  flex: 1;
+}
+
+.listItem {
+  display: flex;
+
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+
+  > dt {
+    width: clamp(120px, 15%, 150px);
+    font-weight: bold;
+  }
+
+  > dd {
+    flex: 1;
+  }
+}
