@@ -17,8 +17,8 @@ export type BookItem = {
   id: string;
   title: string;
   authors: string[];
-  describe: string;
-  selfLink: string;
+  description: string;
+  previewLink: string;
   imageUrl: string;
   usersHaveRead: Userdata[];
   usersWantRead: Userdata[];
@@ -82,8 +82,8 @@ const INITIAL_STATE: Book = {
     id: '',
     title: '',
     authors: [],
-    describe: '',
-    selfLink: '',
+    description: '',
+    previewLink: '',
     imageUrl: '',
     usersHaveRead: [],
     usersWantRead: [],

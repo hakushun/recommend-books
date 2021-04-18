@@ -6,7 +6,6 @@ import { RootState } from './reducers';
 // types
 export type SearchResult = {
   id: string;
-  selfLink: string;
   volumeInfo: {
     authors: string[];
     description: string;
@@ -14,6 +13,7 @@ export type SearchResult = {
       thumbnail: string;
     };
     title: string;
+    previewLink: string;
   };
 };
 
@@ -25,7 +25,6 @@ export const select = actionCreator<SearchResult>('SELECT_SEARCH_RESULT');
 // initial state
 const INITIAL_STATE: SearchResult = {
   id: '',
-  selfLink: '',
   volumeInfo: {
     authors: [],
     description: '',
@@ -33,6 +32,7 @@ const INITIAL_STATE: SearchResult = {
       thumbnail: '',
     },
     title: '',
+    previewLink: '',
   },
 };
 
