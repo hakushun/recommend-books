@@ -43,12 +43,14 @@ export const selectBooks = createSelector(
     (state: RootState) => state.ui.search.searchword,
   ],
   (books, searchword) =>
-    books.filter(
-      (book) =>
-        book.title.includes(searchword) ||
-        book.authors.join().includes(searchword) ||
-        book.describe.includes(searchword),
-    ),
+    books
+      .filter(
+        (book) =>
+          book.title.includes(searchword) ||
+          book.authors.join().includes(searchword) ||
+          book.description.includes(searchword),
+      )
+      .sort((a, b) => b.createdAt - a.createdAt),
 );
 
 export const selectIsLoading = createSelector(
