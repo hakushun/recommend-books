@@ -5,6 +5,7 @@ import { wrapper } from '../redux/store';
 
 import '../styles/reset.scss';
 import '../styles/global.scss';
+import '../styles/pagenation.scss';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   const router = useRouter();

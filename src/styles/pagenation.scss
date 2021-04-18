@@ -1,0 +1,47 @@
+@use './mixin' as mixin;
+
+.pagenation {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pageLink,
+.breakLink,
+.previousLink,
+.nextLink {
+  display: block;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 2px solid mixin.$primaryColor;
+  border-radius: 3px;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: mixin.$whiteColor;
+    background-color: mixin.$primaryColor;
+  }
+}
+
+.activeLink {
+  font-weight: bold;
+  color: mixin.$whiteColor;
+  background-color: mixin.$primaryColor;
+}
+
+.disabled {
+  > .previousLink,
+  > .nextLink {
+    cursor: not-allowed;
+    background-color: mixin.$disabledColor;
+    border: 2px solid mixin.$disabledColor;
+
+    &:hover,
+    &:focus {
+      color: mixin.$mainTextColor;
+    }
+  }
+}
