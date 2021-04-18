@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, Middleware } from 'redux';
+import { applyMiddleware, createStore, Middleware, Store } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createWrapper } from 'next-redux-wrapper';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -11,7 +11,7 @@ const bindMiddleware = (middleware: Middleware[]) => {
   return applyMiddleware(...middleware);
 };
 
-const initStore = () =>
+export const initStore = (): Store =>
   createStore(rootReducer, bindMiddleware([thunkMiddleware]));
 
 export const wrapper = createWrapper(initStore);
