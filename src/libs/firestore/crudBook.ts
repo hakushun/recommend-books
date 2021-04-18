@@ -3,6 +3,12 @@ import {
   CreatePayload,
   ReactPayload,
 } from '../../redux/modules/book';
+import { mapSearchResult } from '../utils/mapSearchResult';
+import {
+  haveReacted,
+  removeReaction,
+  addReaction,
+} from '../utils/userReaction';
 import { getInstance } from './getInstance';
 
 const db = getInstance();
@@ -20,7 +26,7 @@ export const createBook = async ({
   const book = mapSearchResult({ item, user, type });
   // すでに登録済みであれば、DBへの登録はしないでreturn
   const target = await db.collection('books').doc(book.id).get();
-  if (target.exists) throw new Error('すでに登録済みです');
+  if (target.exists) return;
 
   await db.collection('books').doc(book.id).set(book);
 };
@@ -29,16 +35,16 @@ export const reactBook = async ({
   item,
   user,
   type,
-}: ReactPayload): Promise<void> => {
-  // TODO: すでにreactしてた時の処理追加
-  const book = {
-    ...item,
-    usersHaveRead:
-      type === 'read' ? [...item.usersHaveRead, user] : [...item.usersHaveRead],
-    usersWantRead:
-      type === 'want' ? [...item.usersWantRead, user] : [...item.usersWantRead],
-  };
+}: ReactPayload): Promise<BookItem> => {
+  let book: BookItem;
+
+  if (haveReacted({ item, user, type })) {
+    book = removeReaction({ item, user, type });
+  } else {
+    book = addReaction({ item, user, type });
+  }
   await db.collection('books').doc(book.id).set(book, { merge: true });
+  return fetchBook(book.id);
 };
 
 export const removeBook = async (item: BookItem): Promise<void> => {
