@@ -1,6 +1,6 @@
 -[x]: pagenation
 -[x]: BookDetailのstyle
--[]: 登録済み時のスタイル(BookRegisterDialogコンポーネント)
+-[x]: 登録済み時のスタイル(BookRegisterDialogコンポーネント)
 -[]: 個人ページ（自分が読んだ読みたいがわかるページ）
 -[]: タグ付([tagify](https://github.com/yairEO/tagify))
 -[]: comment form
@@ -9,12 +9,16 @@
 -[]: scssのurl()で読み込むimageがstorybookでエラー
 -[]: story作成
 -[]: redux test
--[]: firebase hosting
--[]: loading中の表示
+-[x]: firebase hosting
+-[x]: loading中の表示
 -[x]: previewページへのリンク
--[]: router.queryのエラー
+-[x]: router.queryのエラー(pages/book/[id].tsx)
 -[x]: unreactメソッド
 -[]: reaction済み時のスタイル(ReactionButton)
 -[]: booksのsort機能（読んだ人数/読みたい人数）
--[]: TypeError: Cannot read property 'object' of nullがたまに出る
 -[]: CLS
+-[]: エラーハンドリング
+-[x]: routingしたらsearchResultsを空にしたい
+-[]: modal内にタブキー閉じ込め
+-[x]: 登録済み時にBookRegisterDialogから単体ページに飛んだ後、dialogをクローズしたい
+-[]: firestore rule変更
