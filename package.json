@@ -16,7 +16,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "build-storybook": "build-storybook",
-    "storybook": "start-storybook -s ./public -p 6006"
+    "storybook": "start-storybook -s ./public -p 6006",
+	"deploy": "npm run export && firebase deploy"
   },
   "husky": {
     "hooks": {
