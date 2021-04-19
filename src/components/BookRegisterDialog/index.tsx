@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
 import { useBooks } from '../../hooks/useBooks';
 import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { useModal } from '../../hooks/useModal';
@@ -9,9 +10,24 @@ import { RegisterButton } from '../RegisterButton';
 import styles from './index.module.scss';
 
 export const BookRegisterDialog: React.VFC = () => {
-  const { registerDialog } = useModal();
-  const { searchResult } = useExternalSearch();
+  const { registerDialog, handleToggle } = useModal();
+  const { searchResult, handleReset } = useExternalSearch();
   const { haveRegistered } = useBooks();
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      handleToggle({ registerDialog: false });
+      handleReset();
+    };
+
+    router.events.on('routeChangeComplete', handleRouteChange);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -26,10 +42,12 @@ export const BookRegisterDialog: React.VFC = () => {
             </span>
           </div>
           {haveRegistered ? (
-            <div>
-              <div>すでに登録済みです。</div>
+            <div className={styles.announce}>
+              <div className={styles.content}>すでに登録済みです</div>
               <Link href={`/book/${searchResult.id}`}>
-                <a>{searchResult.volumeInfo.title}のページへ</a>
+                <a className={styles.link}>
+                  {searchResult.volumeInfo.title}のページへ
+                </a>
               </Link>
             </div>
           ) : (
