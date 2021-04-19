@@ -15,6 +15,23 @@
   color: lighten(mixin.$mainTextColor, 20%);
 }
 
+.announce {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+
+  .content {
+    font-size: mixin.rem(20);
+  }
+
+  .link {
+    color: mixin.$primaryColor;
+    text-decoration: underline;
+  }
+}
+
 .action {
   display: flex;
   align-items: center;
