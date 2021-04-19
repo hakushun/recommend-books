@@ -31,6 +31,7 @@ export type SearchPayload = {
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<SearchResults>(actionCreator);
 
+export const reset = actionCreator('RESET_RESULTS');
 export const search = asyncActionCreator<
   SearchPayload,
   SearchRowData,
@@ -50,6 +51,9 @@ const INITIAL_STATE: SearchResults = {
 
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(reset, () => ({
+    ...INITIAL_STATE,
+  }))
   .case(search.async.started, (state) => ({
     ...state,
     isLoading: true,
