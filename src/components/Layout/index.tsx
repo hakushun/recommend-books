@@ -4,9 +4,11 @@ import { Header } from '../Header';
 import styles from './index.module.scss';
 
 export const Layout: React.FC = ({ children }) => (
-  <div className={styles.root}>
+  <div id="app" className={styles.root}>
     <Header />
-    <main className={styles.main}>{children}</main>
+    <main id="main" className={styles.main} tabIndex={-1}>
+      {children}
+    </main>
     <Footer />
   </div>
 );
