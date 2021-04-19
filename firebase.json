@@ -20,5 +20,9 @@
 				"destination": "/book/[id].html"
 			}
 		]
+	},
+	"firestore": {
+		"rules": "firestore.rules",
+		"indexes": "firestore.indexes.json"
 	}
 }
