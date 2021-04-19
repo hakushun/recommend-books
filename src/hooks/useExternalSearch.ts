@@ -6,7 +6,9 @@ import {
   selectSearchResult,
 } from '../redux/modules/searchResult';
 import {
+  reset,
   search,
+  selectIsLoading,
   selectMaxResults,
   selectSearchResults,
   selectTotalItems,
@@ -14,12 +16,15 @@ import {
 
 type CustomHooks = () => {
   inputRef: MutableRefObject<HTMLInputElement | null>;
+  titleRef: MutableRefObject<HTMLHeadingElement | null>;
   searchResult: SearchResult;
   searchResults: SearchResult[];
   pageCount: number;
+  isLoading: boolean;
   handleSubmit: (_e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   handleSelect: (_result: SearchResult) => void;
   handlePagenation: (_selected: { selected: number }) => void;
+  handleReset: () => void;
 };
 
 export const useExternalSearch: CustomHooks = () => {
@@ -28,7 +33,9 @@ export const useExternalSearch: CustomHooks = () => {
   const searchResults = useSelector(selectSearchResults);
   const totalItems = useSelector(selectTotalItems);
   const maxResults = useSelector(selectMaxResults);
+  const isLoading = useSelector(selectIsLoading);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
 
   const pageCount = Math.ceil(totalItems / maxResults);
 
@@ -50,31 +57,39 @@ export const useExternalSearch: CustomHooks = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
-  const handlePagenation = ({ selected }: { selected: number }) => {
+  const handlePagenation = async ({ selected }: { selected: number }) => {
     if (!inputRef.current || inputRef.current.value.trim() === '') {
       inputRef.current?.focus();
       return;
     }
-    dispatch(
+    await dispatch(
       search({
         keyword: inputRef.current.value,
         maxResults,
         startIndex: selected * maxResults,
       }),
     );
+    titleRef?.current?.focus();
   };
 
   const handleSelect = (result: SearchResult) => {
     dispatch(select(result));
   };
 
+  const handleReset = () => {
+    dispatch(reset());
+  };
+
   return {
     inputRef,
+    titleRef,
     searchResult,
     searchResults,
     pageCount,
+    isLoading,
     handleSubmit,
     handleSelect,
     handlePagenation,
+    handleReset,
   };
 };
