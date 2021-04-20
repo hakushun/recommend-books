@@ -1,23 +1,23 @@
 import React from 'react';
-import { SearchResult } from '../../redux/modules/searchResult';
+import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { Loading } from '../Loading';
 import { SearchResultItem } from '../SearchResultItem';
+import { SearchResultPagenation } from '../SearchResultPagenation';
 import styles from './index.module.scss';
 
-type Props = {
-  results: SearchResult[];
-  isLoading: boolean;
-};
-export const SearchResultList: React.VFC<Props> = ({ results, isLoading }) => (
-  <>
-    {isLoading ? (
-      <Loading />
-    ) : (
+export const SearchResultList: React.VFC = () => {
+  const { isLoading, searchResults } = useExternalSearch();
+
+  if (isLoading) return <Loading />;
+
+  return (
+    <>
       <ul className={styles.root}>
-        {results?.map((result) => (
+        {searchResults?.map((result) => (
           <SearchResultItem key={result.id} result={result} />
         ))}
       </ul>
-    )}
-  </>
-);
+      {searchResults?.length > 0 && <SearchResultPagenation />}
+    </>
+  );
+};
