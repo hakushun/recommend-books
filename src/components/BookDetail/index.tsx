@@ -1,5 +1,6 @@
 import React from 'react';
 import { BookItem } from '../../redux/modules/book';
+import { Comments } from '../Comments';
 import { DeleteButton } from '../DeleteButton';
 import { PreviewLink } from '../PreviewLink';
 import { ReactionButton } from '../ReactionButton';
@@ -54,5 +55,6 @@ export const BookDetail: React.VFC<Props> = ({ book }) => (
         </div>
       </dl>
     </div>
+    <Comments />
   </section>
 );
