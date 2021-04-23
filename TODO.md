@@ -15,10 +15,14 @@
 -[x]: router.queryのエラー(pages/book/[id].tsx)
 -[x]: unreactメソッド
 -[]: reaction済み時のスタイル(ReactionButton)
--[]: booksのsort機能（読んだ人数/読みたい人数）
+-[x]: booksのsort機能（読んだ人数/読みたい人数）
 -[]: CLS
 -[]: エラーハンドリング
 -[x]: routingしたらsearchResultsを空にしたい
 -[]: modal内にタブキー閉じ込め
 -[x]: 登録済み時にBookRegisterDialogから単体ページに飛んだ後、dialogをクローズしたい
--[]: firestore rule変更
+-[x]: firestore rule変更
+-[]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
+-[x]: 大文字小文字区別しないで検索
+-[]: 画像のURLがhttpだからwarning出る問題
+-[]: selectboxのスタイル(SortSelectBox)
