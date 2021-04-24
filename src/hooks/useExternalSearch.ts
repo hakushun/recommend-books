@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useCallback, useRef } from 'react';
+import React, { MutableRefObject, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   SearchResult,
@@ -39,24 +39,21 @@ export const useExternalSearch: CustomHooks = () => {
 
   const pageCount = Math.ceil(totalItems / maxResults);
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      if (!inputRef.current || inputRef.current.value.trim() === '') {
-        inputRef.current?.focus();
-        return;
-      }
-      dispatch(
-        search({
-          keyword: inputRef.current.value,
-          maxResults,
-          startIndex: 0,
-        }),
-      );
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!inputRef.current || inputRef.current.value.trim() === '') {
+      inputRef.current?.focus();
+      return;
+    }
+    dispatch(
+      search({
+        keyword: inputRef.current.value,
+        maxResults,
+        startIndex: 0,
+      }),
+    );
+  };
+
   const handlePagenation = async ({ selected }: { selected: number }) => {
     if (!inputRef.current || inputRef.current.value.trim() === '') {
       inputRef.current?.focus();
