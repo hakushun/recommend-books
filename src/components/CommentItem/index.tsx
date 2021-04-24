@@ -1,4 +1,5 @@
 import React from 'react';
+import { parseDate } from '../../libs/dayjs';
 import { CommentItem as typeComment } from '../../redux/modules/comment';
 import { DeleteCommentButton } from '../CommentButton/DeleteCommentButton';
 import { EditCommentButton } from '../CommentButton/EditCommentButton';
@@ -13,7 +14,7 @@ export const CommentItem: React.VFC<Props> = ({ bookId, comment }) => (
     <div className={styles.header}>
       <div>
         <div className={styles.name}>{comment.author?.name}</div>
-        <div className={styles.date}>{comment.createdAt}</div>
+        <div className={styles.date}>{parseDate(comment.createdAt)}</div>
       </div>
       <div className={styles.action}>
         <EditCommentButton comment={comment} />
