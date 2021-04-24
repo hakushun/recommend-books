@@ -2,7 +2,11 @@ import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
-import { createComment, removeComment } from '../../libs/firestore/crudComment';
+import {
+  createComment,
+  removeComment,
+  updateComment,
+} from '../../libs/firestore/crudComment';
 import { RootState } from './reducers';
 import { Userdata } from './user';
 
@@ -17,6 +21,13 @@ export type CreatePayload = {
   bookId: string;
   content: string;
   author: Userdata;
+};
+export type EditPayload = {
+  item: CommentItem;
+};
+export type UpdatePayload = {
+  bookId: string;
+  item: CommentItem;
 };
 export type RemovePayload = {
   id: string;
@@ -41,13 +52,21 @@ export const create = asyncActionCreator<CreatePayload, void, CustomError>(
     await createComment(params);
   },
 );
-export const edit = actionCreator<CommentItem>('EDIT_COMMENT');
+export const edit = actionCreator<EditPayload>('EDIT_COMMENT');
+export const update = asyncActionCreator<UpdatePayload, void, CustomError>(
+  'UPDATE_COMMENT',
+  async (params) => {
+    await updateComment(params);
+  },
+);
 export const remove = asyncActionCreator<RemovePayload, void, CustomError>(
   'REMOVE_COMMENT',
   async (params) => {
     await removeComment(params);
   },
 );
+export const cancel = actionCreator('CANCEL_COMMENT');
+
 const INITIAL_STATE: Comment = {
   item: {
     id: '',
@@ -65,31 +84,43 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     isLoading: true,
   }))
-  .case(create.async.failed, (state, { error }) => ({
-    ...state,
-    isLoading: false,
+  .case(create.async.failed, (_state, { error }) => ({
+    ...INITIAL_STATE,
     error,
   }))
-  .case(create.async.done, (state) => ({
-    ...state,
-    isLoading: false,
+  .case(create.async.done, () => ({
+    ...INITIAL_STATE,
   }))
   .case(edit, (state, payload) => ({
     ...state,
     ...payload,
   }))
+  .case(update.async.started, (state) => ({
+    ...state,
+    isLoading: true,
+  }))
+  .case(update.async.failed, (_state, { error }) => ({
+    ...INITIAL_STATE,
+    error,
+  }))
+  .case(update.async.done, () => ({
+    ...INITIAL_STATE,
+    isLoading: false,
+  }))
   .case(remove.async.started, (state) => ({
     ...state,
     isLoading: true,
   }))
-  .case(remove.async.failed, (state, { error }) => ({
-    ...state,
-    isLoading: false,
+  .case(remove.async.failed, (_state, { error }) => ({
+    ...INITIAL_STATE,
     error,
   }))
-  .case(remove.async.done, (state) => ({
-    ...state,
+  .case(remove.async.done, () => ({
+    ...INITIAL_STATE,
     isLoading: false,
+  }))
+  .case(cancel, () => ({
+    ...INITIAL_STATE,
   }));
 export default reducer;
 
