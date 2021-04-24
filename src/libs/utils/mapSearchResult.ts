@@ -14,7 +14,7 @@ export const mapSearchResult = ({
   imageUrl: item.volumeInfo.imageLinks.thumbnail,
   usersHaveRead: type === 'read' ? [user] : [],
   usersWantRead: type === 'want' ? [user] : [],
-  comments: [],
+  // comments: [],
   registeredBy: user,
   createdAt: getNow(),
   updatedAt: getNow(),

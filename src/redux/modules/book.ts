@@ -4,7 +4,6 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { RootState } from './reducers';
 import { Userdata } from './user';
-import { Comment } from './comment';
 import {
   createBook,
   removeBook,
@@ -22,7 +21,6 @@ export type BookItem = {
   imageUrl: string;
   usersHaveRead: Userdata[];
   usersWantRead: Userdata[];
-  comments: Comment[];
   registeredBy: Userdata | null;
   createdAt: number;
   updatedAt: number;
@@ -88,7 +86,6 @@ const INITIAL_STATE: Book = {
     imageUrl: '',
     usersHaveRead: [],
     usersWantRead: [],
-    comments: [],
     registeredBy: null,
     createdAt: 0,
     updatedAt: 0,
