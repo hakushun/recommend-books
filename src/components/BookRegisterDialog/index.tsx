@@ -2,16 +2,22 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { useBooks } from '../../hooks/useBooks';
-import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { useModal } from '../../hooks/useModal';
 import { formatAuthors } from '../../libs/utils/formatAuthors';
+import { SearchResult } from '../../redux/modules/searchResult';
 import { CreateBookButton } from '../BookButton/CreateBookButton';
 import { Modal } from '../Modal';
 import styles from './index.module.scss';
 
-export const BookRegisterDialog: React.VFC = () => {
+type Props = {
+  searchResult: SearchResult;
+  handleReset: () => void;
+};
+export const BookRegisterDialog: React.VFC<Props> = ({
+  searchResult,
+  handleReset,
+}) => {
   const { registerDialog, handleToggle } = useModal();
-  const { searchResult, handleReset } = useExternalSearch();
   const { haveRegistered } = useBooks();
   const router = useRouter();
 

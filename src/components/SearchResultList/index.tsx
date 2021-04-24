@@ -1,13 +1,22 @@
 import React from 'react';
-import { useExternalSearch } from '../../hooks/useExternalSearch';
+import { SearchResult } from '../../redux/modules/searchResult';
 import { Loading } from '../Loading';
 import { SearchResultItem } from '../SearchResultItem';
 import { SearchResultPagenation } from '../SearchResultPagenation';
 import styles from './index.module.scss';
 
-export const SearchResultList: React.VFC = () => {
-  const { isLoading, searchResults } = useExternalSearch();
-
+type Props = {
+  isLoading: boolean;
+  searchResults: SearchResult[];
+  pageCount: number;
+  handlePagenation: (_selected: { selected: number }) => void;
+};
+export const SearchResultList: React.VFC<Props> = ({
+  isLoading,
+  searchResults,
+  pageCount,
+  handlePagenation,
+}) => {
   if (isLoading) return <Loading />;
 
   return (
@@ -17,7 +26,12 @@ export const SearchResultList: React.VFC = () => {
           <SearchResultItem key={result.id} result={result} />
         ))}
       </ul>
-      {searchResults?.length > 0 && <SearchResultPagenation />}
+      {searchResults?.length > 0 && (
+        <SearchResultPagenation
+          pageCount={pageCount}
+          handlePagenation={handlePagenation}
+        />
+      )}
     </>
   );
 };
