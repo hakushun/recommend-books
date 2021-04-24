@@ -10,12 +10,14 @@ type Props = {
   searchResults: SearchResult[];
   pageCount: number;
   handlePagenation: (_selected: { selected: number }) => void;
+  handleSelect: (_result: SearchResult) => void;
 };
 export const SearchResultList: React.VFC<Props> = ({
   isLoading,
   searchResults,
   pageCount,
   handlePagenation,
+  handleSelect,
 }) => {
   if (isLoading) return <Loading />;
 
@@ -23,7 +25,11 @@ export const SearchResultList: React.VFC<Props> = ({
     <>
       <ul className={styles.root}>
         {searchResults?.map((result) => (
-          <SearchResultItem key={result.id} result={result} />
+          <SearchResultItem
+            key={result.id}
+            result={result}
+            handleSelect={handleSelect}
+          />
         ))}
       </ul>
       {searchResults?.length > 0 && (

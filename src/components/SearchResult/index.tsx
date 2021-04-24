@@ -12,6 +12,7 @@ type Props = {
   searchResult: typeSearchResult;
   handleReset: () => void;
   handlePagenation: (_selected: { selected: number }) => void;
+  handleSelect: (_result: typeSearchResult) => void;
 };
 export const SearchResult: React.VFC<Props> = ({
   titleRef,
@@ -21,6 +22,7 @@ export const SearchResult: React.VFC<Props> = ({
   searchResult,
   handleReset,
   handlePagenation,
+  handleSelect,
 }) => (
   <div className={styles.root}>
     <h3 className={styles.title} ref={titleRef} tabIndex={-1}>
@@ -31,6 +33,7 @@ export const SearchResult: React.VFC<Props> = ({
       searchResults={searchResults}
       pageCount={pageCount}
       handlePagenation={handlePagenation}
+      handleSelect={handleSelect}
     />
     <BookRegisterDialog searchResult={searchResult} handleReset={handleReset} />
   </div>

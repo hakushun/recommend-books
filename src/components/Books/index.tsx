@@ -15,6 +15,7 @@ export const Books: React.VFC = () => {
     handleSubmit,
     handlePagenation,
     handleReset,
+    handleSelect,
   } = useExternalSearch();
 
   return (
@@ -29,6 +30,7 @@ export const Books: React.VFC = () => {
         searchResult={searchResult}
         handlePagenation={handlePagenation}
         handleReset={handleReset}
+        handleSelect={handleSelect}
       />
     </section>
   );
