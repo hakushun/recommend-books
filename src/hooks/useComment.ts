@@ -37,7 +37,6 @@ export const useComment: CustomHooks = () => {
     textAreaRef.current.value = '';
   };
 
-  // TODO: refがうまく取れない
   const handleEdit = (item: CommentItem) => {
     if (!textAreaRef || !textAreaRef.current) return;
     textAreaRef.current.value = item.content;
