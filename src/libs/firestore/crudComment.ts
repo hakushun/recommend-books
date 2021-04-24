@@ -1,5 +1,10 @@
-import { CreatePayload, RemovePayload } from '../../redux/modules/comment';
+import {
+  CreatePayload,
+  RemovePayload,
+  UpdatePayload,
+} from '../../redux/modules/comment';
 import { mapComment } from '../utils/mapComment';
+import { mapUpdateComment } from '../utils/mapUpdateComment';
 import { getInstance } from './getInstance';
 
 const db = getInstance();
@@ -21,6 +26,19 @@ export const createComment = async ({
     .collection('comments')
     .doc(id)
     .set(comment);
+};
+
+export const updateComment = async ({
+  bookId,
+  item,
+}: UpdatePayload): Promise<void> => {
+  const comment = mapUpdateComment(item);
+  await db
+    .collection('books')
+    .doc(bookId)
+    .collection('comments')
+    .doc(item.id)
+    .set(comment, { merge: true });
 };
 
 export const removeComment = async ({
