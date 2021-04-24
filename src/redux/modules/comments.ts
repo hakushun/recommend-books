@@ -39,7 +39,7 @@ export default reducer;
 // selectors
 export const selectComments = createSelector(
   [(state: RootState) => state.resources.comments.comments],
-  (comments) => comments,
+  (comments) => comments.sort((a, b) => a.createdAt - b.createdAt),
 );
 
 export const selectIsLoading = createSelector(
