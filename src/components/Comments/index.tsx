@@ -10,10 +10,13 @@ type Props = {
 export const Comments: React.VFC<Props> = ({ bookId }) => {
   const {
     textAreaRef,
+    comment,
     isLoading,
     handleCreate,
     handleEdit,
+    handleUpdate,
     handleDelete,
+    handleCancel,
   } = useComment();
   return (
     <div className={styles.root}>
@@ -25,8 +28,11 @@ export const Comments: React.VFC<Props> = ({ bookId }) => {
       <CommentForm
         bookId={bookId}
         textAreaRef={textAreaRef}
+        comment={comment}
         isLoading={isLoading}
         handleCreate={handleCreate}
+        handleUpdate={handleUpdate}
+        handleCancel={handleCancel}
       />
     </div>
   );
