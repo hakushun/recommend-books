@@ -1,12 +1,16 @@
 import { MutableRefObject, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  cancel,
   CommentItem,
   create,
+  edit,
   remove,
   RemovePayload,
   selectComment,
   selectIsLoading,
+  update,
+  UpdatePayload,
 } from '../redux/modules/comment';
 import { selectUser } from '../redux/modules/user';
 
@@ -16,7 +20,9 @@ type CustomHooks = () => {
   isLoading: boolean;
   handleCreate: (_bookId: string) => void;
   handleEdit: (_item: CommentItem) => void;
+  handleUpdate: (_: UpdatePayload) => void;
   handleDelete: (_: RemovePayload) => void;
+  handleCancel: () => void;
 };
 export const useComment: CustomHooks = () => {
   const dispatch = useDispatch();
@@ -39,12 +45,30 @@ export const useComment: CustomHooks = () => {
 
   const handleEdit = (item: CommentItem) => {
     if (!textAreaRef || !textAreaRef.current) return;
+    dispatch(edit({ item }));
     textAreaRef.current.value = item.content;
+  };
+
+  const handleUpdate = ({ bookId, item }: UpdatePayload) => {
+    if (!user) return;
+    if (!textAreaRef.current || textAreaRef.current.value.trim() === '') {
+      textAreaRef.current?.focus();
+      return;
+    }
+    const newComment = { ...item, content: textAreaRef.current.value };
+    dispatch(update({ bookId, item: newComment }));
+    textAreaRef.current.value = '';
   };
 
   const handleDelete = ({ id, bookId }: RemovePayload) => {
     if (!user) return;
     dispatch(remove({ id, bookId }));
+  };
+
+  const handleCancel = () => {
+    dispatch(cancel());
+    if (!textAreaRef || !textAreaRef.current) return;
+    textAreaRef.current.value = '';
   };
 
   return {
@@ -53,6 +77,8 @@ export const useComment: CustomHooks = () => {
     isLoading,
     handleCreate,
     handleEdit,
+    handleUpdate,
     handleDelete,
+    handleCancel,
   };
 };
