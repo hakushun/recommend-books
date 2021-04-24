@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookItem } from '../../redux/modules/book';
+import { BookItem, Type } from '../../redux/modules/book';
 import { DeleteBookButton } from '../BookButton/DeleteBookButton';
 import { ReactionBookButton } from '../BookButton/ReactionBookButton';
 import { Comments } from '../Comments';
@@ -8,8 +8,14 @@ import styles from './index.module.scss';
 
 type Props = {
   book: BookItem;
+  isLoading: boolean;
+  handleReact: (_item: BookItem, _type: Type) => void;
 };
-export const BookDetail: React.VFC<Props> = ({ book }) => (
+export const BookDetail: React.VFC<Props> = ({
+  book,
+  isLoading,
+  handleReact,
+}) => (
   <section className={styles.root}>
     <div className={styles.detail}>
       <div>
@@ -23,8 +29,18 @@ export const BookDetail: React.VFC<Props> = ({ book }) => (
         </div>
         <div className={styles.action}>
           <PreviewLink link={book.previewLink} />
-          <ReactionBookButton type="read" item={book} />
-          <ReactionBookButton type="want" item={book} />
+          <ReactionBookButton
+            type="read"
+            item={book}
+            isLoading={isLoading}
+            handleReact={handleReact}
+          />
+          <ReactionBookButton
+            type="want"
+            item={book}
+            isLoading={isLoading}
+            handleReact={handleReact}
+          />
           <DeleteBookButton item={book} />
         </div>
       </div>

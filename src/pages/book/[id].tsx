@@ -8,7 +8,9 @@ import { Loading } from '../../components/Loading';
 const Book: React.VFC = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { book, isLoading } = useBook(typeof id === 'string' ? id : '');
+  const { book, isLoading, handleReact } = useBook(
+    typeof id === 'string' ? id : '',
+  );
 
   if (!book) {
     router.push('/');
@@ -16,7 +18,17 @@ const Book: React.VFC = () => {
   }
 
   return (
-    <Layout>{isLoading ? <Loading /> : <BookDetail book={book} />}</Layout>
+    <Layout>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <BookDetail
+          book={book}
+          isLoading={isLoading}
+          handleReact={handleReact}
+        />
+      )}
+    </Layout>
   );
 };
 
