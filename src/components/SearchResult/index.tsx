@@ -3,6 +3,7 @@ import { SearchResult as typeSearchResult } from '../../redux/modules/searchResu
 import { SearchResultList } from '../SearchResultList';
 import styles from './index.module.scss';
 import { BookRegisterDialog } from '../BookRegisterDialog';
+import { Type } from '../../redux/modules/book';
 
 type Props = {
   titleRef: React.MutableRefObject<HTMLHeadingElement | null>;
@@ -10,6 +11,7 @@ type Props = {
   searchResults: typeSearchResult[];
   pageCount: number;
   searchResult: typeSearchResult;
+  handleCreate: (_item: typeSearchResult, _type: Type) => void;
   handleReset: () => void;
   handlePagenation: (_selected: { selected: number }) => void;
   handleSelect: (_result: typeSearchResult) => void;
@@ -20,6 +22,7 @@ export const SearchResult: React.VFC<Props> = ({
   searchResults,
   pageCount,
   searchResult,
+  handleCreate,
   handleReset,
   handlePagenation,
   handleSelect,
@@ -35,6 +38,11 @@ export const SearchResult: React.VFC<Props> = ({
       handlePagenation={handlePagenation}
       handleSelect={handleSelect}
     />
-    <BookRegisterDialog searchResult={searchResult} handleReset={handleReset} />
+    <BookRegisterDialog
+      searchResult={searchResult}
+      isLoading={isLoading}
+      handleCreate={handleCreate}
+      handleReset={handleReset}
+    />
   </div>
 );

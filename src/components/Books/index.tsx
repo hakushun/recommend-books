@@ -1,10 +1,12 @@
 import React from 'react';
+import { useBook } from '../../hooks/useBook';
 import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { ExternalBookSearch } from '../ExternalBookSearch';
 import { SearchResult } from '../SearchResult';
 import styles from './index.module.scss';
 
 export const Books: React.VFC = () => {
+  const { handleCreate } = useBook();
   const {
     titleRef,
     inputRef,
@@ -28,6 +30,7 @@ export const Books: React.VFC = () => {
         searchResults={searchResults}
         pageCount={pageCount}
         searchResult={searchResult}
+        handleCreate={handleCreate}
         handlePagenation={handlePagenation}
         handleReset={handleReset}
         handleSelect={handleSelect}

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { useBooks } from '../../hooks/useBooks';
 import { useModal } from '../../hooks/useModal';
 import { formatAuthors } from '../../libs/utils/formatAuthors';
+import { Type } from '../../redux/modules/book';
 import { SearchResult } from '../../redux/modules/searchResult';
 import { CreateBookButton } from '../BookButton/CreateBookButton';
 import { Modal } from '../Modal';
@@ -11,10 +12,14 @@ import styles from './index.module.scss';
 
 type Props = {
   searchResult: SearchResult;
+  isLoading: boolean;
+  handleCreate: (_item: SearchResult, _type: Type) => void;
   handleReset: () => void;
 };
 export const BookRegisterDialog: React.VFC<Props> = ({
   searchResult,
+  isLoading,
+  handleCreate,
   handleReset,
 }) => {
   const { registerDialog, handleToggle } = useModal();
@@ -58,8 +63,18 @@ export const BookRegisterDialog: React.VFC<Props> = ({
             </div>
           ) : (
             <div className={styles.action}>
-              <CreateBookButton type="read" item={searchResult} />
-              <CreateBookButton type="want" item={searchResult} />
+              <CreateBookButton
+                type="read"
+                item={searchResult}
+                isLoading={isLoading}
+                handleCreate={handleCreate}
+              />
+              <CreateBookButton
+                type="want"
+                item={searchResult}
+                isLoading={isLoading}
+                handleCreate={handleCreate}
+              />
             </div>
           )}
         </Modal>

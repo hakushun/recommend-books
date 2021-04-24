@@ -1,14 +1,18 @@
 import React from 'react';
-import { useBook } from '../../hooks/useBook';
 import { useUser } from '../../hooks/useUser';
 import { BookItem } from '../../redux/modules/book';
 import styles from './index.module.scss';
 
 type Props = {
   item: BookItem;
+  isLoading: boolean;
+  handleDelete: (_item: BookItem) => void;
 };
-export const DeleteBookButton: React.VFC<Props> = ({ item }) => {
-  const { isLoading, handleDelete } = useBook();
+export const DeleteBookButton: React.VFC<Props> = ({
+  item,
+  isLoading,
+  handleDelete,
+}) => {
   const { user } = useUser();
 
   // 作成者以外には表示しない

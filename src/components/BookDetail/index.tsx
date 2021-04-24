@@ -10,11 +10,13 @@ type Props = {
   book: BookItem;
   isLoading: boolean;
   handleReact: (_item: BookItem, _type: Type) => void;
+  handleDelete: (_item: BookItem) => void;
 };
 export const BookDetail: React.VFC<Props> = ({
   book,
   isLoading,
   handleReact,
+  handleDelete,
 }) => (
   <section className={styles.root}>
     <div className={styles.detail}>
@@ -41,7 +43,11 @@ export const BookDetail: React.VFC<Props> = ({
             isLoading={isLoading}
             handleReact={handleReact}
           />
-          <DeleteBookButton item={book} />
+          <DeleteBookButton
+            item={book}
+            isLoading={isLoading}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
       <dl className={styles.list}>

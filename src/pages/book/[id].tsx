@@ -8,7 +8,7 @@ import { Loading } from '../../components/Loading';
 const Book: React.VFC = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { book, isLoading, handleReact } = useBook(
+  const { book, isLoading, handleReact, handleDelete } = useBook(
     typeof id === 'string' ? id : '',
   );
 
@@ -26,6 +26,7 @@ const Book: React.VFC = () => {
           book={book}
           isLoading={isLoading}
           handleReact={handleReact}
+          handleDelete={handleDelete}
         />
       )}
     </Layout>
