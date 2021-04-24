@@ -2,7 +2,6 @@ import React from 'react';
 import { BookItem } from '../../redux/modules/book';
 import { DeleteBookButton } from '../BookButton/DeleteBookButton';
 import { ReactionBookButton } from '../BookButton/ReactionBookButton';
-import { CommentForm } from '../CommentForm';
 import { Comments } from '../Comments';
 import { PreviewLink } from '../PreviewLink';
 import styles from './index.module.scss';
@@ -57,6 +56,5 @@ export const BookDetail: React.VFC<Props> = ({ book }) => (
       </dl>
     </div>
     <Comments bookId={book.id} />
-    <CommentForm bookId={book.id} />
   </section>
 );
