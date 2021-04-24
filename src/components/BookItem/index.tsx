@@ -1,14 +1,20 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from './index.module.scss';
-import { BookItem as typeBookItem } from '../../redux/modules/book';
+import { BookItem as typeBookItem, Type } from '../../redux/modules/book';
 import { formatAuthors } from '../../libs/utils/formatAuthors';
 import { ReactionBookButton } from '../BookButton/ReactionBookButton';
 
 type Props = {
   book: typeBookItem;
+  isLoading: boolean;
+  handleReact: (_item: typeBookItem, _type: Type) => void;
 };
-export const BookItem: React.VFC<Props> = ({ book }) => (
+export const BookItem: React.VFC<Props> = ({
+  book,
+  isLoading,
+  handleReact,
+}) => (
   <li className={styles.item}>
     <Link href={`/book/${book.id}`}>
       <a className={styles.link}>
@@ -35,8 +41,18 @@ export const BookItem: React.VFC<Props> = ({ book }) => (
       </a>
     </Link>
     <div className={styles.action}>
-      <ReactionBookButton type="read" item={book} />
-      <ReactionBookButton type="want" item={book} />
+      <ReactionBookButton
+        type="read"
+        item={book}
+        isLoading={isLoading}
+        handleReact={handleReact}
+      />
+      <ReactionBookButton
+        type="want"
+        item={book}
+        isLoading={isLoading}
+        handleReact={handleReact}
+      />
     </div>
   </li>
 );
