@@ -7,7 +7,7 @@ import styles from './index.module.scss';
 type Props = {
   item: BookItem;
 };
-export const DeleteButton: React.VFC<Props> = ({ item }) => {
+export const DeleteBookButton: React.VFC<Props> = ({ item }) => {
   const { isLoading, handleDelete } = useBook();
   const { user } = useUser();
 
@@ -19,7 +19,7 @@ export const DeleteButton: React.VFC<Props> = ({ item }) => {
       type="button"
       disabled={isLoading}
       onClick={() => handleDelete(item)}
-      className={styles.root}>
+      className={styles.delete}>
       削除する
     </button>
   );

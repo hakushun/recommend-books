@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from './index.module.scss';
-import { ReactionButton } from '../ReactionButton';
 import { BookItem as typeBookItem } from '../../redux/modules/book';
 import { formatAuthors } from '../../libs/utils/formatAuthors';
+import { ReactionBookButton } from '../BookButton/ReactionBookButton';
 
 type Props = {
   book: typeBookItem;
@@ -35,8 +35,8 @@ export const BookItem: React.VFC<Props> = ({ book }) => (
       </a>
     </Link>
     <div className={styles.action}>
-      <ReactionButton type="read" item={book} />
-      <ReactionButton type="want" item={book} />
+      <ReactionBookButton type="read" item={book} />
+      <ReactionBookButton type="want" item={book} />
     </div>
   </li>
 );

@@ -5,8 +5,8 @@ import { useBooks } from '../../hooks/useBooks';
 import { useExternalSearch } from '../../hooks/useExternalSearch';
 import { useModal } from '../../hooks/useModal';
 import { formatAuthors } from '../../libs/utils/formatAuthors';
+import { CreateBookButton } from '../BookButton/CreateBookButton';
 import { Modal } from '../Modal';
-import { RegisterButton } from '../RegisterButton';
 import styles from './index.module.scss';
 
 export const BookRegisterDialog: React.VFC = () => {
@@ -52,8 +52,8 @@ export const BookRegisterDialog: React.VFC = () => {
             </div>
           ) : (
             <div className={styles.action}>
-              <RegisterButton type="read" item={searchResult} />
-              <RegisterButton type="want" item={searchResult} />
+              <CreateBookButton type="read" item={searchResult} />
+              <CreateBookButton type="want" item={searchResult} />
             </div>
           )}
         </Modal>

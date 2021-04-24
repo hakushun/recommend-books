@@ -9,15 +9,16 @@ type Props = {
   type: Type;
   item: SearchResult;
 };
-export const RegisterButton: React.VFC<Props> = ({ type, item }) => {
+export const CreateBookButton: React.VFC<Props> = ({ type, item }) => {
   const { isLoading, handleCreate } = useBook();
+
   return (
     <button
       type="button"
       disabled={isLoading}
       onClick={() => handleCreate(item, type)}
       className={clsx(
-        styles.root,
+        styles.create,
         type === 'read' ? styles.read : styles.want,
       )}>
       {type === 'read' ? '読んだ' : '読みたい'}

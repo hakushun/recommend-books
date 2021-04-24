@@ -8,7 +8,7 @@ type Props = {
   type: Type;
   item: BookItem;
 };
-export const ReactionButton: React.VFC<Props> = ({ type, item }) => {
+export const ReactionBookButton: React.VFC<Props> = ({ type, item }) => {
   const { isLoading, handleReact } = useBook();
   return (
     <button
@@ -16,7 +16,7 @@ export const ReactionButton: React.VFC<Props> = ({ type, item }) => {
       disabled={isLoading}
       onClick={() => handleReact(item, type)}
       className={clsx(
-        styles.root,
+        styles.reaction,
         type === 'read' ? styles.read : styles.want,
       )}>
       {type === 'read' ? '読んだ' : '読みたい'}

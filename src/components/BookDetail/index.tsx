@@ -1,9 +1,9 @@
 import React from 'react';
 import { BookItem } from '../../redux/modules/book';
+import { DeleteBookButton } from '../BookButton/DeleteBookButton';
+import { ReactionBookButton } from '../BookButton/ReactionBookButton';
 import { Comments } from '../Comments';
-import { DeleteButton } from '../DeleteButton';
 import { PreviewLink } from '../PreviewLink';
-import { ReactionButton } from '../ReactionButton';
 import styles from './index.module.scss';
 
 type Props = {
@@ -23,9 +23,9 @@ export const BookDetail: React.VFC<Props> = ({ book }) => (
         </div>
         <div className={styles.action}>
           <PreviewLink link={book.previewLink} />
-          <ReactionButton type="read" item={book} />
-          <ReactionButton type="want" item={book} />
-          <DeleteButton item={book} />
+          <ReactionBookButton type="read" item={book} />
+          <ReactionBookButton type="want" item={book} />
+          <DeleteBookButton item={book} />
         </div>
       </div>
       <dl className={styles.list}>
