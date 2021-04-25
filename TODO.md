@@ -1,28 +1,31 @@
 -[x]: pagenation
 -[x]: BookDetailのstyle
 -[x]: 登録済み時のスタイル(BookRegisterDialogコンポーネント)
--[]: 個人ページ（自分が読んだ読みたいがわかるページ）
--[]: タグ付([tagify](https://github.com/yairEO/tagify))
--[]: comment form
--[]: コンポーネント分割
+-[x]: comment form
+-[x]: コンポーネント分割
 -[x]: storybook setup
--[]: scssのurl()で読み込むimageがstorybookでエラー
--[]: story作成
--[]: redux test
 -[x]: firebase hosting
 -[x]: loading中の表示
 -[x]: previewページへのリンク
 -[x]: router.queryのエラー(pages/book/[id].tsx)
 -[x]: unreactメソッド
--[]: reaction済み時のスタイル(ReactionButton)
 -[x]: booksのsort機能（読んだ人数/読みたい人数）
--[]: CLS
--[]: エラーハンドリング
 -[x]: routingしたらsearchResultsを空にしたい
--[]: modal内にタブキー閉じ込め
 -[x]: 登録済み時にBookRegisterDialogから単体ページに飛んだ後、dialogをクローズしたい
 -[x]: firestore rule変更
--[]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
 -[x]: 大文字小文字区別しないで検索
--[]: 画像のURLがhttpだからwarning出る問題
+-[x]: 画像のURLがhttpだからwarning出る問題
+-[x]: comment編集機能(refがうまくいかない)
+-[x]: 登録済みbookもpagenation必要かも
+-[]: 個人ページあったほうがよい？（自分が読んだ読みたいがわかるページ）
+-[]: タグ付([tagify](https://github.com/yairEO/tagify))
+-[]: scssのurl()で読み込むimageがstorybookでエラー
+-[]: story作成
+-[]: unit test
+-[]: reaction済み時のスタイル(ReactionButton)
+-[]: CLS
+-[]: エラーハンドリング
+-[]: modal内にタブキー閉じ込め
+-[]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
 -[]: selectboxのスタイル(SortSelectBox)
+-[]: delete時にダイアログあっていいかも
