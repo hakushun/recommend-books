@@ -1,5 +1,5 @@
 import React from 'react';
-import { TogglePayload } from '../../redux/modules/modal';
+import { TogglePayload } from '../../../redux/modules/modal';
 import styles from './index.module.scss';
 
 type Props = {

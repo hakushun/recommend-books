@@ -1,5 +1,5 @@
 import React from 'react';
-import { CommentItem, UpdatePayload } from '../../redux/modules/comment';
+import { CommentItem, UpdatePayload } from '../../../redux/modules/comment';
 import styles from './index.module.scss';
 
 type Props = {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { useUser } from '../../hooks/useUser';
-import { BookItem } from '../../redux/modules/book';
+import { useUser } from '../../../hooks/useUser';
+import { BookItem } from '../../../redux/modules/book';
 import styles from './index.module.scss';
 
 type Props = {

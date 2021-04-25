@@ -1,5 +1,5 @@
 import React from 'react';
-import { RemovePayload } from '../../redux/modules/comment';
+import { RemovePayload } from '../../../redux/modules/comment';
 import styles from './index.module.scss';
 
 type Props = {

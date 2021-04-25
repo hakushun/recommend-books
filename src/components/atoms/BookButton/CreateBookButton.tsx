@@ -1,26 +1,27 @@
 import clsx from 'clsx';
 import React from 'react';
-import { BookItem, Type } from '../../redux/modules/book';
+import { Type } from '../../../redux/modules/book';
+import { SearchResult } from '../../../redux/modules/searchResult';
 import styles from './index.module.scss';
 
 type Props = {
   type: Type;
-  item: BookItem;
+  item: SearchResult;
   isLoading: boolean;
-  handleReact: (_item: BookItem, _type: Type) => void;
+  handleCreate: (_item: SearchResult, _type: Type) => void;
 };
-export const ReactionBookButton: React.VFC<Props> = ({
+export const CreateBookButton: React.VFC<Props> = ({
   type,
   item,
   isLoading,
-  handleReact,
+  handleCreate,
 }) => (
   <button
     type="button"
     disabled={isLoading}
-    onClick={() => handleReact(item, type)}
+    onClick={() => handleCreate(item, type)}
     className={clsx(
-      styles.reaction,
+      styles.create,
       type === 'read' ? styles.read : styles.want,
     )}>
     {type === 'read' ? '読んだ' : '読みたい'}
