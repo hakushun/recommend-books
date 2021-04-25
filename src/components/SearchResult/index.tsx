@@ -12,7 +12,6 @@ type Props = {
   pageCount: number;
   searchResult: typeSearchResult;
   handleCreate: (_item: typeSearchResult, _type: Type) => void;
-  handleReset: () => void;
   handlePagenation: (_selected: { selected: number }) => void;
   handleSelect: (_result: typeSearchResult) => void;
 };
@@ -23,7 +22,6 @@ export const SearchResult: React.VFC<Props> = ({
   pageCount,
   searchResult,
   handleCreate,
-  handleReset,
   handlePagenation,
   handleSelect,
 }) => (
@@ -42,7 +40,6 @@ export const SearchResult: React.VFC<Props> = ({
       searchResult={searchResult}
       isLoading={isLoading}
       handleCreate={handleCreate}
-      handleReset={handleReset}
     />
   </div>
 );
