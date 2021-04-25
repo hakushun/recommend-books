@@ -6,4 +6,9 @@
   row-gap: 20px;
   column-gap: 25px;
   margin-top: 20px;
+
+  @include mixin.mq() {
+    grid-template-columns: repeat(auto-fill, 300px);
+    justify-content: center;
+  }
 }

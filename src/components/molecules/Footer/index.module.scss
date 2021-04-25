@@ -4,4 +4,8 @@
   padding: 10px 0;
   text-align: center;
   background-color: mixin.$headerBgColor;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(14);
+  }
 }

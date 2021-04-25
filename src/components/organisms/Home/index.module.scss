@@ -3,10 +3,18 @@
 .root {
   max-width: 950px;
   margin: 0 auto;
+
+  @include mixin.mq() {
+    padding: 0 16px;
+  }
 }
 
 .title {
   font-size: mixin.rem(28);
   font-weight: bold;
   text-align: center;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(22);
+  }
 }

@@ -19,4 +19,12 @@
   > dd {
     flex: 1;
   }
+
+  @include mixin.mq() {
+    flex-direction: column;
+
+    > dt {
+      width: 100%;
+    }
+  }
 }

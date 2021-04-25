@@ -17,6 +17,14 @@
   &:focus {
     transform: scale(1.02);
   }
+
+  @include mixin.mq() {
+    flex-direction: column;
+  }
+}
+
+.img {
+  text-align: center;
 }
 
 .meta {
@@ -36,4 +44,11 @@
 
 .description {
   margin-top: 10px;
+
+  @include mixin.mq() {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    overflow: hidden;
+  }
 }

@@ -6,4 +6,8 @@
   background-color: mixin.$whiteColor;
   border: 1px solid lighten(mixin.$mainTextColor, 50%);
   border-radius: 5px;
+
+  @include mixin.mq() {
+    padding: 15px 20px;
+  }
 }

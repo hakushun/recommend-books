@@ -4,15 +4,27 @@
   max-width: 1200px;
   padding: 0 16px 170px;
   margin: 0 auto;
+
+  @include mixin.mq() {
+    padding: 0 16px 100px;
+  }
 }
 
 .detail {
   display: flex;
   gap: 20px;
+
+  @include mixin.mq() {
+    flex-direction: column;
+  }
 }
 
 .imgWrapper {
   width: 150px;
+
+  @include mixin.mq() {
+    margin: 0 auto;
+  }
 }
 
 .img {

@@ -26,6 +26,7 @@
     margin-left: 5px;
     content: "";
     background-image: url("/icon/search.svg");
+    background-repeat: no-repeat;
   }
 }
 
@@ -37,6 +38,10 @@
   border: none;
   border-radius: 3px;
   outline: none;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(16);
+  }
 }
 
 .btn {

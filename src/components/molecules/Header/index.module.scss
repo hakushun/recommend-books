@@ -16,6 +16,10 @@
 .title {
   font-size: mixin.rem(28);
   font-weight: bold;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(22);
+  }
 }
 
 .titleLink {
@@ -50,5 +54,10 @@
   &:hover,
   &:focus {
     background-color: darken(mixin.$headerBgColor, 20%);
+  }
+
+  @include mixin.mq() {
+    padding: 12px 6px;
+    font-size: mixin.rem(16);
   }
 }

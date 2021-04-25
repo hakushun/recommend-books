@@ -9,4 +9,8 @@
   font-weight: bold;
   text-align: center;
   outline: none;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(20);
+  }
 }
