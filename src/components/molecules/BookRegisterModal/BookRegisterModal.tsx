@@ -13,7 +13,7 @@ type Props = {
   haveRegistered: boolean;
   handleCreate: (_item: SearchResult, _type: Type) => void;
 };
-export const BookRegisterDialog: React.VFC<Props> = ({
+export const BookRegisterModal: React.VFC<Props> = ({
   searchResult,
   isLoading,
   haveRegistered,

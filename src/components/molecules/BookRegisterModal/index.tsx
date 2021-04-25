@@ -2,14 +2,14 @@ import React from 'react';
 import { useBooks } from '../../../hooks/useBooks';
 import { Type } from '../../../redux/modules/book';
 import { SearchResult } from '../../../redux/modules/searchResult';
-import { BookRegisterDialog as Presentational } from './BookRegisterDialog';
+import { BookRegisterModal as Presentational } from './BookRegisterModal';
 
 type Props = {
   searchResult: SearchResult;
   isLoading: boolean;
   handleCreate: (_item: SearchResult, _type: Type) => void;
 };
-export const BookRegisterDialog: React.VFC<Props> = ({
+export const BookRegisterModal: React.VFC<Props> = ({
   searchResult,
   isLoading,
   handleCreate,

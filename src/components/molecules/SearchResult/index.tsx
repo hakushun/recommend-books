@@ -2,7 +2,7 @@ import React from 'react';
 import { SearchResult as typeSearchResult } from '../../../redux/modules/searchResult';
 import { SearchResultList } from '../SearchResultList';
 import styles from './index.module.scss';
-import { BookRegisterDialog } from '../BookRegisterDialog';
+import { BookRegisterModal } from '../BookRegisterModal';
 import { Type } from '../../../redux/modules/book';
 
 type Props = {
@@ -36,7 +36,7 @@ export const SearchResult: React.VFC<Props> = ({
       handlePagenation={handlePagenation}
       handleSelect={handleSelect}
     />
-    <BookRegisterDialog
+    <BookRegisterModal
       searchResult={searchResult}
       isLoading={isLoading}
       handleCreate={handleCreate}
