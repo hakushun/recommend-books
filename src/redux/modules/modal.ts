@@ -16,7 +16,7 @@ export const toggle = actionCreator<TogglePayload>('TOGGLE_MODAL');
 
 // initial state
 const INITIAL_STATE: {
-  registerDialog: boolean;
+  [s: string]: boolean;
 } = {
   registerDialog: false,
 };
@@ -38,7 +38,7 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
 export default reducer;
 
 // selectors
-export const selectRegisterDialog = createSelector(
+export const selectModal = createSelector(
   [(state: RootState) => state.ui.modal],
-  (modal) => modal.registerDialog,
+  (modal) => modal,
 );
