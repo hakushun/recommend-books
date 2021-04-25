@@ -1,8 +1,6 @@
 import React from 'react';
 import { useComment } from '../../hooks/useComment';
-import { CommentForm } from '../CommentForm';
-import { CommentList } from '../CommentList';
-import styles from './index.module.scss';
+import { Comments as Presentaional } from './Comments';
 
 type Props = {
   bookId: string;
@@ -19,21 +17,16 @@ export const Comments: React.VFC<Props> = ({ bookId }) => {
     handleCancel,
   } = useComment();
   return (
-    <div className={styles.root}>
-      <CommentList
-        bookId={bookId}
-        handleEdit={handleEdit}
-        handleDelete={handleDelete}
-      />
-      <CommentForm
-        bookId={bookId}
-        textAreaRef={textAreaRef}
-        comment={comment}
-        isLoading={isLoading}
-        handleCreate={handleCreate}
-        handleUpdate={handleUpdate}
-        handleCancel={handleCancel}
-      />
-    </div>
+    <Presentaional
+      bookId={bookId}
+      textAreaRef={textAreaRef}
+      comment={comment}
+      isLoading={isLoading}
+      handleCreate={handleCreate}
+      handleEdit={handleEdit}
+      handleUpdate={handleUpdate}
+      handleDelete={handleDelete}
+      handleCancel={handleCancel}
+    />
   );
 };

@@ -1,15 +1,12 @@
 import React from 'react';
 import { useComments } from '../../hooks/useComments';
-import {
-  CommentItem as typeComment,
-  RemovePayload,
-} from '../../redux/modules/comment';
-import { CommentItem } from '../CommentItem';
+import { CommentItem, RemovePayload } from '../../redux/modules/comment';
 import { Loading } from '../Loading';
+import { CommentList as Presentaitonal } from './CommentList';
 
 type Props = {
   bookId: string;
-  handleEdit: (_item: typeComment) => void;
+  handleEdit: (_item: CommentItem) => void;
   handleDelete: (_: RemovePayload) => void;
 };
 export const CommentList: React.VFC<Props> = ({
@@ -24,16 +21,11 @@ export const CommentList: React.VFC<Props> = ({
   if (comments.length === 0) return <div>コメントはありません</div>;
 
   return (
-    <ul>
-      {comments.map((comment) => (
-        <CommentItem
-          key={comment.id}
-          comment={comment}
-          bookId={bookId}
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-        />
-      ))}
-    </ul>
+    <Presentaitonal
+      comments={comments}
+      bookId={bookId}
+      handleEdit={handleEdit}
+      handleDelete={handleDelete}
+    />
   );
 };
