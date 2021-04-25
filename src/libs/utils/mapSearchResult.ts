@@ -1,5 +1,6 @@
 import { CreatePayload, BookItem } from '../../redux/modules/book';
 import { getNow } from '../dayjs';
+import { replaceToHttps } from './replaceToHttps';
 
 export const mapSearchResult = ({
   item,
@@ -11,10 +12,9 @@ export const mapSearchResult = ({
   authors: item.volumeInfo.authors || [],
   description: item.volumeInfo.description || '',
   previewLink: item.volumeInfo.previewLink || '',
-  imageUrl: item.volumeInfo.imageLinks.thumbnail || '',
+  imageUrl: replaceToHttps(item.volumeInfo.imageLinks.thumbnail),
   usersHaveRead: type === 'read' ? [user] : [],
   usersWantRead: type === 'want' ? [user] : [],
-  // comments: [],
   registeredBy: user,
   createdAt: getNow(),
   updatedAt: getNow(),
