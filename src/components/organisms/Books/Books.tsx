@@ -1,8 +1,8 @@
 import React from 'react';
-import { Type } from '../../redux/modules/book';
-import { SearchResult as typeSearchResult } from '../../redux/modules/searchResult';
-import { ExternalBookSearch } from '../ExternalBookSearch';
-import { SearchResult } from '../SearchResult';
+import { Type } from '../../../redux/modules/book';
+import { SearchResult as typeSearchResult } from '../../../redux/modules/searchResult';
+import { ExternalBookSearch } from '../../molecules/ExternalBookSearch';
+import { SearchResult } from '../../molecules/SearchResult';
 import styles from './index.module.scss';
 
 type Props = {

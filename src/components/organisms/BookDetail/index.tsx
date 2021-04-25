@@ -1,9 +1,9 @@
 import React from 'react';
-import { BookItem, Type } from '../../redux/modules/book';
-import { DeleteBookButton } from '../BookButton/DeleteBookButton';
-import { ReactionBookButton } from '../BookButton/ReactionBookButton';
-import { Comments } from '../Comments';
-import { PreviewLink } from '../PreviewLink';
+import { BookItem, Type } from '../../../redux/modules/book';
+import { DeleteBookButton } from '../../atoms/BookButton/DeleteBookButton';
+import { ReactionBookButton } from '../../atoms/BookButton/ReactionBookButton';
+import { Comments } from '../../molecules/Comments';
+import { PreviewLink } from '../../atoms/PreviewLink';
 import styles from './index.module.scss';
 
 type Props = {

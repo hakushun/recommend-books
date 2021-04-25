@@ -1,6 +1,6 @@
 import React from 'react';
-import { useBook } from '../../hooks/useBook';
-import { useExternalSearch } from '../../hooks/useExternalSearch';
+import { useBook } from '../../../hooks/useBook';
+import { useExternalSearch } from '../../../hooks/useExternalSearch';
 import { Books as Presentational } from './Books';
 
 export const Books: React.VFC = () => {

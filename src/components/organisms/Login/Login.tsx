@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleButton } from '../GoogleButton';
+import { GoogleButton } from '../../atoms/GoogleButton';
 import styles from './index.module.scss';
 
 type Props = {

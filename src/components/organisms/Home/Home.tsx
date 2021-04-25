@@ -1,7 +1,7 @@
 import React from 'react';
-import { BookList } from '../BookList';
-import { InternalBookSearch } from '../InternalBookSearch';
-import { SortSelectBox } from '../SortSelectBox';
+import { BookList } from '../../molecules/BookList';
+import { InternalBookSearch } from '../../molecules/InternalBookSearch';
+import { SortSelectBox } from '../../molecules/SortSelectBox';
 import styles from './index.module.scss';
 
 export const Home: React.VFC = () => (
