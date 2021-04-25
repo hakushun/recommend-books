@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useBook } from '../../hooks/useBook';
-import { BookDetail } from '../../components/BookDetail';
-import { Loading } from '../../components/Loading';
+import { BookDetail } from '../../components/organisms/BookDetail';
+import { Loading } from '../../components/atoms/Loading';
 
 const Book: React.VFC = () => {
   const router = useRouter();
