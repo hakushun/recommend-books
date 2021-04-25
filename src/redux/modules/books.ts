@@ -8,6 +8,8 @@ import { SortKey } from './sort';
 // types
 export type Books = {
   books: BookItem[];
+  startIndex: number;
+  maxResults: number;
   isLoading: boolean;
   error?: CustomError;
 };
@@ -20,21 +22,26 @@ interface CustomError extends Error {
 const actionCreator = actionCreatorFactory();
 
 export const subscribe = actionCreator<BookItem[]>('SUBSCRIBE_BOOKS');
+export const pagenate = actionCreator<number>('PAGENAGE_BOOKS');
 
 // initial state
 const INITIAL_STATE: Books = {
   books: [],
+  startIndex: 0,
+  maxResults: 30,
   isLoading: false,
 };
 
 // reducer
-const reducer = reducerWithInitialState(INITIAL_STATE).case(
-  subscribe,
-  (state, payload) => ({
+const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(subscribe, (state, payload) => ({
     ...state,
     books: [...payload],
-  }),
-);
+  }))
+  .case(pagenate, (state, payload) => ({
+    ...state,
+    startIndex: payload * state.maxResults,
+  }));
 export default reducer;
 
 // function
@@ -74,7 +81,14 @@ export const selectBooks = createSelector(
   ],
   (books, searchword, key) => sortBooks(key, searchBooks(searchword, books)),
 );
-
+export const selectMaxResults = createSelector(
+  [(state: RootState) => state.resources.books.maxResults],
+  (maxResults) => maxResults,
+);
+export const selectStartIndex = createSelector(
+  [(state: RootState) => state.resources.books.startIndex],
+  (startIndex) => startIndex,
+);
 export const selectIsLoading = createSelector(
   [(state: RootState) => state.resources.books.isLoading],
   (isLoading) => isLoading,
