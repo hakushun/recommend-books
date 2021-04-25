@@ -1,0 +1,12 @@
+@use '../../../styles/mixin' as mixin;
+
+.root {
+  margin-top: 20px;
+}
+
+.title {
+  font-size: mixin.rem(24);
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+}

@@ -1,0 +1,30 @@
+@use '../../../styles/mixin' as mixin;
+
+.root {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 30px;
+  background-color: mixin.$headerBgColor;
+}
+
+.form {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.textarea {
+  min-width: 100%;
+  height: 100px;
+  padding: 10px 10px;
+  font-size: mixin.rem(18);
+  resize: none;
+  border-radius: 5px;
+}
+
+.action {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
