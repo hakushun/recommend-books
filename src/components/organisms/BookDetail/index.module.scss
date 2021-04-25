@@ -26,24 +26,3 @@
   justify-content: center;
   margin-top: 20px;
 }
-
-.list {
-  flex: 1;
-}
-
-.listItem {
-  display: flex;
-
-  &:not(:first-child) {
-    margin-top: 10px;
-  }
-
-  > dt {
-    width: clamp(120px, 15%, 150px);
-    font-weight: bold;
-  }
-
-  > dd {
-    flex: 1;
-  }
-}

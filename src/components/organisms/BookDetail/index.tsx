@@ -5,6 +5,7 @@ import { ReactionBookButton } from '../../atoms/BookButton/ReactionBookButton';
 import { Comments } from '../../molecules/Comments';
 import { PreviewLink } from '../../atoms/PreviewLink';
 import styles from './index.module.scss';
+import { BookDataList } from '../../molecules/BookDataList';
 
 type Props = {
   book: BookItem;
@@ -50,32 +51,7 @@ export const BookDetail: React.VFC<Props> = ({
           />
         </div>
       </div>
-      <dl className={styles.list}>
-        <div className={styles.listItem}>
-          <dt>Title</dt>
-          <dd>{book.title}</dd>
-        </div>
-        <div className={styles.listItem}>
-          <dt>Author</dt>
-          <dd>{book.authors.join(', ')}</dd>
-        </div>
-        <div className={styles.listItem}>
-          <dt>Description</dt>
-          <dd>{book.description}</dd>
-        </div>
-        <div className={styles.listItem}>
-          <dt>Registered By</dt>
-          <dd>{book.registeredBy?.name}</dd>
-        </div>
-        <div className={styles.listItem}>
-          <dt>読んだ人</dt>
-          <dd>{book.usersHaveRead.map((user) => user?.name).join(', ')}</dd>
-        </div>
-        <div className={styles.listItem}>
-          <dt>読みたい人</dt>
-          <dd>{book.usersWantRead.map((user) => user?.name).join(', ')}</dd>
-        </div>
-      </dl>
+      <BookDataList book={book} />
     </div>
     <Comments bookId={book.id} />
   </section>
