@@ -1,6 +1,6 @@
 import React from 'react';
-import { Footer } from '../Footer';
-import { Header } from '../Header';
+import { Footer } from '../../molecules/Footer';
+import { Header } from '../../molecules/Header';
 import styles from './index.module.scss';
 
 export const Layout: React.FC = ({ children }) => (
