@@ -1,6 +1,5 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Layout } from '../../components/Layout';
 import { useBook } from '../../hooks/useBook';
 import { BookDetail } from '../../components/BookDetail';
 import { Loading } from '../../components/Loading';
@@ -18,7 +17,7 @@ const Book: React.VFC = () => {
   }
 
   return (
-    <Layout>
+    <>
       {isLoading ? (
         <Loading />
       ) : (
@@ -29,7 +28,7 @@ const Book: React.VFC = () => {
           handleDelete={handleDelete}
         />
       )}
-    </Layout>
+    </>
   );
 };
 

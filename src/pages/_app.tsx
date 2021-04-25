@@ -6,6 +6,7 @@ import { wrapper } from '../redux/store';
 import '../styles/reset.scss';
 import '../styles/global.scss';
 import '../styles/pagenation.scss';
+import { Layout } from '../components/Layout';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   const router = useRouter();
@@ -23,7 +24,9 @@ function App({ Component, pageProps }: AppProps): React.ReactElement {
 
   return (
     <>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
       <div id="overlay" />
     </>
   );
