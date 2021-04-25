@@ -1,5 +1,6 @@
 import { MutableRefObject, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { scrollToTarget } from '../libs/utils/scrollToTarget';
 import {
   cancel,
   CommentItem,
@@ -31,15 +32,16 @@ export const useComment: CustomHooks = () => {
   const comment = useSelector(selectComment);
   const isLoading = useSelector(selectIsLoading);
 
-  const handleCreate = (bookId: string) => {
+  const handleCreate = async (bookId: string) => {
     if (!user) return;
     if (!textAreaRef.current || textAreaRef.current.value.trim() === '') {
       textAreaRef.current?.focus();
       return;
     }
-    dispatch(
+    await dispatch(
       create({ bookId, content: textAreaRef.current.value, author: user }),
     );
+    scrollToTarget();
     textAreaRef.current.value = '';
   };
 
@@ -49,14 +51,15 @@ export const useComment: CustomHooks = () => {
     textAreaRef.current.value = item.content;
   };
 
-  const handleUpdate = ({ bookId, item }: UpdatePayload) => {
+  const handleUpdate = async ({ bookId, item }: UpdatePayload) => {
     if (!user) return;
     if (!textAreaRef.current || textAreaRef.current.value.trim() === '') {
       textAreaRef.current?.focus();
       return;
     }
     const newComment = { ...item, content: textAreaRef.current.value };
-    dispatch(update({ bookId, item: newComment }));
+    await dispatch(update({ bookId, item: newComment }));
+    scrollToTarget(item.id);
     textAreaRef.current.value = '';
   };
 
