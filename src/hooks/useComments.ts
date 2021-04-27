@@ -23,7 +23,8 @@ export const useComments: CustomHooks = (bookId: string) => {
   useEffect(() => {
     if (!bookId) return;
 
-    db.collection('books')
+    const unsubscribe = db
+      .collection('books')
       .doc(bookId)
       .collection('comments')
       .onSnapshot((snapshot) => {
@@ -31,6 +32,8 @@ export const useComments: CustomHooks = (bookId: string) => {
         snapshot.forEach((doc) => items.push(doc.data() as CommentItem));
         dispatch(subscribe(items));
       });
+    // eslint-disable-next-line consistent-return
+    return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookId]);
 

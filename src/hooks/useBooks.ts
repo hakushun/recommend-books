@@ -32,12 +32,13 @@ export const useBooks: CustomHooks = () => {
   };
 
   useEffect(() => {
-    db.collection('books').onSnapshot((snapshot) => {
+    const unsubscribe = db.collection('books').onSnapshot((snapshot) => {
       const items: BookItem[] = [];
       snapshot.forEach((doc) => items.push(doc.data() as BookItem));
       dispatch(subscribe(items));
       setIsLoading(false);
     });
+    return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
