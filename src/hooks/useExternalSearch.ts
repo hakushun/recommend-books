@@ -1,5 +1,6 @@
 import React, { MutableRefObject, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectBooks } from '../redux/modules/books';
 import {
   SearchResult,
   select,
@@ -21,6 +22,7 @@ type CustomHooks = () => {
   searchResults: SearchResult[];
   pageCount: number;
   isLoading: boolean;
+  haveRegistered: boolean;
   handleSubmit: (_e: React.FormEvent<HTMLFormElement>) => Promise<void>;
   handleSelect: (_result: SearchResult) => void;
   handlePagenation: (_selected: { selected: number }) => void;
@@ -31,6 +33,7 @@ export const useExternalSearch: CustomHooks = () => {
   const dispatch = useDispatch();
   const searchResult = useSelector(selectSearchResult);
   const searchResults = useSelector(selectSearchResults);
+  const allBooks = useSelector(selectBooks);
   const totalItems = useSelector(selectTotalItems);
   const maxResults = useSelector(selectMaxResults);
   const isLoading = useSelector(selectIsLoading);
@@ -38,6 +41,7 @@ export const useExternalSearch: CustomHooks = () => {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
 
   const pageCount = Math.ceil(totalItems / maxResults);
+  const haveRegistered = allBooks.some((book) => book.id === searchResult.id);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -84,6 +88,7 @@ export const useExternalSearch: CustomHooks = () => {
     searchResults,
     pageCount,
     isLoading,
+    haveRegistered,
     handleSubmit,
     handleSelect,
     handlePagenation,
