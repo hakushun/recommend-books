@@ -12,7 +12,7 @@ export const mapSearchResult = ({
   authors: item.volumeInfo.authors || [],
   description: item.volumeInfo.description || '',
   previewLink: item.volumeInfo.previewLink || '',
-  imageUrl: replaceToHttps(item.volumeInfo.imageLinks.thumbnail),
+  imageUrl: replaceToHttps(item.volumeInfo.imageLinks?.thumbnail),
   usersHaveRead: type === 'read' ? [user] : [],
   usersWantRead: type === 'want' ? [user] : [],
   registeredBy: user,

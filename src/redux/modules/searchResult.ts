@@ -7,13 +7,13 @@ import { RootState } from './reducers';
 export type SearchResult = {
   id: string;
   volumeInfo: {
-    authors: string[];
-    description: string;
-    imageLinks: {
-      thumbnail: string;
+    authors?: string[];
+    description?: string;
+    imageLinks?: {
+      thumbnail?: string;
     };
     title: string;
-    previewLink: string;
+    previewLink?: string;
   };
 };
 
