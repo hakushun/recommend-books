@@ -11,6 +11,7 @@ type Props = {
   searchResults: typeSearchResult[];
   pageCount: number;
   searchResult: typeSearchResult;
+  haveRegistered: boolean;
   handleCreate: (_item: typeSearchResult, _type: Type) => void;
   handlePagenation: (_selected: { selected: number }) => void;
   handleSelect: (_result: typeSearchResult) => void;
@@ -21,6 +22,7 @@ export const SearchResult: React.VFC<Props> = ({
   searchResults,
   pageCount,
   searchResult,
+  haveRegistered,
   handleCreate,
   handlePagenation,
   handleSelect,
@@ -39,6 +41,7 @@ export const SearchResult: React.VFC<Props> = ({
     <BookRegisterModal
       searchResult={searchResult}
       isLoading={isLoading}
+      haveRegistered={haveRegistered}
       handleCreate={handleCreate}
     />
   </div>

@@ -12,6 +12,7 @@ export const Books: React.VFC = () => {
     searchResult,
     searchResults,
     pageCount,
+    haveRegistered,
     handleSubmit,
     handlePagenation,
     handleSelect,
@@ -25,6 +26,7 @@ export const Books: React.VFC = () => {
       searchResults={searchResults}
       pageCount={pageCount}
       searchResult={searchResult}
+      haveRegistered={haveRegistered}
       handleSubmit={handleSubmit}
       handleCreate={handleCreate}
       handlePagenation={handlePagenation}
