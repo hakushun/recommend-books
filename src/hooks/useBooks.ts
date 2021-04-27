@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { BookItem } from '../redux/modules/book';
 import {
   pagenate,
   selectBooks,
-  selectIsLoading,
   selectMaxResults,
   selectStartIndex,
   subscribe,
@@ -23,7 +22,7 @@ export const useBooks: CustomHooks = () => {
   const allBooks = useSelector(selectBooks);
   const maxResults = useSelector(selectMaxResults);
   const startIndex = useSelector(selectStartIndex);
-  const isLoading = useSelector(selectIsLoading);
+  const [isLoading, setIsLoading] = useState(true);
 
   const books = allBooks.slice(startIndex, startIndex + maxResults);
   const pageCount = Math.ceil(allBooks.length / maxResults);
@@ -37,6 +36,7 @@ export const useBooks: CustomHooks = () => {
       const items: BookItem[] = [];
       snapshot.forEach((doc) => items.push(doc.data() as BookItem));
       dispatch(subscribe(items));
+      setIsLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
