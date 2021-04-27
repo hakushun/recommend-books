@@ -10,13 +10,7 @@ export type Books = {
   books: BookItem[];
   startIndex: number;
   maxResults: number;
-  isLoading: boolean;
-  error?: CustomError;
 };
-interface CustomError extends Error {
-  name: string;
-  message: string;
-}
 
 // actions
 const actionCreator = actionCreatorFactory();
@@ -29,7 +23,6 @@ const INITIAL_STATE: Books = {
   books: [],
   startIndex: 0,
   maxResults: 30,
-  isLoading: false,
 };
 
 // reducer
@@ -88,8 +81,4 @@ export const selectMaxResults = createSelector(
 export const selectStartIndex = createSelector(
   [(state: RootState) => state.resources.books.startIndex],
   (startIndex) => startIndex,
-);
-export const selectIsLoading = createSelector(
-  [(state: RootState) => state.resources.books.isLoading],
-  (isLoading) => isLoading,
 );
