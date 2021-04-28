@@ -4,6 +4,7 @@ import { SearchResultList } from '../SearchResultList';
 import styles from './index.module.scss';
 import { BookRegisterModal } from '../BookRegisterModal';
 import { Type } from '../../../redux/modules/book';
+import { SearchResultPagenation } from '../SearchResultPagenation';
 
 type Props = {
   titleRef: React.MutableRefObject<HTMLHeadingElement | null>;
@@ -34,10 +35,14 @@ export const SearchResult: React.VFC<Props> = ({
     <SearchResultList
       isLoading={isLoading}
       searchResults={searchResults}
-      pageCount={pageCount}
-      handlePagenation={handlePagenation}
       handleSelect={handleSelect}
     />
+    {searchResults?.length > 0 && (
+      <SearchResultPagenation
+        pageCount={pageCount}
+        handlePagenation={handlePagenation}
+      />
+    )}
     <BookRegisterModal
       searchResult={searchResult}
       isLoading={isLoading}
