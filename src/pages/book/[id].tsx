@@ -2,7 +2,18 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useBook } from '../../hooks/useBook';
 import { BookDetail } from '../../components/organisms/BookDetail';
-import { Loading } from '../../components/atoms/Loading';
+import { wrapper } from '../../redux/store';
+import { getBook } from '../../libs/cloudFunctions/getBook';
+import { set } from '../../redux/modules/book';
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  async ({ store, query }) => {
+    const { id } = query;
+    if (typeof id !== 'string') return;
+    const book = await getBook(id);
+    store.dispatch(set(book));
+  },
+);
 
 const Book: React.VFC = () => {
   const router = useRouter();
@@ -18,16 +29,12 @@ const Book: React.VFC = () => {
 
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <BookDetail
-          book={book}
-          isLoading={isLoading}
-          handleReact={handleReact}
-          handleDelete={handleDelete}
-        />
-      )}
+      <BookDetail
+        book={book}
+        isLoading={isLoading}
+        handleReact={handleReact}
+        handleDelete={handleDelete}
+      />
     </>
   );
 };
