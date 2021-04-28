@@ -49,6 +49,7 @@ export type ReactPayload = {
 const actionCreator = actionCreatorFactory();
 const asyncActionCreator = asyncFactory<BookItem>(actionCreator);
 
+export const set = actionCreator<BookItem>('SET_BOOK');
 export const fetch = asyncActionCreator<string, BookItem, CustomError>(
   'FETCH_BOOK',
   async (params) => {
@@ -94,6 +95,10 @@ const INITIAL_STATE: Book = {
 };
 // reducer
 const reducer = reducerWithInitialState(INITIAL_STATE)
+  .case(set, (state, payload) => ({
+    ...state,
+    item: payload,
+  }))
   .case(fetch.async.started, (state) => ({
     ...state,
     isLoading: true,
