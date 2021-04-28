@@ -26,6 +26,8 @@
 -[]: CLS
 -[]: エラーハンドリング
 -[]: modal内にタブキー閉じ込め
--[]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
+-[x]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
+-[x]: SSRしたい(gssp内でfirestoreにアクセスするとpermission errorなるけどどうすりゃいいの)
 -[]: selectboxのスタイル(SortSelectBox)
 -[]: delete時にダイアログあっていいかも
+-[]: faviconほしい
