@@ -24,7 +24,7 @@ export const BookItem: React.VFC<Props> = ({
         </div>
         <div className={styles.img}>
           <img
-            src={book.imageUrl || '/img/no-image.png'}
+            src={book.imageUrl || '/img/no-images.png'}
             width="100"
             height="150"
             alt="book cover"
