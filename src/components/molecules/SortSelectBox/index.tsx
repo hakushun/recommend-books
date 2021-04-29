@@ -3,7 +3,7 @@ import { useSort } from '../../../hooks/useSort';
 import { SortSelectBox as Presentational } from './SortSelectBox';
 
 export const SortSelectBox: React.VFC = () => {
-  const { sorkKey, handleSort } = useSort();
+  const { sortKey, handleSort } = useSort();
 
-  return <Presentational sorkKey={sorkKey} handleSort={handleSort} />;
+  return <Presentational sortKey={sortKey} handleSort={handleSort} />;
 };
