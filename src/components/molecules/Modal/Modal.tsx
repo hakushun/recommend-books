@@ -6,11 +6,26 @@ import styles from './index.module.scss';
 
 type Props = {
   context: string;
+  modalRef: React.MutableRefObject<HTMLDivElement | null>;
   handleToggle: (_payload: TogglePayload) => void;
+  handleKeydown: (_e: React.KeyboardEvent<HTMLElement>) => void;
 };
-export const Modal: React.FC<Props> = ({ context, handleToggle, children }) => (
+export const Modal: React.FC<Props> = ({
+  context,
+  modalRef,
+  handleToggle,
+  handleKeydown,
+  children,
+}) => (
   <Overlay>
-    <div role="dialog" aria-modal="true" className={styles.root}>
+    {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions */}
+    <div
+      role="dialog"
+      aria-modal="true"
+      tabIndex={-1}
+      ref={modalRef}
+      className={styles.root}
+      onKeyDown={(e) => handleKeydown(e)}>
       {children}
       <CloseButton context={context} handleToggle={handleToggle} />
     </div>

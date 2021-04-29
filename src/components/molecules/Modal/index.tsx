@@ -6,12 +6,16 @@ type Props = {
   context: string;
 };
 export const Modal: React.FC<Props> = ({ context, children }) => {
-  const { isOpened, handleToggle } = useModal(context);
+  const { isOpened, modalRef, handleToggle, handleKeydown } = useModal(context);
 
   return (
     <>
       {isOpened && (
-        <Presentational context={context} handleToggle={handleToggle}>
+        <Presentational
+          context={context}
+          modalRef={modalRef}
+          handleToggle={handleToggle}
+          handleKeydown={handleKeydown}>
           {children}
         </Presentational>
       )}
