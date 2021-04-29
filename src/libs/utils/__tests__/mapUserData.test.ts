@@ -1,8 +1,7 @@
-import { mapUserData } from '../mapUserData';
+import { mapUserData, FirebaseUser } from '../mapUserData';
 
 describe('mapUserData', () => {
-  // こういう時どうすれば良い？
-  const firebaseUser: firebase.default.User = {
+  const firebaseUser: FirebaseUser = {
     displayName: 'test user',
     email: 'sample@sample.com',
     uid: '12345',
