@@ -11,13 +11,13 @@ export const SearchResultItem: React.VFC<Props> = ({
   result,
   handleSelect,
 }) => (
-  // eslint-disable-next-line jsx-a11y/click-events-have-key-events
   <li
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
     role="button"
     tabIndex={0}
     aria-label={`${result.volumeInfo.title}を読んだ/読みたい本に登録するためのダイアログを開く`}
     className={styles.root}
+    onKeyPress={() => handleSelect(result)}
     onClick={() => handleSelect(result)}>
     <div className={styles.img}>
       <img
