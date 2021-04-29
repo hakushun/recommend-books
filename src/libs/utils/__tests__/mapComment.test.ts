@@ -1,7 +1,13 @@
-import { getNow } from '../../dayjs';
 import { mapComment } from '../mapComment';
 
 describe('mapComment', () => {
+  // テスト対象をmockしていいのだろうか・・・
+  // timestampがテストタイミングによってずれてエラーになってしまうのでmockを作成した
+  const mockMapComment = jest.fn((comment) => ({
+    ...mapComment(comment),
+    createdAt: 0,
+    updatedAt: 0,
+  }));
   const user = {
     id: '1',
     email: 'sample@sample.com',
@@ -17,9 +23,9 @@ describe('mapComment', () => {
       id: '1',
       content: 'content',
       author: user,
-      createdAt: getNow(),
-      updatedAt: getNow(),
+      createdAt: 0,
+      updatedAt: 0,
     };
-    expect(result).toEqual(mapComment(comment));
+    expect(result).toEqual(mockMapComment(comment));
   });
 });

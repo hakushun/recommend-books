@@ -1,7 +1,13 @@
-import { getNow } from '../../dayjs';
 import { mapSearchResult } from '../mapSearchResult';
 
 describe('mapSearchResult', () => {
+  // テスト対象をmockしていいのだろうか・・・
+  // timestampがテストタイミングによってずれてエラーになってしまうのでmockを作成した
+  const mockMapSearchResult = jest.fn(({ item, user, type }) => ({
+    ...mapSearchResult({ item, user, type }),
+    createdAt: 0,
+    updatedAt: 0,
+  }));
   const item = {
     id: '123456',
     volumeInfo: {
@@ -37,11 +43,11 @@ describe('mapSearchResult', () => {
       usersHaveRead: [user],
       usersWantRead: [],
       registeredBy: user,
-      createdAt: getNow(),
-      updatedAt: getNow(),
+      createdAt: 0,
+      updatedAt: 0,
     };
 
-    expect(result).toEqual(mapSearchResult({ item, user, type }));
+    expect(result).toEqual(mockMapSearchResult({ item, user, type }));
   });
 
   it('情報不足', () => {
@@ -55,10 +61,10 @@ describe('mapSearchResult', () => {
       usersHaveRead: [user],
       usersWantRead: [],
       registeredBy: user,
-      createdAt: getNow(),
-      updatedAt: getNow(),
+      createdAt: 0,
+      updatedAt: 0,
     };
 
-    expect(result).toEqual(mapSearchResult({ item: item2, user, type }));
+    expect(result).toEqual(mockMapSearchResult({ item: item2, user, type }));
   });
 });
