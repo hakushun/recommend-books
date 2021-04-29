@@ -25,7 +25,7 @@ export const BookDetail: React.VFC<Props> = ({
         <div className={styles.imgWrapper}>
           <img
             src={book.imageUrl || '/img/no-images.png'}
-            alt="book cover"
+            alt={book.title}
             width="150"
             className={styles.img}
           />

@@ -16,7 +16,7 @@ export const SearchResultItem: React.VFC<Props> = ({
     // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
     role="button"
     tabIndex={0}
-    aria-label={`open dialog to register ${result.volumeInfo.title}`}
+    aria-label={`${result.volumeInfo.title}を読んだ/読みたい本に登録するためのダイアログを開く`}
     className={styles.root}
     onClick={() => handleSelect(result)}>
     <div className={styles.img}>
@@ -24,7 +24,7 @@ export const SearchResultItem: React.VFC<Props> = ({
         src={result.volumeInfo.imageLinks?.thumbnail || '/img/no-images.png'}
         width="100"
         height="150"
-        alt="book cover"
+        alt=""
       />
     </div>
     <div className={styles.meta}>
