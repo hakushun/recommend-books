@@ -16,6 +16,7 @@ export const SearchResultItem: React.VFC<Props> = ({
     role="button"
     tabIndex={0}
     aria-label={`${result.volumeInfo.title}を読んだ/読みたい本に登録するためのダイアログを開く`}
+    id={result.id}
     className={styles.root}
     onKeyPress={() => handleSelect(result)}
     onClick={() => handleSelect(result)}>

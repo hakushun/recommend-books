@@ -3,6 +3,7 @@ import { MutableRefObject, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleAriaHidden } from '../libs/utils/toggleAriaHidden';
 import { selectModal, toggle, TogglePayload } from '../redux/modules/modal';
+import { selectSearchResult } from '../redux/modules/searchResult';
 import { useExternalSearch } from './useExternalSearch';
 
 type CustomHooks = (
@@ -18,6 +19,7 @@ export const useModal: CustomHooks = (context: string) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const modal = useSelector(selectModal);
+  const searchResult = useSelector(selectSearchResult);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const { handleReset } = useExternalSearch();
 
@@ -78,8 +80,8 @@ export const useModal: CustomHooks = (context: string) => {
       return;
     }
     toggleAriaHidden('app', false);
-    document.getElementById('main')?.focus();
-  }, [isOpened]);
+    document.getElementById(searchResult.id)?.focus();
+  }, [isOpened, searchResult]);
 
   useEffect(() => {
     const handleRouteChange = () => {
