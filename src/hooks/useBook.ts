@@ -41,6 +41,7 @@ export const useBook: CustomHooks = (id?: string) => {
   };
 
   const handleDelete = (item: BookItem) => {
+    // 本を登録した本人と一致しない場合はreturn
     if (user?.id !== item.registeredBy?.id) return;
     dispatch(remove(item));
     router.push('/');

@@ -34,6 +34,7 @@ export const useComment: CustomHooks = () => {
 
   const handleCreate = async (bookId: string) => {
     if (!user) return;
+    // textareaが空の場合はreturn
     if (!textAreaRef.current || textAreaRef.current.value.trim() === '') {
       textAreaRef.current?.focus();
       return;
@@ -46,13 +47,15 @@ export const useComment: CustomHooks = () => {
   };
 
   const handleEdit = (item: CommentItem) => {
+    if (user?.id !== item.author?.id) return;
     if (!textAreaRef || !textAreaRef.current) return;
     dispatch(edit({ item }));
     textAreaRef.current.value = item.content;
   };
 
   const handleUpdate = async ({ bookId, item }: UpdatePayload) => {
-    if (!user) return;
+    if (user?.id !== item.author?.id) return;
+    // textareaが空の場合はreturn
     if (!textAreaRef.current || textAreaRef.current.value.trim() === '') {
       textAreaRef.current?.focus();
       return;
