@@ -29,7 +29,7 @@ export const CommentItem: React.VFC<Props> = ({
       <div className={styles.action}>
         <EditCommentButton comment={comment} handleEdit={handleEdit} />
         <DeleteCommentButton
-          id={comment.id}
+          comment={comment}
           bookId={bookId}
           handleDelete={handleDelete}
         />
