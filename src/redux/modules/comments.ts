@@ -7,13 +7,7 @@ import { RootState } from './reducers';
 // types
 export type Comments = {
   comments: CommentItem[];
-  isLoading: boolean;
-  error?: CustomError;
 };
-interface CustomError extends Error {
-  name: string;
-  message: string;
-}
 
 // actions
 const actionCreator = actionCreatorFactory();
@@ -23,7 +17,6 @@ export const subscribe = actionCreator<CommentItem[]>('SUBSCRIBE_COMMENTS');
 // initial state
 const INITIAL_STATE: Comments = {
   comments: [],
-  isLoading: false,
 };
 
 // reducer
@@ -40,9 +33,4 @@ export default reducer;
 export const selectComments = createSelector(
   [(state: RootState) => state.resources.comments.comments],
   (comments) => comments.sort((a, b) => a.createdAt - b.createdAt),
-);
-
-export const selectIsLoading = createSelector(
-  [(state: RootState) => state.resources.comments.isLoading],
-  (isLoading) => isLoading,
 );

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useComments } from '../../../hooks/useComments';
 import { CommentItem, RemovePayload } from '../../../redux/modules/comment';
-import { Loading } from '../../atoms/Loading';
 import { CommentList as Presentaitonal } from './CommentList';
 
 type Props = {
@@ -14,9 +13,7 @@ export const CommentList: React.VFC<Props> = ({
   handleEdit,
   handleDelete,
 }) => {
-  const { comments, isLoading } = useComments(bookId);
-
-  if (isLoading) return <Loading />;
+  const { comments } = useComments(bookId);
 
   if (comments.length === 0) return <div>コメントはありません</div>;
 
