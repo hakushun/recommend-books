@@ -70,7 +70,7 @@ export const useExternalSearch: CustomHooks = () => {
         startIndex: selected * maxResults,
       }),
     );
-    titleRef?.current?.focus();
+    titleRef.current?.focus();
   };
 
   const handleSelect = (result: SearchResult) => {
