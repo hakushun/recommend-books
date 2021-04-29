@@ -11,7 +11,7 @@ export type SearchRowData = {
   items: SearchResult[];
   totalItems: number;
 };
-type SearchResults = {
+export type SearchResults = {
   searchResults: SearchResult[];
   totalItems: number;
   maxResults: number;

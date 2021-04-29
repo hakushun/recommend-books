@@ -29,7 +29,7 @@ interface CustomError extends Error {
   name: string;
   message: string;
 }
-type Book = {
+export type Book = {
   item: BookItem;
   isLoading: boolean;
   error?: CustomError;

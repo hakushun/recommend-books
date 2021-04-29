@@ -10,7 +10,7 @@ export type Userdata = {
   name: string;
   email: string;
 } | null;
-type User = {
+export type User = {
   user: Userdata;
   isLoading: boolean;
   error?: CustomError;
