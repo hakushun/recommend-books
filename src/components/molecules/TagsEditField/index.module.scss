@@ -1,0 +1,12 @@
+@use '../../../styles/mixin' as mixin;
+
+.field {
+  flex: 1;
+  margin-top: 10px;
+}
+
+.action {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
