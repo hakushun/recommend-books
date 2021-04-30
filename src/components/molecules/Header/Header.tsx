@@ -3,7 +3,7 @@ import React from 'react';
 import { Userdata } from '../../../redux/modules/user';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   user: Userdata;
   logout: () => Promise<void>;
 };
