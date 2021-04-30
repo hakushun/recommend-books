@@ -2,6 +2,7 @@ import { Provider } from 'react-redux';
 import { initStore } from '../src/redux/store';
 import '../src/styles/reset.scss';
 import '../src/styles/global.scss';
+import '../src/styles/pagenation.scss';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
