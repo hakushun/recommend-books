@@ -16,6 +16,7 @@ export const mapSearchResult = ({
   usersHaveRead: type === 'read' ? [user] : [],
   usersWantRead: type === 'want' ? [user] : [],
   registeredBy: user,
+  tags: [],
   createdAt: getNow(),
   updatedAt: getNow(),
 });
