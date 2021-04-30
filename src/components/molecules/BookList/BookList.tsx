@@ -4,7 +4,7 @@ import { BookItem } from '../BookItem';
 import { BookListPagenation } from '../BookListPagenation';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   books: typeBookItem[];
   pageCount: number;
   isLoading: boolean;
