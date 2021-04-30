@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 
-type Props = {
+export type Props = {
   pageCount: number;
   handlePagenate: (_selected: { selected: number }) => void;
 };
