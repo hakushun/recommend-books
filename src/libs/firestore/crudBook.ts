@@ -2,8 +2,10 @@ import {
   BookItem,
   CreatePayload,
   ReactPayload,
+  UpdatePayload,
 } from '../../redux/modules/book';
 import { mapSearchResult } from '../utils/mapSearchResult';
+import { mapUpdateBook } from '../utils/mapUpdateBook';
 import {
   haveReacted,
   removeReaction,
@@ -49,4 +51,13 @@ export const reactBook = async ({
 
 export const removeBook = async (item: BookItem): Promise<void> => {
   await db.collection('books').doc(item.id).delete();
+};
+
+export const updateTags = async ({
+  item,
+  tags,
+}: UpdatePayload): Promise<BookItem> => {
+  const book = mapUpdateBook({ item, tags });
+  await db.collection('books').doc(book.id).set(book, { merge: true });
+  return fetchBook(book.id);
 };
