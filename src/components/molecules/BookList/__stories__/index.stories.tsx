@@ -36,6 +36,16 @@ const books = [
       '本書は「ブラウザ」に関連する、インターネットで使用される様々なネットワーク技術をまとめたものです。WebSocketやHTTP/2.0やWebRTCのように最新ブラウザで簡単に動作する新しい技術から、そのような技術の土台となるTCPやUDPやトランスポート層についてまで幅広くカバーします。',
     imageUrl:
       'https://books.google.com/books/content?id=-HCKoAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    tags: [
+      {
+        value: 'Takepepe',
+        id: 'takepepe',
+      },
+      {
+        id: 'typescript',
+        value: 'TypeScript',
+      },
+    ],
     updatedAt: 1619336569848,
   },
   {
@@ -61,6 +71,16 @@ const books = [
     authors: ['久保田光則'],
     description:
       'ブラウザのレンダリングのしくみから計測と最適なチューニングまで、速さのための基礎知識と実践技術をあますことなく解説。',
+    tags: [
+      {
+        value: 'Takepepe',
+        id: 'takepepe',
+      },
+      {
+        id: 'typescript',
+        value: 'TypeScript',
+      },
+    ],
     previewLink:
       'http://books.google.co.jp/books?id=0WbkswEACAAJ&dq=%E3%83%8F%E3%82%A4%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6&hl=&cd=3&source=gbs_api',
   },
@@ -79,6 +99,16 @@ const books = [
     imageUrl:
       'https://books.google.com/books/content?id=0sWli5U2kXwC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
     createdAt: 1619336658179,
+    tags: [
+      {
+        value: 'Takepepe',
+        id: 'takepepe',
+      },
+      {
+        id: 'typescript',
+        value: 'TypeScript',
+      },
+    ],
     previewLink:
       'http://books.google.co.jp/books?id=0sWli5U2kXwC&printsec=frontcover&dq=%E3%83%AC%E3%82%AC%E3%82%B7%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%8B%E3%82%89%E3%81%AE&hl=&cd=10&source=gbs_api',
     usersWantRead: [
