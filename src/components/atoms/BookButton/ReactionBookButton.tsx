@@ -3,7 +3,7 @@ import React from 'react';
 import { BookItem, Type } from '../../../redux/modules/book';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   type: Type;
   item: BookItem;
   isLoading: boolean;

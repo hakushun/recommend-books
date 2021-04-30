@@ -4,7 +4,7 @@ import { Type } from '../../../redux/modules/book';
 import { SearchResult } from '../../../redux/modules/searchResult';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   type: Type;
   item: SearchResult;
   isLoading: boolean;

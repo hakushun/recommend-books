@@ -3,7 +3,7 @@ import { useUser } from '../../../hooks/useUser';
 import { BookItem } from '../../../redux/modules/book';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   item: BookItem;
   isLoading: boolean;
   handleDelete: (_item: BookItem) => void;
