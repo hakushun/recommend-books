@@ -9,8 +9,10 @@ import {
   removeBook,
   fetchBook,
   reactBook,
+  updateTags,
 } from '../../libs/firestore/crudBook';
 import { SearchResult } from './searchResult';
+import { Tag } from './tags';
 
 export type BookItem = {
   id: string;
@@ -22,6 +24,7 @@ export type BookItem = {
   usersHaveRead: Userdata[];
   usersWantRead: Userdata[];
   registeredBy: Userdata | null;
+  tags: Tag[];
   createdAt: number;
   updatedAt: number;
 };
@@ -44,6 +47,10 @@ export type ReactPayload = {
   item: BookItem;
   user: Userdata;
   type: Type;
+};
+export type UpdatePayload = {
+  item: BookItem;
+  tags: Tag[];
 };
 // actions
 const actionCreator = actionCreatorFactory();
@@ -76,6 +83,14 @@ export const remove = asyncActionCreator<BookItem, void, CustomError>(
   },
 );
 
+export const update = asyncActionCreator<UpdatePayload, BookItem, CustomError>(
+  'UPDATE_TAGS',
+  async (params) => {
+    const result = await updateTags(params);
+    return result;
+  },
+);
+
 const INITIAL_STATE: Book = {
   item: {
     id: '',
@@ -87,6 +102,7 @@ const INITIAL_STATE: Book = {
     usersHaveRead: [],
     usersWantRead: [],
     registeredBy: null,
+    tags: [],
     createdAt: 0,
     updatedAt: 0,
   },
@@ -147,6 +163,20 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(remove.async.done, (state) => ({
     ...state,
     isLoading: false,
+  }))
+  .case(update.async.started, (state) => ({
+    ...state,
+    isLoading: true,
+  }))
+  .case(update.async.failed, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  }))
+  .case(update.async.done, (state, { result }) => ({
+    ...state,
+    isLoading: false,
+    item: result,
   }));
 export default reducer;
 
