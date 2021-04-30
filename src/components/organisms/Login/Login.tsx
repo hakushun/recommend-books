@@ -2,7 +2,7 @@ import React from 'react';
 import { GoogleButton } from '../../atoms/GoogleButton';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   signinWithGoogle: () => Promise<void>;
 };
 export const Login: React.VFC<Props> = ({ signinWithGoogle }) => (
