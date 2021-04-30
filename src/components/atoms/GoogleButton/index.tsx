@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   signinWithGoogle: () => Promise<void>;
 };
 export const GoogleButton: React.VFC<Props> = ({ signinWithGoogle }) => (
