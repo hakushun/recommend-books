@@ -6,12 +6,15 @@
 
 .item {
   display: flex;
+  align-items: flex-start;
 
   &:not(:first-child) {
     margin-top: 10px;
   }
 
   > dt {
+    display: flex;
+    align-items: center;
     width: clamp(120px, 15%, 150px);
     font-weight: bold;
   }
