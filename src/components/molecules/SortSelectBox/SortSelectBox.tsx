@@ -2,7 +2,7 @@ import React from 'react';
 import { SortKey } from '../../../redux/modules/sort';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   sortKey: SortKey;
   handleSort: (_e: React.ChangeEvent<HTMLSelectElement>) => void;
 };
