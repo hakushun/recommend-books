@@ -5,7 +5,7 @@ import { BookItem as typeBookItem, Type } from '../../../redux/modules/book';
 import { formatAuthors } from '../../../libs/utils/formatAuthors';
 import { ReactionBookButton } from '../../atoms/BookButton/ReactionBookButton';
 
-type Props = {
+export type Props = {
   book: typeBookItem;
   isLoading: boolean;
   handleReact: (_item: typeBookItem, _type: Type) => void;
