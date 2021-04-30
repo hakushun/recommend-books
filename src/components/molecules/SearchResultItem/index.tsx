@@ -3,7 +3,7 @@ import { formatAuthors } from '../../../libs/utils/formatAuthors';
 import { SearchResult } from '../../../redux/modules/searchResult';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   result: SearchResult;
   handleSelect: (_result: SearchResult) => void;
 };
