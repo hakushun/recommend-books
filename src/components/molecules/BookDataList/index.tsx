@@ -2,7 +2,7 @@ import React from 'react';
 import { BookItem } from '../../../redux/modules/book';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   book: BookItem;
 };
 export const BookDataList: React.VFC<Props> = ({ book }) => (
