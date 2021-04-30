@@ -4,7 +4,7 @@ import { Loading } from '../../atoms/Loading';
 import { SearchResultItem } from '../SearchResultItem';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   isLoading: boolean;
   searchResults: SearchResult[];
   handleSelect: (_result: SearchResult) => void;
