@@ -41,6 +41,7 @@ describe('Async actions: book', () => {
         usersHaveRead: [],
         usersWantRead: [],
         registeredBy: null,
+        tags: [],
         createdAt: 0,
         updatedAt: 0,
       },
@@ -75,6 +76,7 @@ describe('Async actions: book', () => {
     usersHaveRead: [user],
     usersWantRead: [],
     registeredBy: user,
+    tags: [],
     createdAt: 0,
     updatedAt: 0,
   };
@@ -103,6 +105,7 @@ describe('Async actions: book', () => {
       usersHaveRead: [user],
       usersWantRead: [],
       registeredBy: user,
+      tags: [],
       createdAt: 0,
       updatedAt: 0,
     };
@@ -138,6 +141,7 @@ describe('Async actions: book', () => {
       usersHaveRead: [user],
       usersWantRead: [user],
       registeredBy: user,
+      tags: [],
       createdAt: 0,
       updatedAt: 0,
     };
@@ -205,6 +209,7 @@ describe('Reducer: book', () => {
     usersHaveRead: [],
     usersWantRead: [],
     registeredBy: null,
+    tags: [],
     createdAt: 0,
     updatedAt: 0,
   };
@@ -236,6 +241,7 @@ describe('Reducer: book', () => {
     usersHaveRead: [user],
     usersWantRead: [],
     registeredBy: user,
+    tags: [],
     createdAt: 0,
     updatedAt: 0,
   };
@@ -276,6 +282,7 @@ describe('Reducer: book', () => {
         usersHaveRead: [],
         usersWantRead: [],
         registeredBy: null,
+        tags: [],
         createdAt: 0,
         updatedAt: 0,
       },
