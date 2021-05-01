@@ -44,6 +44,7 @@ const searchBooks = (searchword: string, books: BookItem[]): BookItem[] =>
     return (
       re.test(book.title) ||
       re.test(book.authors.join()) ||
+      re.test(book.tags.map((tag) => tag.value).join()) ||
       re.test(book.description)
     );
   });
