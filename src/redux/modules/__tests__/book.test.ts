@@ -12,6 +12,8 @@ import reducer, {
   react,
   ReactPayload,
   remove,
+  update,
+  UpdatePayload,
   // selectBook,
   // selectIsLoading,
 } from '../book';
@@ -76,6 +78,16 @@ describe('Async actions: book', () => {
     createdAt: 0,
     updatedAt: 0,
   };
+  const tags = [
+    {
+      value: 'Takepepe',
+      id: 'takepepe',
+    },
+    {
+      id: 'typescript',
+      value: 'TypeScript',
+    },
+  ];
   it('fetch: success', async () => {
     jest
       .spyOn(module, 'fetchBook')
@@ -153,6 +165,33 @@ describe('Async actions: book', () => {
     await mockStore.dispatch(remove(params));
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
+
+  it('update: success', async () => {
+    const result = {
+      id: '123456',
+      title: 'dummy title',
+      authors: ['author1', 'author2'],
+      description: 'sample description',
+      previewLink: 'https://suumo.jp/',
+      imageUrl: 'https://suumo.jp/',
+      usersHaveRead: [user],
+      usersWantRead: [user],
+      registeredBy: user,
+      tags: [],
+      createdAt: 0,
+      updatedAt: 0,
+    };
+    jest
+      .spyOn(module, 'updateTags')
+      .mockImplementationOnce(async () => Promise.resolve(result));
+    const params: UpdatePayload = { item: book, tags };
+    const expectedActions = [
+      update.async.started(params),
+      update.async.done({ params, result }),
+    ];
+    await mockStore.dispatch(update(params));
+    expect(mockStore.getActions()).toEqual(expectedActions);
+  });
 });
 
 describe('Reducer: book', () => {
@@ -200,6 +239,16 @@ describe('Reducer: book', () => {
     createdAt: 0,
     updatedAt: 0,
   };
+  const tags = [
+    {
+      value: 'Takepepe',
+      id: 'takepepe',
+    },
+    {
+      id: 'typescript',
+      value: 'TypeScript',
+    },
+  ];
   const fetchPayload = '123456';
   const createPayload: CreatePayload = {
     item: searchResult,
@@ -212,6 +261,7 @@ describe('Reducer: book', () => {
     type: 'want',
   };
   const removePayload = book;
+  const updatePayload = { item: book, tags };
   const error = { name: 'error', message: 'something is wrong' };
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
@@ -308,6 +358,28 @@ describe('Reducer: book', () => {
   });
   it('Action: remove.async.failed', () => {
     const action = remove.async.failed({ params: removePayload, error });
+    const result = reducer(undefined, action);
+    expect(result).toEqual({ item: initialItem, isLoading: false, error });
+  });
+
+  it('Action: update.async.started', () => {
+    const action = update.async.started(updatePayload);
+    const result = reducer(undefined, action);
+    expect(result).toEqual({ item: initialItem, isLoading: true });
+  });
+  it('Action: update.async.done', () => {
+    const action = update.async.done({
+      params: updatePayload,
+      result: { ...book },
+    });
+    const result = reducer(undefined, action);
+    expect(result).toEqual({
+      item: { ...book },
+      isLoading: false,
+    });
+  });
+  it('Action: update.async.failed', () => {
+    const action = update.async.failed({ params: updatePayload, error });
     const result = reducer(undefined, action);
     expect(result).toEqual({ item: initialItem, isLoading: false, error });
   });
