@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookItem, UpdatePayload } from '../../../redux/modules/book';
 import { Tag } from '../../../redux/modules/tags';
+import styles from './index.module.scss';
 
 type Props = {
   item: BookItem;
@@ -12,7 +13,10 @@ export const UpdateButton: React.VFC<Props> = ({
   tags,
   handleUpdate,
 }) => (
-  <button type="button" onClick={() => handleUpdate({ item, tags })}>
+  <button
+    type="button"
+    className={styles.update}
+    onClick={() => handleUpdate({ item, tags })}>
     登録
   </button>
 );

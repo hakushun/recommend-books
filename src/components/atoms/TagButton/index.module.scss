@@ -20,3 +20,18 @@
   margin-left: 3px;
   background: url('/icon/circle-x.svg');
 }
+
+.update {
+  padding: 0 10px;
+  color: mixin.$whiteColor;
+  background-color: mixin.$primaryColor;
+  border: 2px solid mixin.$primaryColor;
+  border-radius: 5px;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: mixin.$primaryColor;
+    background-color: mixin.$whiteColor;
+  }
+}
