@@ -20,7 +20,7 @@ export const CommentItem: React.VFC<Props> = ({
   handleEdit,
   handleDelete,
 }) => (
-  <li className={styles.item} id={comment.id}>
+  <li className={styles.item} id={comment.id} tabIndex={-1}>
     <div className={styles.header}>
       <div>
         <div className={styles.name}>{comment.author?.name}</div>

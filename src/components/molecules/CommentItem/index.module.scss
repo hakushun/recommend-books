@@ -1,6 +1,8 @@
 @use '../../../styles/mixin' as mixin;
 
 .item {
+  outline: none;
+
   &:not(:first-child) {
     padding-top: 20px;
     margin-top: 20px;

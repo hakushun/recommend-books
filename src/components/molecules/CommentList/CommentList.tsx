@@ -17,7 +17,7 @@ export const CommentList: React.VFC<Props> = ({
   handleEdit,
   handleDelete,
 }) => (
-  <ul>
+  <ul id="comment_list">
     {comments.map((comment) => (
       <CommentItem
         key={comment.id}
