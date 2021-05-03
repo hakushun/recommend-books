@@ -8,7 +8,7 @@ import { SortKey } from './sort';
 // types
 export type Books = {
   books: BookItem[];
-  startIndex: number;
+  page: number;
   maxResults: number;
 };
 
@@ -16,12 +16,12 @@ export type Books = {
 const actionCreator = actionCreatorFactory();
 
 export const subscribe = actionCreator<BookItem[]>('SUBSCRIBE_BOOKS');
-export const pagenate = actionCreator<number>('PAGENAGE_BOOKS');
+export const load = actionCreator<number>('LOAD_BOOKS');
 
 // initial state
 const INITIAL_STATE: Books = {
   books: [],
-  startIndex: 0,
+  page: 0,
   maxResults: 30,
 };
 
@@ -31,9 +31,9 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     books: [...payload],
   }))
-  .case(pagenate, (state, payload) => ({
+  .case(load, (state, payload) => ({
     ...state,
-    startIndex: payload * state.maxResults,
+    page: payload,
   }));
 export default reducer;
 
@@ -79,7 +79,7 @@ export const selectMaxResults = createSelector(
   [(state: RootState) => state.resources.books.maxResults],
   (maxResults) => maxResults,
 );
-export const selectStartIndex = createSelector(
-  [(state: RootState) => state.resources.books.startIndex],
-  (startIndex) => startIndex,
+export const selectPage = createSelector(
+  [(state: RootState) => state.resources.books.page],
+  (page) => page,
 );
