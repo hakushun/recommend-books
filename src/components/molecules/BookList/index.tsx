@@ -6,22 +6,17 @@ import { BookList as Presentational } from './BookList';
 
 export const BookList: React.VFC = () => {
   const { isLoading, handleReact } = useBook();
-  const {
-    books,
-    pageCount,
-    isLoading: BooksIsLoading,
-    handlePagenate,
-  } = useBooks();
+  const { books, hasMore, isLoading: BooksIsLoading, handleLoad } = useBooks();
 
   if (BooksIsLoading) return <Loading />;
 
   return (
     <Presentational
       books={books}
-      pageCount={pageCount}
+      hasMore={hasMore}
       isLoading={isLoading}
       handleReact={handleReact}
-      handlePagenate={handlePagenate}
+      handleLoad={handleLoad}
     />
   );
 };

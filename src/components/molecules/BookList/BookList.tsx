@@ -1,24 +1,28 @@
 import React from 'react';
+import InfiniteScroll from 'react-infinite-scroller';
 import { BookItem as typeBookItem, Type } from '../../../redux/modules/book';
+import { Loading } from '../../atoms/Loading';
 import { BookItem } from '../BookItem';
-import { BookListPagenation } from '../BookListPagenation';
 import styles from './index.module.scss';
 
 export type Props = {
   books: typeBookItem[];
-  pageCount: number;
+  hasMore: boolean;
   isLoading: boolean;
   handleReact: (_item: typeBookItem, _type: Type) => void;
-  handlePagenate: (_selected: { selected: number }) => void;
+  handleLoad: (_pageNum: number) => void;
 };
 export const BookList: React.VFC<Props> = ({
   books,
-  pageCount,
+  hasMore,
   isLoading,
   handleReact,
-  handlePagenate,
+  handleLoad,
 }) => (
-  <>
+  <InfiniteScroll
+    loadMore={handleLoad}
+    hasMore={hasMore}
+    loader={<Loading key={0} />}>
     <ul className={styles.root}>
       {books.map((book) => (
         <BookItem
@@ -29,6 +33,5 @@ export const BookList: React.VFC<Props> = ({
         />
       ))}
     </ul>
-    <BookListPagenation pageCount={pageCount} handlePagenate={handlePagenate} />
-  </>
+  </InfiniteScroll>
 );
