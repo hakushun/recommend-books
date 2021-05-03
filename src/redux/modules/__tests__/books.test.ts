@@ -1,5 +1,5 @@
 /* eslint-disable no-undefined */
-import reducer, { pagenate, subscribe } from '../books';
+import reducer, { load, subscribe } from '../books';
 
 describe('Reducer: books', () => {
   const user = {
@@ -18,13 +18,14 @@ describe('Reducer: books', () => {
       usersHaveRead: [user],
       usersWantRead: [user],
       registeredBy: user,
+      tags: [],
       createdAt: 0,
       updatedAt: 0,
     },
   ];
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
-    expect(result).toEqual({ books: [], startIndex: 0, maxResults: 30 });
+    expect(result).toEqual({ books: [], page: 0, maxResults: 30 });
   });
 
   it('Action: subscribe', () => {
@@ -42,18 +43,19 @@ describe('Reducer: books', () => {
           usersHaveRead: [user],
           usersWantRead: [user],
           registeredBy: user,
+          tags: [],
           createdAt: 0,
           updatedAt: 0,
         },
       ],
-      startIndex: 0,
+      page: 0,
       maxResults: 30,
     });
   });
-  it('Action: pagenate', () => {
-    const action = pagenate(3);
+  it('Action: load', () => {
+    const action = load(3);
     const result = reducer(undefined, action);
-    expect(result).toEqual({ books: [], startIndex: 90, maxResults: 30 });
+    expect(result).toEqual({ books: [], page: 3, maxResults: 30 });
   });
 });
 

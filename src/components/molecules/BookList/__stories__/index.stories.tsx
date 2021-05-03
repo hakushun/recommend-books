@@ -123,8 +123,8 @@ const books = [
 ];
 Default.args = {
   books,
-  pageCount: 1,
+  hasMore: true,
   isLoading: false,
   handleReact: action('handleReact'),
-  handlePagenate: action('handlePagenate'),
+  handleLoad: action('handleLoad'),
 };
