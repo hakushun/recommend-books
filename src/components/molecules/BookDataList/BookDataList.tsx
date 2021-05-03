@@ -44,11 +44,17 @@ export const BookDataList: React.VFC<Props> = ({
     </div>
     <div className={styles.item}>
       <dt>読んだ人</dt>
-      <dd>{book.usersHaveRead.map((user) => user?.name).join(', ')}</dd>
+      <dd>
+        {book.usersHaveRead.map((user) => user?.name).join(', ') ||
+          'まだいません'}
+      </dd>
     </div>
     <div className={styles.item}>
       <dt>読みたい人</dt>
-      <dd>{book.usersWantRead.map((user) => user?.name).join(', ')}</dd>
+      <dd>
+        {book.usersWantRead.map((user) => user?.name).join(', ') ||
+          'まだいません'}
+      </dd>
     </div>
     <div className={styles.item}>
       <dt>
@@ -66,7 +72,11 @@ export const BookDataList: React.VFC<Props> = ({
             handleUpdate={handleUpdate}
           />
         ) : (
-          book.tags.map((tag) => tag.value).join(', ')
+          book.tags.map((tag) => (
+            <span className={styles.tag} key={tag.id}>
+              {tag.value}
+            </span>
+          ))
         )}
       </dd>
     </div>

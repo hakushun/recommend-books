@@ -31,3 +31,15 @@
     }
   }
 }
+
+.tag {
+  display: inline-block;
+  padding: 0 5px;
+  color: mixin.$whiteColor;
+  background-color: mixin.$primaryColor;
+  border-radius: 3px;
+
+  &:not(:first-child) {
+    margin-left: 10px;
+  }
+}
