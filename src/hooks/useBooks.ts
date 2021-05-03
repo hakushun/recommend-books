@@ -3,32 +3,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getInstance } from '../libs/firestore/getInstance';
 import { BookItem } from '../redux/modules/book';
 import {
-  pagenate,
+  load,
   selectBooks,
   selectMaxResults,
-  selectStartIndex,
+  selectPage,
   subscribe,
 } from '../redux/modules/books';
 
 type CustomHooks = () => {
   books: BookItem[];
-  pageCount: number;
+  hasMore: boolean;
   isLoading: boolean;
-  handlePagenate: (_selected: { selected: number }) => void;
+  handleLoad: (_pageNum: number) => void;
 };
 export const useBooks: CustomHooks = () => {
   const db = getInstance();
   const dispatch = useDispatch();
   const allBooks = useSelector(selectBooks);
   const maxResults = useSelector(selectMaxResults);
-  const startIndex = useSelector(selectStartIndex);
+  const page = useSelector(selectPage);
   const [isLoading, setIsLoading] = useState(true);
 
-  const books = allBooks.slice(startIndex, startIndex + maxResults);
-  const pageCount = Math.ceil(allBooks.length / maxResults);
+  const books = [...allBooks].slice(0, page * maxResults);
+  const hasMore = books.length < allBooks.length;
 
-  const handlePagenate = ({ selected }: { selected: number }) => {
-    dispatch(pagenate(selected));
+  const handleLoad = (pageNum: number) => {
+    dispatch(load(pageNum));
   };
 
   useEffect(() => {
@@ -42,5 +42,5 @@ export const useBooks: CustomHooks = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { books, pageCount, isLoading, handlePagenate };
+  return { books, hasMore, isLoading, handleLoad };
 };
