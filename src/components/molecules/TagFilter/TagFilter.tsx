@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   selectedTag: string | null;
   popularTags: string[];
   handleSelect: (_id: string) => void;
