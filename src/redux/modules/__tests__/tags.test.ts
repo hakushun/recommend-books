@@ -1,5 +1,5 @@
 /* eslint-disable no-undefined */
-import reducer, { add, remove, toggle } from '../tags';
+import reducer, { add, remove, select, toggle } from '../tags';
 import { fetch, update } from '../book';
 
 describe('Reducer: tags', () => {
@@ -45,13 +45,13 @@ describe('Reducer: tags', () => {
   const updatePayload = { item: book, tags };
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
-    expect(result).toEqual({ tags: [], isEditable: false });
+    expect(result).toEqual({ tags: [], isEditable: false, selected: null });
   });
 
   it('Action: toggle', () => {
     const action = toggle(true);
     const result = reducer(undefined, action);
-    expect(result).toEqual({ tags: [], isEditable: true });
+    expect(result).toEqual({ tags: [], isEditable: true, selected: null });
   });
 
   it('Action: add', () => {
@@ -60,6 +60,7 @@ describe('Reducer: tags', () => {
     expect(result).toEqual({
       tags: [{ id: 'dummytag', value: 'dummyTag' }],
       isEditable: false,
+      selected: null,
     });
   });
 
@@ -72,12 +73,14 @@ describe('Reducer: tags', () => {
           { id: 'sampletag', value: 'sampleTag' },
         ],
         isEditable: false,
+        selected: null,
       },
       action,
     );
     expect(result).toEqual({
       tags: [{ id: 'dummytag', value: 'dummyTag' }],
       isEditable: false,
+      selected: null,
     });
   });
 
@@ -90,12 +93,14 @@ describe('Reducer: tags', () => {
           { id: 'sampletag', value: 'sampleTag' },
         ],
         isEditable: false,
+        selected: null,
       },
       action,
     );
     expect(result).toEqual({
       tags: [{ id: 'sampletag', value: 'sampleTag' }],
       isEditable: false,
+      selected: null,
     });
   });
 
@@ -117,6 +122,7 @@ describe('Reducer: tags', () => {
         },
       ],
       isEditable: false,
+      selected: null,
     });
   });
 
@@ -129,6 +135,17 @@ describe('Reducer: tags', () => {
     expect(result).toEqual({
       tags: [],
       isEditable: false,
+      selected: null,
+    });
+  });
+
+  it('Action: select', () => {
+    const action = select('TypeScript');
+    const result = reducer(undefined, action);
+    expect(result).toEqual({
+      tags: [],
+      isEditable: false,
+      selected: 'TypeScript',
     });
   });
 });
@@ -136,4 +153,6 @@ describe('Reducer: tags', () => {
 // describe('Selector: sort', () => {
 //   it('selectTags', () => {});
 //   it('selectIsEditable', () => {});
+//   it('selectSelectedTags', () => {});
+//   it('selectPopularTags', () => {});
 // });
