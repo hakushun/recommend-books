@@ -5,7 +5,10 @@ import { update, UpdatePayload } from '../redux/modules/book';
 import {
   add,
   remove,
+  select,
   selectIsEditable,
+  selectPopularTags,
+  selectSelectedTags,
   selectTags,
   Tag,
   toggle,
@@ -15,10 +18,13 @@ type CustomHooks = () => {
   inputRef: MutableRefObject<HTMLInputElement | null>;
   tags: Tag[];
   isEditable: boolean;
+  selectedTag: string | null;
+  popularTags: string[];
   handleKeyDown: (_e: React.KeyboardEvent<HTMLInputElement>) => void;
   handleRemove: (_id: string) => void;
   handleToggle: (_boolean: boolean) => void;
   handleUpdate: (_: UpdatePayload) => void;
+  handleSelect: (_id: string) => void;
 };
 export const useTags: CustomHooks = () => {
   const router = useRouter();
@@ -26,6 +32,8 @@ export const useTags: CustomHooks = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const tags = useSelector(selectTags);
   const isEditable = useSelector(selectIsEditable);
+  const selectedTag = useSelector(selectSelectedTags);
+  const popularTags = useSelector(selectPopularTags);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     // refがfalthyであればreturn
@@ -71,6 +79,10 @@ export const useTags: CustomHooks = () => {
     if (inputRef.current) inputRef.current.value = '';
   };
 
+  const handleSelect = (id: string) => {
+    dispatch(select(id));
+  };
+
   useEffect(() => {
     const handleRouteChange = () => {
       dispatch(toggle(false));
@@ -88,9 +100,12 @@ export const useTags: CustomHooks = () => {
     inputRef,
     tags,
     isEditable,
+    selectedTag,
+    popularTags,
     handleKeyDown,
     handleRemove,
     handleToggle,
     handleUpdate,
+    handleSelect,
   };
 };
