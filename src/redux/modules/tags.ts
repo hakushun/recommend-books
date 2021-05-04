@@ -86,3 +86,25 @@ export const selectIsEditable = createSelector(
   [(state: RootState) => state.ui.tags.isEditable],
   (isEditable) => isEditable,
 );
+export const selectSelectedTags = createSelector(
+  [(state: RootState) => state.ui.tags.selected],
+  (selected) => selected,
+);
+export const selectPopularTags = createSelector(
+  [(state: RootState) => state.resources.books.books],
+  (books) => {
+    const tags = books.reduce<Tag[]>((acc, book) => [...acc, ...book.tags], []);
+    const counts = tags.reduce<{ [s: string]: number }>((acc, tag) => {
+      if (!acc[tag.value]) {
+        acc[tag.value] = 0;
+      }
+      acc[tag.value] += 1;
+      return acc;
+    }, {});
+    const tagRank = Object.entries(counts)
+      .map(([key, value]) => ({ [key]: value }))
+      .sort((a, b) => Object.values(b)[0] - Object.values(a)[0]);
+    const top5 = tagRank.map((tag) => Object.keys(tag)[0]).slice(0, 5);
+    return top5;
+  },
+);
