@@ -12,6 +12,7 @@ export type Tag = {
 type Tags = {
   tags: Tag[];
   isEditable: boolean;
+  selected: string | null;
 };
 
 // actions
@@ -20,11 +21,13 @@ const actionCreator = actionCreatorFactory();
 export const toggle = actionCreator<boolean>('TOGGLE_EDITABLE');
 export const add = actionCreator<string>('ADD_TAG');
 export const remove = actionCreator<string | void>('REMOVE_TAG');
+export const select = actionCreator<string>('SELECT_TAG');
 
 // initial state
 const INITIAL_STATE: Tags = {
   tags: [],
   isEditable: false,
+  selected: null,
 };
 
 // reducer
@@ -58,7 +61,19 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
   .case(update.async.done, (state) => ({
     ...state,
     isEditable: false,
-  }));
+  }))
+  .case(select, (state, payload) => {
+    if (state.selected === payload) {
+      return {
+        ...state,
+        selected: null,
+      };
+    }
+    return {
+      ...state,
+      selected: payload,
+    };
+  });
 export default reducer;
 
 // selectors
