@@ -38,8 +38,12 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
 export default reducer;
 
 // function
-const searchBooks = (searchword: string, books: BookItem[]): BookItem[] =>
-  books.filter((book) => {
+const searchBooks = (
+  books: BookItem[],
+  searchword: string,
+  selectedTag: string | null,
+): BookItem[] => {
+  const results = books.filter((book) => {
     const re = new RegExp(searchword, 'i');
     return (
       re.test(book.title) ||
@@ -48,6 +52,11 @@ const searchBooks = (searchword: string, books: BookItem[]): BookItem[] =>
       re.test(book.description)
     );
   });
+  if (!selectedTag) return results;
+  return results.filter((book) =>
+    book.tags.find((tag) => tag.id === selectedTag.toLowerCase()),
+  );
+};
 
 const sortBooks = (key: SortKey, books: BookItem[]): BookItem[] => {
   switch (key) {
@@ -72,8 +81,10 @@ export const selectBooks = createSelector(
     (state: RootState) => state.resources.books.books,
     (state: RootState) => state.ui.search.searchword,
     (state: RootState) => state.ui.sort.key,
+    (state: RootState) => state.ui.tags.selected,
   ],
-  (books, searchword, key) => sortBooks(key, searchBooks(searchword, books)),
+  (books, searchword, key, tag) =>
+    sortBooks(key, searchBooks(books, searchword, tag)),
 );
 export const selectMaxResults = createSelector(
   [(state: RootState) => state.resources.books.maxResults],
