@@ -11,11 +11,6 @@ const Book: React.VFC = () => {
     typeof id === 'string' ? id : '',
   );
 
-  if (!book) {
-    router.push('/');
-    return null;
-  }
-
   return (
     <>
       {isLoading ? (
