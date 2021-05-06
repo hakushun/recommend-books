@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 import reducer, { add, remove, select, toggle } from '../tags';
-import { fetch, update } from '../book';
+import { update } from '../book';
 
 describe('Reducer: tags', () => {
   const user = {
@@ -41,7 +41,6 @@ describe('Reducer: tags', () => {
       value: 'TypeScript',
     },
   ];
-  const fetchPayload = '123456';
   const updatePayload = { item: book, tags };
   it('Initial state', () => {
     const result = reducer(undefined, { type: '' });
@@ -99,28 +98,6 @@ describe('Reducer: tags', () => {
     );
     expect(result).toEqual({
       tags: [{ id: 'sampletag', value: 'sampleTag' }],
-      isEditable: false,
-      selected: null,
-    });
-  });
-
-  it('Action: fetch.async.done', () => {
-    const action = fetch.async.done({
-      params: fetchPayload,
-      result: book,
-    });
-    const result = reducer(undefined, action);
-    expect(result).toEqual({
-      tags: [
-        {
-          value: 'Takepepe',
-          id: 'takepepe',
-        },
-        {
-          id: 'typescript',
-          value: 'TypeScript',
-        },
-      ],
       isEditable: false,
       selected: null,
     });

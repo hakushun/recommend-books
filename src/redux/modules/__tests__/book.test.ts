@@ -8,7 +8,6 @@ import reducer, {
   BookItem,
   create,
   CreatePayload,
-  fetch,
   react,
   ReactPayload,
   remove,
@@ -90,32 +89,6 @@ describe('Async actions: book', () => {
       value: 'TypeScript',
     },
   ];
-  it('fetch: success', async () => {
-    jest
-      .spyOn(module, 'fetchBook')
-      .mockImplementationOnce(async () => Promise.resolve(book));
-    const params = '123456';
-    const result = {
-      id: '123456',
-      title: 'dummy title',
-      authors: ['author1', 'author2'],
-      description: 'sample description',
-      previewLink: 'https://suumo.jp/',
-      imageUrl: 'https://suumo.jp/',
-      usersHaveRead: [user],
-      usersWantRead: [],
-      registeredBy: user,
-      tags: [],
-      createdAt: 0,
-      updatedAt: 0,
-    };
-    const expectedActions = [
-      fetch.async.started(params),
-      fetch.async.done({ params, result }),
-    ];
-    await mockStore.dispatch(fetch(params));
-    expect(mockStore.getActions()).toEqual(expectedActions);
-  });
 
   it('create: success', async () => {
     jest
@@ -255,7 +228,6 @@ describe('Reducer: book', () => {
       value: 'TypeScript',
     },
   ];
-  const fetchPayload = '123456';
   const createPayload: CreatePayload = {
     item: searchResult,
     user,
@@ -288,25 +260,6 @@ describe('Reducer: book', () => {
       },
       isLoading: false,
     });
-  });
-
-  it('Action: fetch.async.started', () => {
-    const action = fetch.async.started(fetchPayload);
-    const result = reducer(undefined, action);
-    expect(result).toEqual({ item: initialItem, isLoading: true });
-  });
-  it('Action: fetch.async.done', () => {
-    const action = fetch.async.done({
-      params: fetchPayload,
-      result: book,
-    });
-    const result = reducer(undefined, action);
-    expect(result).toEqual({ item: book, isLoading: false });
-  });
-  it('Action: fetch.async.failed', () => {
-    const action = fetch.async.failed({ params: fetchPayload, error });
-    const result = reducer(undefined, action);
-    expect(result).toEqual({ item: initialItem, isLoading: false, error });
   });
 
   it('Action: create.async.started', () => {
