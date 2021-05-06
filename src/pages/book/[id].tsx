@@ -1,29 +1,28 @@
+import { GetServerSideProps } from 'next';
 import React from 'react';
-import { useRouter } from 'next/router';
 import { useBook } from '../../hooks/useBook';
 import { BookDetail } from '../../components/organisms/BookDetail';
-import { Loading } from '../../components/atoms/Loading';
+import { getBook } from '../../libs/cloudFunctions/getBook';
+import { BookItem } from '../../redux/modules/book';
 
-const Book: React.VFC = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const { book, isLoading, handleReact, handleDelete } = useBook(
-    typeof id === 'string' ? id : '',
-  );
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.query;
+  const book = await getBook(typeof id === 'string' ? id : '');
+  return { props: { initialBook: book } };
+};
+type Props = {
+  initialBook: BookItem;
+};
+const Book: React.VFC<Props> = ({ initialBook }) => {
+  const { book, isLoading, handleReact, handleDelete } = useBook(initialBook);
 
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <BookDetail
-          book={book}
-          isLoading={isLoading}
-          handleReact={handleReact}
-          handleDelete={handleDelete}
-        />
-      )}
-    </>
+    <BookDetail
+      book={book}
+      isLoading={isLoading}
+      handleReact={handleReact}
+      handleDelete={handleDelete}
+    />
   );
 };
 
