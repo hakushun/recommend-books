@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import actionCreatorFactory from 'typescript-fsa';
 import { reducerWithInitialState } from 'typescript-fsa-reducers';
-import { fetch, update } from './book';
+import { set, update } from './book';
 import { RootState } from './reducers';
 
 // types
@@ -54,9 +54,9 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
       tags: [...state.tags.filter((tag) => tag.id !== payload)],
     };
   })
-  .case(fetch.async.done, (state, { result }) => ({
+  .case(set, (state, payload) => ({
     ...state,
-    tags: result.tags,
+    tags: payload.tags,
   }))
   .case(update.async.done, (state) => ({
     ...state,
