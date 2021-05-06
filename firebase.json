@@ -1,6 +1,6 @@
 {
 	"hosting": {
-		"public": "out",
+		"public": "public",
 		"ignore": [
 			"firebase.json",
 			"**/.*",
@@ -8,18 +8,18 @@
 		],
 		"rewrites": [
 			{
-				"source": "/login",
-				"destination": "/login.html"
-			},
-			{
-				"source": "/books",
-				"destination": "/books.html"
-			},
-			{
-				"source": "/book/[id]",
-				"destination": "/book/[id].html"
+				"source": "**/**",
+				"function": "nextjsFunc"
 			}
 		]
+	},
+	"functions": {
+		"source": ".",
+		"predeploy": [
+			"npm --prefix \"$PROJECT_DIR\" install",
+			"npm --prefix \"$PROJECT_DIR\" run build"
+		],
+		"runtime": "nodejs12"
 	},
 	"firestore": {
 		"rules": "firestore.rules",
