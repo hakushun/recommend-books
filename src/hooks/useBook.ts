@@ -3,19 +3,19 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BookItem,
-  fetch,
   create,
   react,
   selectBook,
   selectIsLoading,
   Type,
   remove,
+  set,
 } from '../redux/modules/book';
 import { SearchResult } from '../redux/modules/searchResult';
 import { selectUser } from '../redux/modules/user';
 
 type CustomHooks = (
-  _id?: string,
+  _initialBook?: BookItem,
 ) => {
   book: BookItem;
   isLoading: boolean;
@@ -23,7 +23,7 @@ type CustomHooks = (
   handleReact: (_item: BookItem, _type: Type) => void;
   handleDelete: (_item: BookItem) => void;
 };
-export const useBook: CustomHooks = (id?: string) => {
+export const useBook: CustomHooks = (initialBook?: BookItem) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -48,9 +48,12 @@ export const useBook: CustomHooks = (id?: string) => {
   };
 
   useEffect(() => {
-    id && dispatch(fetch(id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+    initialBook && dispatch(set(initialBook));
 
+    if (router.pathname === '/book/[id]' && !initialBook) {
+      router.push('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialBook]);
   return { book, isLoading, handleCreate, handleReact, handleDelete };
 };
