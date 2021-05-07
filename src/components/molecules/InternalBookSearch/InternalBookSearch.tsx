@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   searchword: string;
   handleSearch: (_e: React.ChangeEvent<HTMLInputElement>) => void;
 };
