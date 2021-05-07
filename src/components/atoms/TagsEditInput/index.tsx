@@ -3,7 +3,7 @@ import { options } from './options';
 import { Tag } from '../../../redux/modules/tags';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   inputRef: MutableRefObject<HTMLInputElement | null>;
   tags: Tag[];
   handleKeyDown: (_e: React.KeyboardEvent<HTMLInputElement>) => void;
