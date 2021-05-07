@@ -6,7 +6,7 @@ import { TagUpdateButton } from '../../atoms/TagUpdateButton';
 import { TagsEditList } from '../TagsEditList';
 import { TagsEditInput } from '../../atoms/TagsEditInput';
 
-type Props = {
+export type Props = {
   item: BookItem;
   inputRef: MutableRefObject<HTMLInputElement | null>;
   tags: Tag[];
