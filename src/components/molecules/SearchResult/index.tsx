@@ -6,7 +6,7 @@ import { BookRegisterModal } from '../BookRegisterModal';
 import { Type } from '../../../redux/modules/book';
 import { SearchResultPagenation } from '../SearchResultPagenation';
 
-type Props = {
+export type Props = {
   titleRef: React.MutableRefObject<HTMLHeadingElement | null>;
   isLoading: boolean;
   searchResults: typeSearchResult[];
