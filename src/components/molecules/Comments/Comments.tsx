@@ -8,7 +8,7 @@ import { CommentList } from '../CommentList';
 import { CommentForm } from '../CommentForm';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   bookId: string;
   textAreaRef: React.MutableRefObject<HTMLTextAreaElement | null>;
   comment: CommentItem;
