@@ -5,7 +5,7 @@ import {
 } from '../../../redux/modules/comment';
 import { CommentItem } from '../CommentItem';
 
-type Props = {
+export type Props = {
   bookId: string;
   comments: typeComment[];
   handleEdit: (_item: typeComment) => void;
