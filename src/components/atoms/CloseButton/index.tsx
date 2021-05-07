@@ -2,7 +2,7 @@ import React from 'react';
 import { TogglePayload } from '../../../redux/modules/modal';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   context: string;
   handleToggle: (_payload: TogglePayload) => void;
 };
