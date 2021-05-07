@@ -8,7 +8,7 @@ import { CommentDeleteButton } from '../../atoms/CommentDeleteButton';
 import { CommentEditButton } from '../../atoms/CommentEditButton';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   bookId: string;
   comment: typeComment;
   handleEdit: (_item: typeComment) => void;
