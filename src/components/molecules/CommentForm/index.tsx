@@ -5,7 +5,7 @@ import { CommentCreateButton } from '../../atoms/CommentCreateButton';
 import { CommentUpdateButton } from '../../atoms/CommentUpdateButton';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   bookId: string;
   textAreaRef: MutableRefObject<HTMLTextAreaElement | null>;
   comment: CommentItem;
