@@ -1,11 +1,16 @@
 import admin from 'firebase-admin';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const serviceAccount = require('../../../recommend-books-1e328-firebase-adminsdk-phmxq-899894bf81');
 
 function initFunctions() {
   if (!admin.apps.length) {
     admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
+      credential: admin.credential.cert({
+        projectId: process.env.NEXT_PUBLIC_FUNCTIONS_PROJECT_ID,
+        privateKey: process.env.NEXT_PUBLIC_FUNCTIONS_PRIVATE_KEY?.replace(
+          /\\n/g,
+          '\n',
+        ),
+        clientEmail: process.env.NEXT_PUBLIC_FUNCTIONS_CLIENT_EMAIL,
+      }),
     });
   }
 }
