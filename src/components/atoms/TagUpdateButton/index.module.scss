@@ -1,26 +1,5 @@
 @use '../../../styles/mixin' as mixin;
 
-.toggle {
-  width: 22px;
-  height: 22px;
-  margin-left: 10px;
-
-  &.open {
-    background: url('/icon/circle-plus.svg');
-  }
-
-  &.close {
-    background: url('/icon/circle-minus.svg');
-  }
-}
-
-.delete {
-  width: 18px;
-  height: 18px;
-  margin-left: 3px;
-  background: url('/icon/circle-x.svg');
-}
-
 .update {
   padding: 0 10px;
   color: mixin.$whiteColor;

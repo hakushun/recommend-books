@@ -2,11 +2,11 @@ import clsx from 'clsx';
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   isEditable: boolean;
   handleToggle: (_boolean: boolean) => void;
 };
-export const ToggleButton: React.VFC<Props> = ({
+export const TagToggleButton: React.VFC<Props> = ({
   isEditable,
   handleToggle,
 }) => (

@@ -1,0 +1,8 @@
+@use '../../../styles/mixin' as mixin;
+
+.delete {
+  width: 18px;
+  height: 18px;
+  margin-left: 3px;
+  background: url('/icon/circle-x.svg');
+}
