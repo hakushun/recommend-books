@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   inputRef: React.MutableRefObject<HTMLInputElement | null>;
   handleSubmit: (_e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
