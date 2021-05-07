@@ -1,14 +1,14 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { ReactionBookButton, Props } from '../ReactionBookButton';
+import { BookReactionButton, Props } from '..';
 
 export default {
-  title: 'atoms/ReactionBookButton',
-  component: ReactionBookButton,
+  title: 'atoms/BookReactionButton',
+  component: BookReactionButton,
 } as Meta;
 
-const Template: Story<Props> = (args) => <ReactionBookButton {...args} />;
+const Template: Story<Props> = (args) => <BookReactionButton {...args} />;
 
 const book = {
   usersWantRead: [

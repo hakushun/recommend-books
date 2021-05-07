@@ -1,14 +1,14 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { DeleteBookButton, Props } from '../DeleteBookButton';
+import { BookDeleteButton, Props } from '../BookDeleteButton';
 
 export default {
-  title: 'atoms/DeleteBookButton',
-  component: DeleteBookButton,
+  title: 'atoms/BookDeleteButton',
+  component: BookDeleteButton,
 } as Meta;
 
-const Template: Story<Props> = (args) => <DeleteBookButton {...args} />;
+const Template: Story<Props> = (args) => <BookDeleteButton {...args} />;
 
 const book = {
   usersWantRead: [

@@ -9,7 +9,7 @@ export type Props = {
   isLoading: boolean;
   handleReact: (_item: BookItem, _type: Type) => void;
 };
-export const ReactionBookButton: React.VFC<Props> = ({
+export const BookReactionButton: React.VFC<Props> = ({
   type,
   item,
   isLoading,

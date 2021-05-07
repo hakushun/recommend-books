@@ -10,7 +10,7 @@ export type Props = {
   isLoading: boolean;
   handleCreate: (_item: SearchResult, _type: Type) => void;
 };
-export const CreateBookButton: React.VFC<Props> = ({
+export const BookCreateButton: React.VFC<Props> = ({
   type,
   item,
   isLoading,

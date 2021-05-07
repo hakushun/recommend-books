@@ -1,14 +1,14 @@
 import React from 'react';
 import { useUser } from '../../../hooks/useUser';
 import { BookItem } from '../../../redux/modules/book';
-import styles from './index.module.scss';
+import { BookDeleteButton as Presentaional } from './BookDeleteButton';
 
-export type Props = {
+type Props = {
   item: BookItem;
   isLoading: boolean;
   handleDelete: (_item: BookItem) => void;
 };
-export const DeleteBookButton: React.VFC<Props> = ({
+export const BookDeleteButton: React.VFC<Props> = ({
   item,
   isLoading,
   handleDelete,
@@ -19,12 +19,10 @@ export const DeleteBookButton: React.VFC<Props> = ({
   if (user?.id !== item.registeredBy?.id) return null;
 
   return (
-    <button
-      type="button"
-      disabled={isLoading}
-      onClick={() => handleDelete(item)}
-      className={styles.delete}>
-      削除する
-    </button>
+    <Presentaional
+      item={item}
+      isLoading={isLoading}
+      handleDelete={handleDelete}
+    />
   );
 };
