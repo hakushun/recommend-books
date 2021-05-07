@@ -1,0 +1,22 @@
+@use '../../../styles/mixin' as mixin;
+
+.cancel {
+  padding: 5px 10px;
+  font-size: mixin.rem(18);
+  font-weight: bold;
+  color: mixin.$whiteColor;
+  background-color: mixin.$disabledColor;
+  border: 3px solid mixin.$disabledColor;
+  border-radius: 5px;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: mixin.$mainTextColor;
+    background-color: mixin.$bgColor;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

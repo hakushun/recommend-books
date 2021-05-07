@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   isLoading: boolean;
   handleCancel: () => void;
 };
-export const CancelCommentButton: React.VFC<Props> = ({
+export const CommentCancelButton: React.VFC<Props> = ({
   isLoading,
   handleCancel,
 }) => (

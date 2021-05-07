@@ -1,14 +1,14 @@
 import React from 'react';
 import { useUser } from '../../../hooks/useUser';
 import { CommentItem, RemovePayload } from '../../../redux/modules/comment';
-import styles from './index.module.scss';
+import { CommentDeleteButton as Presentational } from './CommentDeleteButton';
 
 type Props = {
   bookId: string;
   comment: CommentItem;
   handleDelete: (_: RemovePayload) => void;
 };
-export const DeleteCommentButton: React.VFC<Props> = ({
+export const CommentDeleteButton: React.VFC<Props> = ({
   bookId,
   comment,
   handleDelete,
@@ -19,10 +19,10 @@ export const DeleteCommentButton: React.VFC<Props> = ({
   if (user?.id !== comment.author?.id) return null;
 
   return (
-    <button
-      type="button"
-      aria-label="削除"
-      onClick={() => handleDelete({ id: comment.id, bookId })}
-      className={styles.delete}></button>
+    <Presentational
+      bookId={bookId}
+      comment={comment}
+      handleDelete={handleDelete}
+    />
   );
 };

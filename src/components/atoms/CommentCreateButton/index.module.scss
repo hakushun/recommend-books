@@ -1,0 +1,24 @@
+@use '../../../styles/mixin' as mixin;
+
+.create {
+  padding: 5px 30px;
+  font-size: mixin.rem(18);
+  font-weight: bold;
+  color: mixin.$whiteColor;
+  background-color: mixin.$primaryColor;
+  border: 3px solid mixin.$primaryColor;
+  border-radius: 5px;
+
+  &:hover,
+  &:focus {
+    color: mixin.$primaryColor;
+    background-color: mixin.$whiteColor;
+  }
+
+  &:disabled {
+    color: mixin.$whiteColor;
+    cursor: not-allowed;
+    background-color: mixin.$disabledColor;
+    border: 3px solid mixin.$disabledColor;
+  }
+}

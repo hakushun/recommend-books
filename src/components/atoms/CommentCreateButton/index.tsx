@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   bookId: string;
   isLoading: boolean;
   handleCreate: (_bookId: string) => void;
 };
-export const CreateCommentButton: React.VFC<Props> = ({
+export const CommentCreateButton: React.VFC<Props> = ({
   bookId,
   isLoading,
   handleCreate,

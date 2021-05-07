@@ -1,13 +1,13 @@
 import React from 'react';
 import { useUser } from '../../../hooks/useUser';
 import { CommentItem } from '../../../redux/modules/comment';
-import styles from './index.module.scss';
+import { CommentEditButton as Presentaional } from './CommentEditButton';
 
 type Props = {
   comment: CommentItem;
   handleEdit: (_item: CommentItem) => void;
 };
-export const EditCommentButton: React.VFC<Props> = ({
+export const CommentEditButton: React.VFC<Props> = ({
   comment,
   handleEdit,
 }) => {
@@ -16,11 +16,5 @@ export const EditCommentButton: React.VFC<Props> = ({
   // 作成者以外には表示しない
   if (user?.id !== comment.author?.id) return null;
 
-  return (
-    <button
-      type="button"
-      aria-label="編集"
-      onClick={() => handleEdit(comment)}
-      className={styles.edit}></button>
-  );
+  return <Presentaional comment={comment} handleEdit={handleEdit} />;
 };

@@ -2,13 +2,13 @@ import React from 'react';
 import { CommentItem, UpdatePayload } from '../../../redux/modules/comment';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   bookId: string;
   item: CommentItem;
   isLoading: boolean;
   handleUpdate: (_: UpdatePayload) => void;
 };
-export const UpdateCommentButton: React.VFC<Props> = ({
+export const CommentUpdateButton: React.VFC<Props> = ({
   bookId,
   item,
   isLoading,
@@ -18,7 +18,7 @@ export const UpdateCommentButton: React.VFC<Props> = ({
     type="button"
     disabled={isLoading}
     onClick={() => handleUpdate({ bookId, item })}
-    className={styles.create}>
+    className={styles.update}>
     更新
   </button>
 );
