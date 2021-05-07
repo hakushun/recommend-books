@@ -7,7 +7,7 @@ import { BookCreateButton } from '../../atoms/BookCreateButton';
 import { Modal } from '../Modal';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   searchResult: SearchResult;
   isLoading: boolean;
   haveRegistered: boolean;
