@@ -5,7 +5,7 @@ import { ExternalBookSearch } from '../../molecules/ExternalBookSearch';
 import { SearchResult } from '../../molecules/SearchResult';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   titleRef: React.MutableRefObject<HTMLHeadingElement | null>;
   inputRef: React.MutableRefObject<HTMLInputElement | null>;
   isLoading: boolean;

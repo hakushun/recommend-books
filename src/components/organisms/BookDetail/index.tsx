@@ -7,7 +7,7 @@ import { PreviewLink } from '../../atoms/PreviewLink';
 import styles from './index.module.scss';
 import { BookDataList } from '../../molecules/BookDataList';
 
-type Props = {
+export type Props = {
   book: BookItem;
   isLoading: boolean;
   handleReact: (_item: BookItem, _type: Type) => void;
