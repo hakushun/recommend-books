@@ -4,7 +4,7 @@ import { CloseButton } from '../../atoms/CloseButton';
 import { Overlay } from '../../atoms/Overlay';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   context: string;
   modalRef: React.MutableRefObject<HTMLDivElement | null>;
   handleToggle: (_payload: TogglePayload) => void;
