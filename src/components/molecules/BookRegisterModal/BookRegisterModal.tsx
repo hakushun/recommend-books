@@ -3,7 +3,7 @@ import React from 'react';
 import { formatAuthors } from '../../../libs/utils/formatAuthors';
 import { Type } from '../../../redux/modules/book';
 import { SearchResult } from '../../../redux/modules/searchResult';
-import { CreateBookButton } from '../../atoms/BookButton/CreateBookButton';
+import { BookCreateButton } from '../../atoms/BookCreateButton';
 import { Modal } from '../Modal';
 import styles from './index.module.scss';
 
@@ -37,13 +37,13 @@ export const BookRegisterModal: React.VFC<Props> = ({
       </div>
     ) : (
       <div className={styles.action}>
-        <CreateBookButton
+        <BookCreateButton
           type="read"
           item={searchResult}
           isLoading={isLoading}
           handleCreate={handleCreate}
         />
-        <CreateBookButton
+        <BookCreateButton
           type="want"
           item={searchResult}
           isLoading={isLoading}

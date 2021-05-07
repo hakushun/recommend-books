@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './index.module.scss';
 import { BookItem as typeBookItem, Type } from '../../../redux/modules/book';
 import { formatAuthors } from '../../../libs/utils/formatAuthors';
-import { ReactionBookButton } from '../../atoms/BookButton/ReactionBookButton';
+import { BookReactionButton } from '../../atoms/BookReactionButton';
 
 export type Props = {
   book: typeBookItem;
@@ -41,13 +41,13 @@ export const BookItem: React.VFC<Props> = ({
       </a>
     </Link>
     <div className={styles.action}>
-      <ReactionBookButton
+      <BookReactionButton
         type="read"
         item={book}
         isLoading={isLoading}
         handleReact={handleReact}
       />
-      <ReactionBookButton
+      <BookReactionButton
         type="want"
         item={book}
         isLoading={isLoading}

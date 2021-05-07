@@ -1,8 +1,8 @@
 import React, { MutableRefObject } from 'react';
 import { CommentItem, UpdatePayload } from '../../../redux/modules/comment';
-import { CancelCommentButton } from '../../atoms/CommentButton/CancelCommentButton';
-import { CreateCommentButton } from '../../atoms/CommentButton/CreateCommentButton';
-import { UpdateCommentButton } from '../../atoms/CommentButton/UpdateCommentButton';
+import { CommentCancelButton } from '../../atoms/CommentCancelButton';
+import { CommentCreateButton } from '../../atoms/CommentCreateButton';
+import { CommentUpdateButton } from '../../atoms/CommentUpdateButton';
 import styles from './index.module.scss';
 
 type Props = {
@@ -34,18 +34,18 @@ export const CommentForm: React.VFC<Props> = ({
       />
       <div className={styles.action}>
         {comment.id === '' ? (
-          <CreateCommentButton
+          <CommentCreateButton
             bookId={bookId}
             isLoading={isLoading}
             handleCreate={handleCreate}
           />
         ) : (
           <>
-            <CancelCommentButton
+            <CommentCancelButton
               isLoading={isLoading}
               handleCancel={handleCancel}
             />
-            <UpdateCommentButton
+            <CommentUpdateButton
               bookId={bookId}
               item={comment}
               isLoading={isLoading}

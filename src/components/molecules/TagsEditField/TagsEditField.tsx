@@ -2,7 +2,7 @@ import React, { MutableRefObject } from 'react';
 import { Tag } from '../../../redux/modules/tags';
 import styles from './index.module.scss';
 import { BookItem, UpdatePayload } from '../../../redux/modules/book';
-import { UpdateButton } from '../../atoms/TagButton/UpdateButton';
+import { TagUpdateButton } from '../../atoms/TagUpdateButton';
 import { TagsEditList } from '../TagsEditList';
 import { TagsEditInput } from '../../atoms/TagsEditInput';
 
@@ -32,7 +32,7 @@ export const TagsEditField: React.VFC<Props> = ({
       />
     </div>
     <div className={styles.action}>
-      <UpdateButton item={item} tags={tags} handleUpdate={handleUpdate} />
+      <TagUpdateButton item={item} tags={tags} handleUpdate={handleUpdate} />
     </div>
   </>
 );

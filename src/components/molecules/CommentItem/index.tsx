@@ -4,8 +4,8 @@ import {
   CommentItem as typeComment,
   RemovePayload,
 } from '../../../redux/modules/comment';
-import { DeleteCommentButton } from '../../atoms/CommentButton/DeleteCommentButton';
-import { EditCommentButton } from '../../atoms/CommentButton/EditCommentButton';
+import { CommentDeleteButton } from '../../atoms/CommentDeleteButton';
+import { CommentEditButton } from '../../atoms/CommentEditButton';
 import styles from './index.module.scss';
 
 type Props = {
@@ -27,8 +27,8 @@ export const CommentItem: React.VFC<Props> = ({
         <div className={styles.date}>{parseDate(comment.createdAt)}</div>
       </div>
       <div className={styles.action}>
-        <EditCommentButton comment={comment} handleEdit={handleEdit} />
-        <DeleteCommentButton
+        <CommentEditButton comment={comment} handleEdit={handleEdit} />
+        <CommentDeleteButton
           comment={comment}
           bookId={bookId}
           handleDelete={handleDelete}

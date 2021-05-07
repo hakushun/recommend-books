@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookItem, UpdatePayload } from '../../../redux/modules/book';
 import { Tag } from '../../../redux/modules/tags';
-import { ToggleButton } from '../../atoms/TagButton/ToggleButton';
+import { TagToggleButton } from '../../atoms/TagToggleButton';
 import { TagsEditField } from '../TagsEditField';
 import styles from './index.module.scss';
 
@@ -59,7 +59,7 @@ export const BookDataList: React.VFC<Props> = ({
     <div className={styles.item}>
       <dt>
         Tags
-        <ToggleButton isEditable={isEditable} handleToggle={handleToggle} />
+        <TagToggleButton isEditable={isEditable} handleToggle={handleToggle} />
       </dt>
       <dd>
         {isEditable ? (

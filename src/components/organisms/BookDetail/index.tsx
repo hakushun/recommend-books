@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookItem, Type } from '../../../redux/modules/book';
-import { DeleteBookButton } from '../../atoms/BookButton/DeleteBookButton';
-import { ReactionBookButton } from '../../atoms/BookButton/ReactionBookButton';
+import { BookDeleteButton } from '../../atoms/BookDeleteButton';
+import { BookReactionButton } from '../../atoms/BookReactionButton';
 import { Comments } from '../../molecules/Comments';
 import { PreviewLink } from '../../atoms/PreviewLink';
 import styles from './index.module.scss';
@@ -32,19 +32,19 @@ export const BookDetail: React.VFC<Props> = ({
         </div>
         <div className={styles.action}>
           <PreviewLink link={book.previewLink} />
-          <ReactionBookButton
+          <BookReactionButton
             type="read"
             item={book}
             isLoading={isLoading}
             handleReact={handleReact}
           />
-          <ReactionBookButton
+          <BookReactionButton
             type="want"
             item={book}
             isLoading={isLoading}
             handleReact={handleReact}
           />
-          <DeleteBookButton
+          <BookDeleteButton
             item={book}
             isLoading={isLoading}
             handleDelete={handleDelete}

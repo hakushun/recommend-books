@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tag } from '../../../redux/modules/tags';
-import { DeleteButon } from '../../atoms/TagButton/DeleteButon';
+import { TagDeleteButton } from '../../atoms/TagDeleteButton';
 import styles from './index.module.scss';
 
 type Props = {
@@ -12,7 +12,7 @@ export const TagsEditList: React.VFC<Props> = ({ tags, handleRemove }) => (
     {tags.map((tag) => (
       <li key={tag.id} className={styles.item}>
         {tag.value}
-        <DeleteButon tag={tag} handleRemove={handleRemove} />
+        <TagDeleteButton tag={tag} handleRemove={handleRemove} />
       </li>
     ))}
   </ul>
