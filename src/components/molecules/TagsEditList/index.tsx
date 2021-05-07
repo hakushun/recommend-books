@@ -3,7 +3,7 @@ import { Tag } from '../../../redux/modules/tags';
 import { TagDeleteButton } from '../../atoms/TagDeleteButton';
 import styles from './index.module.scss';
 
-type Props = {
+export type Props = {
   tags: Tag[];
   handleRemove: (_id: string) => void;
 };
