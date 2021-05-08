@@ -3,7 +3,15 @@ import { AnyAction, Middleware } from 'redux';
 import configureMockStore, { MockStore } from 'redux-mock-store';
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import * as module from '../../../libs/firebase/firebaseAuth';
-import reducer, { auth, login, logout, User } from '../user';
+import reducer, {
+  auth,
+  login,
+  logout,
+  selectIsLoading,
+  selectUser,
+  User,
+} from '../user';
+import { initialState } from './_initialState';
 
 describe('Async actions: user', () => {
   interface Ext {
@@ -137,7 +145,31 @@ describe('Reducer: user', () => {
   });
 });
 
-// describe('Selector: user', () => {
-//   it('selectUser', () => {});
-//   it('selectIsLoading', () => {});
-// });
+describe('Selector: user', () => {
+  const state = {
+    ...initialState,
+    resources: {
+      ...initialState.resources,
+      user: {
+        user: {
+          id: '123456',
+          name: 'sample user',
+          email: 'sample@sample.com',
+        },
+        isLoading: false,
+      },
+    },
+  };
+  it('selectUser', () => {
+    const result = {
+      id: '123456',
+      name: 'sample user',
+      email: 'sample@sample.com',
+    };
+    expect(result).toEqual(selectUser(state));
+  });
+  it('selectIsLoading', () => {
+    const result = false;
+    expect(result).toEqual(selectIsLoading(state));
+  });
+});
