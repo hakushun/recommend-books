@@ -1,5 +1,6 @@
 /* eslint-disable no-undefined */
-import reducer, { sort } from '../sort';
+import reducer, { selectSortKey, sort, SortKey } from '../sort';
+import { initialState } from './_initialState';
 
 describe('Reducer: sort', () => {
   it('Initial state', () => {
@@ -14,6 +15,18 @@ describe('Reducer: sort', () => {
   });
 });
 
-// describe('Selector: sort', () => {
-//   it('selectSortKey', () => {});
-// });
+describe('Selector: sort', () => {
+  const state = {
+    ...initialState,
+    ui: {
+      ...initialState.ui,
+      sort: {
+        key: 'read' as SortKey,
+      },
+    },
+  };
+  it('selectSortKey', () => {
+    const result = 'read';
+    expect(result).toEqual(selectSortKey(state));
+  });
+});
