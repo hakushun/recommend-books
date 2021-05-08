@@ -1,5 +1,6 @@
 /* eslint-disable no-undefined */
-import reducer, { search } from '../search';
+import reducer, { search, selectSearch } from '../search';
+import { initialState } from './_initialState';
 
 describe('Reducer: search', () => {
   it('Initial state', () => {
@@ -14,6 +15,18 @@ describe('Reducer: search', () => {
   });
 });
 
-// describe('Selector: search', () => {
-//   it('selectSearch', () => {});
-// });
+describe('Selector: search', () => {
+  const state = {
+    ...initialState,
+    ui: {
+      ...initialState.ui,
+      search: {
+        searchword: 'test word',
+      },
+    },
+  };
+  it('selectSearch', () => {
+    const result = 'test word';
+    expect(result).toEqual(selectSearch(state));
+  });
+});
