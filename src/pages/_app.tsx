@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { wrapper } from '../redux/store';
+import { Layout } from '../components/templates/Layout';
 
 import '../styles/reset.scss';
 import '../styles/global.scss';
 import '../styles/pagenation.scss';
-import { Layout } from '../components/templates/Layout';
 
 function App({ Component, pageProps }: AppProps): React.ReactElement {
   const router = useRouter();

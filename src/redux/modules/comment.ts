@@ -10,6 +10,7 @@ import {
 import { RootState } from './reducers';
 import { Userdata } from './user';
 
+// types
 export type CommentItem = {
   id: string;
   content: string;
@@ -67,6 +68,7 @@ export const remove = asyncActionCreator<RemovePayload, void, CustomError>(
 );
 export const cancel = actionCreator('CANCEL_COMMENT');
 
+// initial state
 const INITIAL_STATE: Comment = {
   item: {
     id: '',

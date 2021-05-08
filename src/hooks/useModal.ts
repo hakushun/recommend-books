@@ -73,6 +73,12 @@ export const useModal: CustomHooks = (context: string) => {
     }
   };
 
+  const handleRouteChange = () => {
+    handleToggle({ registerDialog: false });
+    handleReset();
+    toggleAriaHidden('app', false);
+  };
+
   useEffect(() => {
     if (isOpened) {
       modalRef.current?.focus();
@@ -84,12 +90,6 @@ export const useModal: CustomHooks = (context: string) => {
   }, [isOpened, searchResult]);
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      handleToggle({ registerDialog: false });
-      handleReset();
-      toggleAriaHidden('app', false);
-    };
-
     router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {

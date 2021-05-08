@@ -13,6 +13,7 @@ import {
 import { SearchResult } from './searchResult';
 import { Tag } from './tags';
 
+// types
 export type BookItem = {
   id: string;
   title: string;
@@ -85,6 +86,7 @@ export const update = asyncActionCreator<UpdatePayload, BookItem, CustomError>(
   },
 );
 
+// initial state
 const INITIAL_STATE: Book = {
   item: {
     id: '',

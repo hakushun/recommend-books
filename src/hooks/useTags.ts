@@ -83,11 +83,11 @@ export const useTags: CustomHooks = () => {
     dispatch(select(id));
   };
 
-  useEffect(() => {
-    const handleRouteChange = () => {
-      dispatch(toggle(false));
-    };
+  const handleRouteChange = () => {
+    dispatch(toggle(false));
+  };
 
+  useEffect(() => {
     router.events.on('routeChangeComplete', handleRouteChange);
 
     return () => {

@@ -5,6 +5,7 @@ import { asyncFactory } from 'typescript-fsa-redux-thunk';
 import { signinWithGoogle, signOut } from '../../libs/firebase/firebaseAuth';
 import { RootState } from './reducers';
 
+// types
 export type Userdata = {
   id: string;
   name: string;
