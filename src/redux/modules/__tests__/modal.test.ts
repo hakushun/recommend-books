@@ -1,7 +1,8 @@
 /* eslint-disable no-undefined */
 import { create, CreatePayload } from '../book';
-import reducer, { toggle } from '../modal';
+import reducer, { selectModal, toggle } from '../modal';
 import { select } from '../searchResult';
+import { initialState } from './_initialState';
 
 describe('Reducer: modal', () => {
   const searchResult = {
@@ -51,6 +52,18 @@ describe('Reducer: modal', () => {
   });
 });
 
-// describe('Selector: modal', () => {
-//   it('selectModal', () => {});
-// });
+describe('Selector: modal', () => {
+  const state = {
+    ...initialState,
+    ui: {
+      ...initialState.ui,
+      modal: {
+        registerDialog: false,
+      },
+    },
+  };
+  it('selectModal', () => {
+    const result = { registerDialog: false };
+    expect(result).toEqual(selectModal(state));
+  });
+});
