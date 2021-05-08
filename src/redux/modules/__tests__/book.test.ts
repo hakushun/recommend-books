@@ -13,9 +13,10 @@ import reducer, {
   remove,
   update,
   UpdatePayload,
-  // selectBook,
-  // selectIsLoading,
+  selectBook,
+  selectIsLoading,
 } from '../book';
+import { initialState } from './_initialState';
 
 describe('Async actions: book', () => {
   interface Ext {
@@ -345,53 +346,54 @@ describe('Reducer: book', () => {
   });
 });
 
-// describe('Seletctor: book', () => {
-//   const user = {
-//     id: '1',
-//     email: 'sample@sample.com',
-//     name: 'test user',
-//   };
-//   const state = {
-//     resources: {
-//       book: {
-//         item: {
-//           id: '123456',
-//           title: 'dummy title',
-//           authors: ['author1', 'author2'],
-//           description: 'sample description',
-//           previewLink: 'https://suumo.jp/',
-//           imageUrl: 'https://suumo.jp/',
-//           usersHaveRead: [user],
-//           usersWantRead: [],
-//           registeredBy: user,
-//           createdAt: 0,
-//           updatedAt: 0,
-//         },
-//         isLoading: false,
-//       },
-//     },
-//     ui: {},
-//   };
-//   it('selectBook', () => {
-//     const result = {
-//       id: '123456',
-//       title: 'dummy title',
-//       authors: ['author1', 'author2'],
-//       description: 'sample description',
-//       previewLink: 'https://suumo.jp/',
-//       imageUrl: 'https://suumo.jp/',
-//       usersHaveRead: [user],
-//       usersWantRead: [],
-//       registeredBy: user,
-//       createdAt: 0,
-//       updatedAt: 0,
-//     };
-//     // エラー出るけど直し方わからない
-//     expect(result).toEqual(selectBook(state));
-//   });
-//   it('selectIsLoading', () => {
-//     const result = false;
-//     // エラー出るけど直し方わからない
-//     expect(result).toEqual(selectIsLoading(state));
-//   });
-// });
+describe('Seletctor: book', () => {
+  const user = {
+    id: '1',
+    email: 'sample@sample.com',
+    name: 'test user',
+  };
+  const state = {
+    ...initialState,
+    resources: {
+      ...initialState.resources,
+      book: {
+        item: {
+          id: '123456',
+          title: 'dummy title',
+          authors: ['author1', 'author2'],
+          description: 'sample description',
+          previewLink: 'https://suumo.jp/',
+          imageUrl: 'https://suumo.jp/',
+          usersHaveRead: [user],
+          usersWantRead: [],
+          registeredBy: user,
+          tags: [],
+          createdAt: 0,
+          updatedAt: 0,
+        },
+        isLoading: false,
+      },
+    },
+  };
+  it('selectBook', () => {
+    const result = {
+      id: '123456',
+      title: 'dummy title',
+      authors: ['author1', 'author2'],
+      description: 'sample description',
+      previewLink: 'https://suumo.jp/',
+      imageUrl: 'https://suumo.jp/',
+      usersHaveRead: [user],
+      usersWantRead: [],
+      registeredBy: user,
+      tags: [],
+      createdAt: 0,
+      updatedAt: 0,
+    };
+    expect(result).toEqual(selectBook(state));
+  });
+  it('selectIsLoading', () => {
+    const result = false;
+    expect(result).toEqual(selectIsLoading(state));
+  });
+});
