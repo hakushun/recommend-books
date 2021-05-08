@@ -13,9 +13,12 @@ import reducer, {
   EditPayload,
   remove,
   RemovePayload,
+  selectComment,
+  selectIsLoading,
   update,
   UpdatePayload,
 } from '../comment';
+import { initialState } from './_initialState';
 
 describe('Async actions: comment', () => {
   interface Ext {
@@ -235,7 +238,36 @@ describe('Reducer: comment', () => {
   });
 });
 
-// describe('Selector: comment', () => {
-//   it('selectComment', () => {});
-//   it('selectIsLoading', () => {});
-// });
+describe('Selector: comment', () => {
+  const state = {
+    ...initialState,
+    resources: {
+      ...initialState.resources,
+      comment: {
+        item: {
+          id: '123456',
+          content: 'サンプルコメント',
+          author: null,
+          createdAt: 0,
+          updatedAt: 0,
+        },
+        isLoading: false,
+      },
+    },
+  };
+  it('selectComment', () => {
+    const result = {
+      id: '123456',
+      content: 'サンプルコメント',
+      author: null,
+      createdAt: 0,
+      updatedAt: 0,
+    };
+    expect(result).toEqual(selectComment(state));
+  });
+
+  it('selectIsLoading', () => {
+    const result = false;
+    expect(result).toEqual(selectIsLoading(state));
+  });
+});
