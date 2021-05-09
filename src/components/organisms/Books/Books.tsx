@@ -12,6 +12,7 @@ export type Props = {
   searchResult: typeSearchResult;
   searchResults: typeSearchResult[];
   pageCount: number;
+  currentPage: number;
   haveRegistered: boolean;
   handleCreate: (_item: typeSearchResult, _type: Type) => void;
   handleSubmit: (_e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -25,6 +26,7 @@ export const Books: React.VFC<Props> = ({
   searchResult,
   searchResults,
   pageCount,
+  currentPage,
   haveRegistered,
   handleCreate,
   handleSubmit,
@@ -39,6 +41,7 @@ export const Books: React.VFC<Props> = ({
       isLoading={isLoading}
       searchResults={searchResults}
       pageCount={pageCount}
+      currentPage={currentPage}
       searchResult={searchResult}
       haveRegistered={haveRegistered}
       handleCreate={handleCreate}

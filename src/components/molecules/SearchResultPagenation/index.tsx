@@ -3,15 +3,18 @@ import ReactPaginate from 'react-paginate';
 
 export type Props = {
   pageCount: number;
+  currentPage: number;
   handlePagenation: (_selected: { selected: number }) => void;
 };
 export const SearchResultPagenation: React.VFC<Props> = ({
   pageCount,
+  currentPage,
   handlePagenation,
 }) => (
   <ReactPaginate
-    previousLabel="previous"
-    nextLabel="next"
+    forcePage={currentPage}
+    previousLabel="←"
+    nextLabel="→"
     breakLabel="..."
     pageCount={pageCount}
     marginPagesDisplayed={2}

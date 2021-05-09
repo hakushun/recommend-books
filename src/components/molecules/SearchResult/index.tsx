@@ -11,6 +11,7 @@ export type Props = {
   isLoading: boolean;
   searchResults: typeSearchResult[];
   pageCount: number;
+  currentPage: number;
   searchResult: typeSearchResult;
   haveRegistered: boolean;
   handleCreate: (_item: typeSearchResult, _type: Type) => void;
@@ -22,6 +23,7 @@ export const SearchResult: React.VFC<Props> = ({
   isLoading,
   searchResults,
   pageCount,
+  currentPage,
   searchResult,
   haveRegistered,
   handleCreate,
@@ -37,9 +39,10 @@ export const SearchResult: React.VFC<Props> = ({
       searchResults={searchResults}
       handleSelect={handleSelect}
     />
-    {searchResults?.length > 0 && (
+    {searchResults.length > 0 && (
       <SearchResultPagenation
         pageCount={pageCount}
+        currentPage={currentPage}
         handlePagenation={handlePagenation}
       />
     )}
