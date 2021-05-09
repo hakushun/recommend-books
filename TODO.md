@@ -17,17 +17,28 @@
 -[x]: 画像のURLがhttpだからwarning出る問題
 -[x]: comment編集機能(refがうまくいかない)
 -[x]: 登録済みbookもpagenation必要かも
+-[x]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
+-[x]: SSRしたい(gssp内でfirestoreにアクセスするとpermission errorなるけどどうすりゃいいの)
+-[x]: modal内にタブキー閉じ込め
+-[x]: modal閉じたら、開いた時にクリックした要素にfocus戻したい
+-[x]: タグ付機能
+-[x]: タグ関連のtest
+-[x]: 検索にタグ含める
+-[x]: 無限スクロール導入
+-[x]: コメント登録後のfocus処理
+-[x]: タグ周りのスタイル
+-[x]: 人気のタグを表示してそのタグでフィルタしたい
+-[x]: scssのurl()で読み込むimageがstorybookでエラー
+-[x]: story作成
 -[]: 個人ページあったほうがよい？（自分が読んだ読みたいがわかるページ）
--[]: タグ付([tagify](https://github.com/yairEO/tagify))
--[]: scssのurl()で読み込むimageがstorybookでエラー
--[]: story作成
 -[]: unit test
 -[]: reaction済み時のスタイル(ReactionButton)
 -[]: CLS
 -[]: エラーハンドリング
--[]: modal内にタブキー閉じ込め
--[x]: /book/[id]でリロードすると404(router.queryが初回はundefinedになる問題)
--[x]: SSRしたい(gssp内でfirestoreにアクセスするとpermission errorなるけどどうすりゃいいの)
 -[]: selectboxのスタイル(SortSelectBox)
 -[]: delete時にダイアログあっていいかも
 -[]: faviconほしい
+-[]: pagenationのresponsive(SearchResultPagenation)
+-[]: Issues: Indicate whether to send a cookie in a cross-site request by specifying its SameSite attribute(devTool上)
+-[]: Target container is not a DOM element.(storybookでcreateProtalを使うとエラー)
+-[]: Google books apiにない本の登録機能
