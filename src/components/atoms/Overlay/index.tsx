@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styles from './index.module.scss';
 
-// TODO: SSR時にエラー出るので要調査
 export const Overlay: React.FC = ({ children }) => {
   if (typeof window !== 'undefined') {
     return ReactDOM.createPortal(

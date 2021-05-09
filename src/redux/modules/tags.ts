@@ -93,7 +93,9 @@ export const selectSelectedTags = createSelector(
 export const selectPopularTags = createSelector(
   [(state: RootState) => state.resources.books.books],
   (books) => {
+    // 登録されてるtagを一つの配列に格納
     const tags = books.reduce<Tag[]>((acc, book) => [...acc, ...book.tags], []);
+    // tag名をkey、その数をvalueにしたオブジェクトに変換({ tag1: 2, tag2: 0, tag3: 1 })
     const counts = tags.reduce<{ [s: string]: number }>((acc, tag) => {
       if (!acc[tag.value]) {
         acc[tag.value] = 0;
@@ -101,9 +103,11 @@ export const selectPopularTags = createSelector(
       acc[tag.value] += 1;
       return acc;
     }, {});
+    // 登録数が多い順に並び替え
     const tagRank = Object.entries(counts)
       .map(([key, value]) => ({ [key]: value }))
       .sort((a, b) => Object.values(b)[0] - Object.values(a)[0]);
+    // 上位５つのtag名を配列に格納
     const top5 = tagRank.map((tag) => Object.keys(tag)[0]).slice(0, 5);
     return top5;
   },

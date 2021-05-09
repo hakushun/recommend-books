@@ -55,7 +55,7 @@ export const options: string[] = [
   'ドメイン駆動開発',
   'テスト',
   'テスト駆動',
-  't-wada',
+  't_wada',
   'Atomic Design',
   'リファクタリング',
   'パフォーマンス',
