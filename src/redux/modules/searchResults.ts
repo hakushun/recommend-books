@@ -15,6 +15,7 @@ export type SearchResults = {
   searchResults: SearchResult[];
   totalItems: number;
   maxResults: number;
+  currentPage: number;
   isLoading: boolean;
   error?: CustomError;
 };
@@ -26,6 +27,7 @@ export type SearchPayload = {
   keyword: string;
   maxResults: number;
   startIndex: number;
+  currentPage: number;
 };
 // actions
 const actionCreator = actionCreatorFactory();
@@ -46,6 +48,7 @@ const INITIAL_STATE: SearchResults = {
   searchResults: [],
   totalItems: 0,
   maxResults: 20,
+  currentPage: 0,
   isLoading: false,
 };
 
@@ -63,10 +66,11 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     isLoading: false,
     error,
   }))
-  .case(search.async.done, (state, { result }) => ({
+  .case(search.async.done, (state, { params, result }) => ({
     ...state,
-    searchResults: result.items,
+    searchResults: result.items || [],
     totalItems: result.totalItems,
+    currentPage: params.currentPage,
     isLoading: false,
   }));
 
@@ -86,6 +90,11 @@ export const selectTotalItems = createSelector(
 export const selectMaxResults = createSelector(
   [(state: RootState) => state.resources.searchResults.maxResults],
   (maxResults) => maxResults,
+);
+
+export const selectCurrentPage = createSelector(
+  [(state: RootState) => state.resources.searchResults.currentPage],
+  (currentPage) => currentPage,
 );
 
 export const selectIsLoading = createSelector(
