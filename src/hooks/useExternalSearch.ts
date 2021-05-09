@@ -9,6 +9,7 @@ import {
 import {
   reset,
   search,
+  selectCurrentPage,
   selectIsLoading,
   selectMaxResults,
   selectSearchResults,
@@ -21,6 +22,7 @@ type CustomHooks = () => {
   searchResult: SearchResult;
   searchResults: SearchResult[];
   pageCount: number;
+  currentPage: number;
   isLoading: boolean;
   haveRegistered: boolean;
   handleSubmit: (_e: React.FormEvent<HTMLFormElement>) => Promise<void>;
@@ -36,6 +38,7 @@ export const useExternalSearch: CustomHooks = () => {
   const allBooks = useSelector(selectBooks);
   const totalItems = useSelector(selectTotalItems);
   const maxResults = useSelector(selectMaxResults);
+  const currentPage = useSelector(selectCurrentPage);
   const isLoading = useSelector(selectIsLoading);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
@@ -54,6 +57,7 @@ export const useExternalSearch: CustomHooks = () => {
         keyword: inputRef.current.value,
         maxResults,
         startIndex: 0,
+        currentPage: 0,
       }),
     );
   };
@@ -68,6 +72,7 @@ export const useExternalSearch: CustomHooks = () => {
         keyword: inputRef.current.value,
         maxResults,
         startIndex: selected * maxResults,
+        currentPage: selected,
       }),
     );
     titleRef.current?.focus();
@@ -87,6 +92,7 @@ export const useExternalSearch: CustomHooks = () => {
     searchResult,
     searchResults,
     pageCount,
+    currentPage,
     isLoading,
     haveRegistered,
     handleSubmit,
