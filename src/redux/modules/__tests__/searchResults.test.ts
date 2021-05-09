@@ -31,6 +31,7 @@ describe('Async actions: searchResults', () => {
       searchResults: [],
       totalItems: 0,
       maxResults: 20,
+      currentPage: 0,
       isLoading: false,
     });
   });
@@ -60,6 +61,7 @@ describe('Async actions: searchResults', () => {
       keyword: 'search word',
       maxResults: 1,
       startIndex: 0,
+      currentPage: 0,
     };
     const expectedActions = [
       search.async.started(params),
@@ -75,6 +77,7 @@ describe('Reducer: searchResults', () => {
     keyword: 'search word',
     maxResults: 20,
     startIndex: 0,
+    currentPage: 0,
   };
   const rowData = {
     items: [
@@ -100,6 +103,7 @@ describe('Reducer: searchResults', () => {
       searchResults: [],
       totalItems: 0,
       maxResults: 20,
+      currentPage: 0,
       isLoading: false,
     });
   });
@@ -111,6 +115,7 @@ describe('Reducer: searchResults', () => {
       searchResults: [],
       totalItems: 0,
       maxResults: 20,
+      currentPage: 0,
       isLoading: false,
     });
   });
@@ -122,6 +127,7 @@ describe('Reducer: searchResults', () => {
       searchResults: [],
       totalItems: 0,
       maxResults: 20,
+      currentPage: 0,
       isLoading: true,
     });
   });
@@ -148,6 +154,7 @@ describe('Reducer: searchResults', () => {
       ],
       totalItems: 1,
       maxResults: 20,
+      currentPage: 0,
       isLoading: false,
     });
   });
@@ -158,6 +165,7 @@ describe('Reducer: searchResults', () => {
       searchResults: [],
       totalItems: 0,
       maxResults: 20,
+      currentPage: 0,
       isLoading: false,
       error,
     });
@@ -225,6 +233,7 @@ describe('Selector: searchResults', () => {
         ],
         totalItems: 100,
         maxResults: 20,
+        currentPage: 0,
         isLoading: false,
       },
     },

@@ -45,6 +45,7 @@ export const initialState: RootState = {
       searchResults: [],
       totalItems: 0,
       maxResults: 20,
+      currentPage: 0,
       isLoading: false,
     },
   },
