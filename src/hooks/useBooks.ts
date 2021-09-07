@@ -14,7 +14,7 @@ type CustomHooks = () => {
   books: BookItem[];
   hasMore: boolean;
   isLoading: boolean;
-  handleLoad: (_pageNum: number) => void;
+  handleLoad: () => void;
 };
 export const useBooks: CustomHooks = () => {
   const db = getInstance();
@@ -27,8 +27,8 @@ export const useBooks: CustomHooks = () => {
   const books = [...allBooks].slice(0, page * maxResults);
   const hasMore = books.length < allBooks.length;
 
-  const handleLoad = (pageNum: number) => {
-    dispatch(load(pageNum));
+  const handleLoad = () => {
+    dispatch(load(page + 1));
   };
 
   useEffect(() => {

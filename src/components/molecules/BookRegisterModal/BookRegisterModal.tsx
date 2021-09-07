@@ -49,6 +49,12 @@ export const BookRegisterModal: React.VFC<Props> = ({
           isLoading={isLoading}
           handleCreate={handleCreate}
         />
+        <BookCreateButton
+          type="stock"
+          item={searchResult}
+          isLoading={isLoading}
+          handleCreate={handleCreate}
+        />
       </div>
     )}
   </Modal>

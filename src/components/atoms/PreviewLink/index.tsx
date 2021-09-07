@@ -8,7 +8,7 @@ export const PreviewLink: React.VFC<Props> = ({ link }) => (
   <a
     href={link || '/'}
     target="_blank"
-    rel="noreferrer"
+    rel="noopener noreferrer"
     className={styles.root}>
     PREVIEW
   </a>

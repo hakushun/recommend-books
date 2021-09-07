@@ -18,12 +18,12 @@ export const Header: React.VFC<Props> = ({ user, logout }) => (
       {user && (
         <nav>
           <ul className={styles.navList}>
-            <li className={styles.navItem}>
+            <li>
               <Link href="/books">
                 <a className={styles.navLink}>レコ読の追加</a>
               </Link>
             </li>
-            <li className={styles.navItem}>
+            <li>
               <button type="button" onClick={logout} className={styles.navLink}>
                 Logout
               </button>

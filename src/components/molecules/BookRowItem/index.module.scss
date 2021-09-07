@@ -1,0 +1,136 @@
+@use '../../../styles/mixin' as mixin;
+
+.root {
+  padding: 8px;
+  border-bottom: solid 1px #ccc6af;
+
+  &:first-child {
+    border-top: solid 1px #ccc6af;
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-areas: "contents buttons";
+  grid-template-columns: 60% 40%;
+  gap: 12px;
+
+  @include mixin.mq() {
+    grid-template-columns: 50% 50%;
+    text-align: center;
+  }
+}
+
+.contents {
+  grid-area: contents;
+
+  &:hover {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+  }
+}
+
+.link {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+
+  @include mixin.mq() {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.linkInner {
+  &:not(:last-child) {
+    width: 80%;
+
+    @include mixin.mq() {
+      font-size: mixin.rem(14);
+    }
+  }
+}
+
+.link {
+  @include mixin.mq() {
+    gap: 8px;
+  }
+}
+
+.img {
+  width: 80px;
+  max-width: initial;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size: mixin.rem(18);
+  font-weight: bold;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(14);
+  }
+}
+
+.author {
+  display: block;
+  margin-top: 4px;
+  overflow: hidden;
+  color: lighten(mixin.$mainTextColor, 20%);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @include mixin.mq() {
+    font-size: mixin.rem(12);
+  }
+}
+
+.info {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: mixin.rem(14);
+  text-indent: 1em;
+
+  @include mixin.mq() {
+    display: none;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: buttons;
+  align-items: center;
+  justify-content: center;
+
+  @include mixin.mq() {
+    flex-direction: column;
+    justify-content: center;
+    font-size: mixin.rem(14);
+  }
+}
+
+.usersHaveRead,
+.usersWantRead,
+.usersStocked {
+  padding: 8px;
+
+  @include mixin.mq() {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+  }
+}
+
+.people {
+  display: none;
+
+  @include mixin.mq() {
+    display: block;
+    font-size: mixin.rem(12);
+  }
+}

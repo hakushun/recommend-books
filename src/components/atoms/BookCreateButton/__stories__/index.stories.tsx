@@ -42,3 +42,11 @@ Want.args = {
   isLoading: false,
   handleCreate: action('handleCreate'),
 };
+
+export const Stock = Template.bind({});
+Stock.args = {
+  type: 'stock',
+  item: searchResult,
+  isLoading: false,
+  handleCreate: action('handleCreate'),
+};

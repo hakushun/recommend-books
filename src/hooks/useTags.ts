@@ -53,13 +53,6 @@ export const useTags: CustomHooks = () => {
         dispatch(add(value));
         inputRef.current.value = '';
         break;
-      case 'Backspace':
-        // inputに文字が入力されていればreturn
-        if (value !== '') return;
-        // tagsが空であればreturn
-        if (tags.length === 0) return;
-        dispatch(remove());
-        break;
       default:
         break;
     }

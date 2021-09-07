@@ -70,6 +70,10 @@ const sortBooks = (key: SortKey, books: BookItem[]): BookItem[] => {
       return books.sort(
         (a, b) => b.usersWantRead.length - a.usersWantRead.length,
       );
+    case 'stock':
+      return books.sort(
+        (a, b) => (b.usersStocked?.length ?? 0) - (a.usersStocked?.length ?? 0),
+      );
     default:
       return books;
   }

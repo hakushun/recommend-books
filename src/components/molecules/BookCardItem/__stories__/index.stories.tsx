@@ -1,14 +1,14 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { BookItem, Props } from '..';
+import { BookCardItem, Props } from '..';
 
 export default {
-  title: 'molecules/BookItem',
-  component: BookItem,
+  title: 'molecules/BookCardItem',
+  component: BookCardItem,
 } as Meta;
 
-const Template: Story<Props> = (args) => <BookItem {...args} />;
+const Template: Story<Props> = (args) => <BookCardItem {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -28,6 +28,7 @@ Default.args = {
     },
     updatedAt: 1619483657589,
     usersHaveRead: [],
+    usersStocked: [],
     title: '実践TypeScript',
     createdAt: 1619483657589,
     previewLink:

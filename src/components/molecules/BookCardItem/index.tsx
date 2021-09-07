@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import React from 'react';
 import styles from './index.module.scss';
-import { BookItem as typeBookItem, Type } from '../../../redux/modules/book';
+import { BookItem, Type } from '../../../redux/modules/book';
 import { formatAuthors } from '../../../libs/utils/formatAuthors';
 import { BookReactionButton } from '../../atoms/BookReactionButton';
+import { Userdata } from '../../../redux/modules/user';
 
 export type Props = {
-  book: typeBookItem;
+  user: Userdata;
+  book: BookItem;
   isLoading: boolean;
-  handleReact: (_item: typeBookItem, _type: Type) => void;
+  handleReact: (_item: BookItem, _type: Type) => void;
 };
-export const BookItem: React.VFC<Props> = ({
+export const BookCardItem: React.VFC<Props> = ({
+  user,
   book,
   isLoading,
   handleReact,
@@ -37,18 +40,30 @@ export const BookItem: React.VFC<Props> = ({
           <span>
             <strong>{book.usersWantRead?.length ?? 0}</strong>人が気になってます
           </span>
+          <span>
+            <strong>{book.usersStocked?.length ?? 0}</strong>人が積んでます
+          </span>
         </div>
       </a>
     </Link>
     <div className={styles.action}>
       <BookReactionButton
+        user={user}
         type="read"
         item={book}
         isLoading={isLoading}
         handleReact={handleReact}
       />
       <BookReactionButton
+        user={user}
         type="want"
+        item={book}
+        isLoading={isLoading}
+        handleReact={handleReact}
+      />
+      <BookReactionButton
+        user={user}
+        type="stock"
         item={book}
         isLoading={isLoading}
         handleReact={handleReact}

@@ -16,6 +16,7 @@ export const initialState: RootState = {
         imageUrl: '',
         usersHaveRead: [],
         usersWantRead: [],
+        usersStocked: [],
         registeredBy: null,
         tags: [],
         createdAt: 0,
@@ -75,6 +76,9 @@ export const initialState: RootState = {
       tags: [],
       isEditable: false,
       selected: null,
+    },
+    display: {
+      layout: 'card',
     },
   },
 };

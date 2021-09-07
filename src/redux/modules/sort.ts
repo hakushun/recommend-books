@@ -4,7 +4,7 @@ import { reducerWithInitialState } from 'typescript-fsa-reducers';
 import { RootState } from './reducers';
 
 // types
-export type SortKey = 'new' | 'read' | 'want';
+export type SortKey = 'new' | 'read' | 'want' | 'stock';
 type Sort = {
   key: SortKey;
   // order: 'asc'|'dec';

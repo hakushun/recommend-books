@@ -2,11 +2,11 @@
 
 .root {
   max-width: 1200px;
-  padding: 0 16px 170px;
+  padding: 0 16px 200px;
   margin: 0 auto;
 
   @include mixin.mq() {
-    padding: 0 16px 100px;
+    padding: 0 16px 140px;
   }
 }
 

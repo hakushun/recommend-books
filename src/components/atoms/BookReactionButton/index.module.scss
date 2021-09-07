@@ -1,8 +1,8 @@
 @use '../../../styles/mixin' as mixin;
 
 .reaction {
-  min-width: 110px;
-  padding: 5px 20px;
+  min-width: 90px;
+  padding: 5px 10px;
   font-weight: bold;
   border-radius: 3px;
   outline: none;
@@ -15,6 +15,16 @@
   &.want {
     background-color: mixin.$ternaryColor;
     border: 3px solid mixin.$ternaryColor;
+  }
+
+  &.stock {
+    background-color: mixin.$quaternaryColor;
+    border: 3px solid mixin.$quaternaryColor;
+  }
+
+  &.reacted {
+    background-color: mixin.$reactedColor;
+    border: 3px solid mixin.$reactedColor;
   }
 
   &:hover,

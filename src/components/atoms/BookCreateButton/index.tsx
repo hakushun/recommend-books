@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
+import { getBookButtonLabel } from '../../../libs/utils/getBookButtonLabel';
 import { Type } from '../../../redux/modules/book';
 import { SearchResult } from '../../../redux/modules/searchResult';
 import styles from './index.module.scss';
@@ -20,10 +21,7 @@ export const BookCreateButton: React.VFC<Props> = ({
     type="button"
     disabled={isLoading}
     onClick={() => handleCreate(item, type)}
-    className={clsx(
-      styles.create,
-      type === 'read' ? styles.read : styles.want,
-    )}>
-    {type === 'read' ? '読んだ' : '読みたい'}
+    className={clsx(styles.create, styles[type])}>
+    {getBookButtonLabel(type)}
   </button>
 );

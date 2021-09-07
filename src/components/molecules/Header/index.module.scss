@@ -35,13 +35,8 @@
 
 .navList {
   display: flex;
+  gap: 15px;
   align-items: center;
-}
-
-.navItem {
-  &:not(:first-child) {
-    margin-left: 15px;
-  }
 }
 
 .navLink {

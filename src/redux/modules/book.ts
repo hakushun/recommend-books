@@ -23,6 +23,7 @@ export type BookItem = {
   imageUrl: string;
   usersHaveRead: Userdata[];
   usersWantRead: Userdata[];
+  usersStocked: Userdata[];
   registeredBy: Userdata | null;
   tags: Tag[];
   createdAt: number;
@@ -37,7 +38,7 @@ export type Book = {
   isLoading: boolean;
   error?: CustomError;
 };
-export type Type = 'read' | 'want';
+export type Type = 'read' | 'want' | 'stock';
 export type CreatePayload = {
   item: SearchResult;
   user: Userdata;
@@ -97,6 +98,7 @@ const INITIAL_STATE: Book = {
     imageUrl: '',
     usersHaveRead: [],
     usersWantRead: [],
+    usersStocked: [],
     registeredBy: null,
     tags: [],
     createdAt: 0,

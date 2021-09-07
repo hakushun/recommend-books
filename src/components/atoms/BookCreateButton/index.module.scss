@@ -18,6 +18,11 @@
     border: 3px solid mixin.$ternaryColor;
   }
 
+  &.stock {
+    background-color: mixin.$quaternaryColor;
+    border: 3px solid mixin.$quaternaryColor;
+  }
+
   &:hover,
   &:focus {
     background-color: mixin.$bgColor;
@@ -27,5 +32,11 @@
     cursor: not-allowed;
     background-color: mixin.$disabledColor;
     border: 3px solid mixin.$disabledColor;
+  }
+
+  @include mixin.mq() {
+    min-width: 90px;
+    min-height: 90px;
+    padding: 5px 10px;
   }
 }

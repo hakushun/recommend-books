@@ -1,0 +1,66 @@
+@use '../../../styles/mixin' as mixin;
+
+.root {
+  margin-top: 15px;
+}
+
+.input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+
+  & + .check {
+    position: relative;
+    display: inline-block;
+    width: 124px;
+    height: 28px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #add8e6;
+    border-radius: 20px;
+    box-shadow: 0 0 3px 2px rgb(0 0 0 / 20%) inset;
+  }
+
+  & + .check::before {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    left: auto;
+    content: "リスト表示";
+    transform: translateY((-50%));
+  }
+
+  & + .check > .switch {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
+    transition: 0.2s;
+    transform: translateY(-50%);
+  }
+
+  &:checked + .check {
+    background-color: #ffb6c1;
+  }
+
+  &:checked + .check::before {
+    position: absolute;
+    right: auto;
+    left: 16px;
+    content: "カード表示";
+  }
+
+  &:checked + .check > .switch {
+    left: (120px - 22px);
+    border: 1px solid transparent;
+  }
+
+  &:focus-visible + .check {
+    opacity: 0.6;
+  }
+}

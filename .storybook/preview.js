@@ -1,3 +1,5 @@
+import { withNextRouter } from 'storybook-addon-next-router';
+import { addDecorator } from '@storybook/react';
 import { Provider } from 'react-redux';
 import { initStore } from '../src/redux/store';
 import '../src/styles/reset.scss';
@@ -14,6 +16,11 @@ export const parameters = {
   },
 };
 
+// createPortalで使用してるoverlayをmountするdivを追加
+const overlayRoot = document.createElement('div');
+overlayRoot.setAttribute('id', 'overlay');
+document.body.append(overlayRoot);
+
 export const decorators = [
   (Story) => {
     const store = initStore({});
@@ -24,3 +31,15 @@ export const decorators = [
     );
   },
 ];
+
+/**
+ * @see {@link https://storybook.js.org/addons/storybook-addon-next-router|Storybook Addon Next Router}
+ */
+addDecorator(
+  withNextRouter({
+    path: '/', // defaults to `/`
+    asPath: '/', // defaults to `/`
+    query: {}, // defaults to `{}`
+    push() {} // defaults to using addon actions integration, can override any method in the router
+  })
+);

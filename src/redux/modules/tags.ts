@@ -20,7 +20,7 @@ const actionCreator = actionCreatorFactory();
 
 export const toggle = actionCreator<boolean>('TOGGLE_EDITABLE');
 export const add = actionCreator<string>('ADD_TAG');
-export const remove = actionCreator<string | void>('REMOVE_TAG');
+export const remove = actionCreator<string>('REMOVE_TAG');
 export const select = actionCreator<string>('SELECT_TAG');
 
 // initial state
@@ -40,20 +40,10 @@ const reducer = reducerWithInitialState(INITIAL_STATE)
     ...state,
     tags: [...state.tags, { id: payload.toLowerCase(), value: payload }],
   }))
-  .case(remove, (state, payload) => {
-    if (!payload) {
-      const newTags = [...state.tags];
-      newTags.pop();
-      return {
-        ...state,
-        tags: newTags,
-      };
-    }
-    return {
-      ...state,
-      tags: [...state.tags.filter((tag) => tag.id !== payload)],
-    };
-  })
+  .case(remove, (state, payload) => ({
+    ...state,
+    tags: [...state.tags.filter((tag) => tag.id !== payload)],
+  }))
   .case(set, (state, payload) => ({
     ...state,
     tags: payload.tags,

@@ -10,6 +10,7 @@ import modal from './modal';
 import search from './search';
 import sort from './sort';
 import tags from './tags';
+import display from './display';
 
 const rootReducer = combineReducers({
   resources: combineReducers({
@@ -20,7 +21,7 @@ const rootReducer = combineReducers({
     comments,
     searchResults,
   }),
-  ui: combineReducers({ searchResult, modal, search, sort, tags }),
+  ui: combineReducers({ searchResult, modal, search, sort, tags, display }),
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

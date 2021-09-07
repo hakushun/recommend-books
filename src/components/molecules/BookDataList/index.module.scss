@@ -26,6 +26,7 @@
   @include mixin.mq() {
     flex-direction: column;
 
+    > dd,
     > dt {
       width: 100%;
     }

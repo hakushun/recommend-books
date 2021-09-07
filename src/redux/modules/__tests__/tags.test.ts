@@ -27,6 +27,7 @@ describe('Reducer: tags', () => {
     imageUrl: 'https://suumo.jp/',
     usersHaveRead: [user],
     usersWantRead: [],
+    usersStocked: [],
     registeredBy: user,
     tags: [
       {
@@ -66,26 +67,6 @@ describe('Reducer: tags', () => {
   it('Action: add', () => {
     const action = add('dummyTag');
     const result = reducer(undefined, action);
-    expect(result).toEqual({
-      tags: [{ id: 'dummytag', value: 'dummyTag' }],
-      isEditable: false,
-      selected: null,
-    });
-  });
-
-  it('Action: remove last one', () => {
-    const action = remove();
-    const result = reducer(
-      {
-        tags: [
-          { id: 'dummytag', value: 'dummyTag' },
-          { id: 'sampletag', value: 'sampleTag' },
-        ],
-        isEditable: false,
-        selected: null,
-      },
-      action,
-    );
     expect(result).toEqual({
       tags: [{ id: 'dummytag', value: 'dummyTag' }],
       isEditable: false,
@@ -163,6 +144,7 @@ describe('Selector: sort', () => {
               'http://books.google.co.jp/books?id=-HCKoAEACAAJ&dq=%E3%83%8F%E3%82%A4%E3%83%91%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%B9%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6&hl=&cd=1&source=gbs_api',
             id: '-HCKoAEACAAJ',
             usersWantRead: [],
+            usersStocked: [],
             createdAt: 1619336569848,
             description:
               '本書は「ブラウザ」に関連する、インターネットで使用される様々なネットワーク技術をまとめたものです。WebSocketやHTTP/2.0やWebRTCのように最新ブラウザで簡単に動作する新しい技術から、そのような技術の土台となるTCPやUDPやトランスポート層についてまで幅広くカバーします。',
@@ -201,6 +183,7 @@ describe('Selector: sort', () => {
             },
             updatedAt: 1619336571489,
             usersWantRead: [],
+            usersStocked: [],
             createdAt: 1619336571489,
             id: '0WbkswEACAAJ',
             title: 'Webフロントエンドハイパフォーマンスチューニング',
@@ -259,6 +242,7 @@ describe('Selector: sort', () => {
               },
             ],
             usersHaveRead: [],
+            usersStocked: [],
           },
         ],
         page: 0,

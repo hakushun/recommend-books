@@ -15,6 +15,7 @@ export const mapSearchResult = ({
   imageUrl: replaceToHttps(item.volumeInfo.imageLinks?.thumbnail),
   usersHaveRead: type === 'read' ? [user] : [],
   usersWantRead: type === 'want' ? [user] : [],
+  usersStocked: type === 'stock' ? [user] : [],
   registeredBy: user,
   tags: [],
   createdAt: getNow(),

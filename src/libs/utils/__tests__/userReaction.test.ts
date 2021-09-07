@@ -15,6 +15,7 @@ describe('userReaction', () => {
     imageUrl: 'https://suumo.jp/',
     usersHaveRead: [user],
     usersWantRead: [],
+    usersStocked: [],
     tags: [],
     registeredBy: user,
     createdAt: 0,
@@ -22,13 +23,14 @@ describe('userReaction', () => {
   };
   const read = 'read';
   const want = 'want';
+  const stock = 'stock';
 
   describe('haveReacted', () => {
     it('TRUE', () => {
       expect(true).toEqual(haveReacted({ item, user, type: read }));
     });
     it('FALSE', () => {
-      expect(false).toEqual(haveReacted({ item, user, type: want }));
+      expect(false).toEqual(haveReacted({ item, user, type: stock }));
     });
   });
   describe('addReaction', () => {
@@ -42,6 +44,7 @@ describe('userReaction', () => {
         imageUrl: 'https://suumo.jp/',
         usersHaveRead: [user],
         usersWantRead: [user],
+        usersStocked: [],
         tags: [],
         registeredBy: user,
         createdAt: 0,
@@ -61,6 +64,7 @@ describe('userReaction', () => {
         imageUrl: 'https://suumo.jp/',
         usersHaveRead: [],
         usersWantRead: [],
+        usersStocked: [],
         tags: [],
         registeredBy: user,
         createdAt: 0,

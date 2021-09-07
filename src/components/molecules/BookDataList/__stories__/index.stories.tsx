@@ -28,6 +28,7 @@ Default.args = {
     },
     updatedAt: 1619483657589,
     usersHaveRead: [],
+    usersStocked: [],
     title: '実践TypeScript',
     createdAt: 1619483657589,
     previewLink:

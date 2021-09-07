@@ -26,6 +26,7 @@ const book = {
   },
   updatedAt: 1619483657589,
   usersHaveRead: [],
+  usersStocked: [],
   title: '実践TypeScript',
   createdAt: 1619483657589,
   previewLink:
@@ -58,6 +59,14 @@ Read.args = {
 export const Want = Template.bind({});
 Want.args = {
   type: 'want',
+  item: book,
+  isLoading: false,
+  handleReact: action('handleReact'),
+};
+
+export const Stock = Template.bind({});
+Stock.args = {
+  type: 'stock',
   item: book,
   isLoading: false,
   handleReact: action('handleReact'),

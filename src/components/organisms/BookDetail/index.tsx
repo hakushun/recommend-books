@@ -6,14 +6,17 @@ import { Comments } from '../../molecules/Comments';
 import { PreviewLink } from '../../atoms/PreviewLink';
 import styles from './index.module.scss';
 import { BookDataList } from '../../molecules/BookDataList';
+import { Userdata } from '../../../redux/modules/user';
 
 export type Props = {
+  user: Userdata;
   book: BookItem;
   isLoading: boolean;
   handleReact: (_item: BookItem, _type: Type) => void;
   handleDelete: (_item: BookItem) => void;
 };
 export const BookDetail: React.VFC<Props> = ({
+  user,
   book,
   isLoading,
   handleReact,
@@ -33,13 +36,22 @@ export const BookDetail: React.VFC<Props> = ({
         <div className={styles.action}>
           <PreviewLink link={book.previewLink} />
           <BookReactionButton
+            user={user}
             type="read"
             item={book}
             isLoading={isLoading}
             handleReact={handleReact}
           />
           <BookReactionButton
+            user={user}
             type="want"
+            item={book}
+            isLoading={isLoading}
+            handleReact={handleReact}
+          />
+          <BookReactionButton
+            user={user}
+            type="stock"
             item={book}
             isLoading={isLoading}
             handleReact={handleReact}

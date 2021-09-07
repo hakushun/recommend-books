@@ -57,6 +57,13 @@ export const BookDataList: React.VFC<Props> = ({
       </dd>
     </div>
     <div className={styles.item}>
+      <dt>積んでる人</dt>
+      <dd>
+        {book.usersStocked?.map((user) => user?.name).join(', ') ||
+          'まだいません'}
+      </dd>
+    </div>
+    <div className={styles.item}>
       <dt>
         Tags
         <TagToggleButton isEditable={isEditable} handleToggle={handleToggle} />
