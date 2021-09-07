@@ -2,7 +2,6 @@
   "name": "recommend-books",
   "version": "1.0.0",
   "description": "",
-  "main": "firebaseFunctions.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -15,9 +14,9 @@
     "lint:stylelint": "stylelint --fix './src/**/*.{css,scss}'",
     "test": "jest",
     "test:watch": "jest --watch",
-    "build-storybook": "build-storybook",
     "storybook": "start-storybook -s ./public -p 6006",
-    "deploy": "firebase deploy"
+    "deploy": "vercel",
+    "deploy:prod": "vercel --prod"
   },
   "husky": {
     "hooks": {
