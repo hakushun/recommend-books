@@ -4,9 +4,7 @@ import { mapUserData } from '../utils/mapUserData';
 
 export const signinWithGoogle = async (): Promise<Userdata> => {
   const googleProvider = new firebase.auth.GoogleAuthProvider();
-  googleProvider.setCustomParameters({
-    hd: 'nijibox.co.jp',
-  });
+
   const { user } = await firebase.auth().signInWithPopup(googleProvider);
   if (!user) return null;
   return mapUserData(user);
