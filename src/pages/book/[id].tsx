@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import React from 'react';
 import { useBook } from '../../hooks/useBook';
 import { BookDetail } from '../../components/organisms/BookDetail';
-import { getBook } from '../../libs/cloudFunctions/getBook';
+import { getBook } from '../../libs/firestore/getBook';
 import { BookItem } from '../../redux/modules/book';
 import { useUser } from '../../hooks/useUser';
 
